@@ -83,16 +83,5 @@
 		<aop:pointcut id="interceptorPointCuts" expression="execution(public * net.jeeshop.services.*.impl.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="interceptorPointCuts" />
 	</aop:config>
-	
-	<!-- base -->
-	<!--<import resource="spring-base.xml"/>-->
-	<!---->
-	<!--&lt;!&ndash; spring-services &ndash;&gt;-->
-	<!--<import resource="manage/spring-services.xml"/>-->
-	<!--<import resource="front/spring-services.xml"/>-->
-	<!--<import resource="manage/spring-services-task.xml"/>-->
 
-	<!--&lt;!&ndash; spring-struts &ndash;&gt;-->
-	<!--<import resource="../strutsSpring/manage/spring-struts.xml"/>-->
-	<!--<import resource="../strutsSpring/front/spring_struts.xml"/>-->
 </beans>

@@ -39,16 +39,14 @@ public class Uploadify extends HttpServlet{
         Date date = new Date();//获取当前时间  
         SimpleDateFormat sdfFileName = new SimpleDateFormat("yyyyMMddHHmmss");  
         SimpleDateFormat sdfFolder = new SimpleDateFormat("yyMM");  
-//        String newfileName = sdfFileName.format(date);//文件名称  
-        String fileRealPath = "";//文件存放真实地址  
+        String fileRealPath = "";//文件存放真实地址
           
         String fileRealResistPath = "";//文件存放真实相对路径  
           
         //名称  界面编码 必须 和request 保存一致..否则乱码  
         String name = request.getParameter("name");  
         String id = request.getParameter("id");  //内容的ID,必须先添加内容，然后才能上传图片
-//        String newfileName = name;    
-           
+
         String firstFileName="";  
         // 获得容器中上传文件夹所在的物理路径  
         String savePath = this.getServletConfig().getServletContext().getRealPath("/") + "upload\\" + id +"\\";  
@@ -62,7 +60,6 @@ public class Uploadify extends HttpServlet{
             DiskFileItemFactory fac = new DiskFileItemFactory();  
             ServletFileUpload upload = new ServletFileUpload(fac);  
             upload.setHeaderEncoding("UTF-8");
-//            upload.setFileItemFactory(factory)
             System.out.println("request：＝"+request);
             // 获取多个上传文件  
             List fileList = fileList = upload.parseRequest(request);

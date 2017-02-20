@@ -24,7 +24,7 @@
                     </list>
                 </property>
             </bean>
-            <bean id="jsonHttpMesaageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+            <bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
                         <value>text/html;charset=UTF-8</value>
@@ -33,9 +33,6 @@
                 </property>
             </bean>
         </mvc:message-converters>
-        <!-- 集合参数解析器 -->
-        <!--<mvc:argument-resolvers>-->
-        <!--</mvc:argument-resolvers>-->
     </mvc:annotation-driven>
     <!-- 配置静态文件路径 -->
     <!-- max caching age: 24 h -->

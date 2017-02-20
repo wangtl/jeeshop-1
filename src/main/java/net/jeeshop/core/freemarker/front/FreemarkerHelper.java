@@ -49,34 +49,6 @@ public class FreemarkerHelper {
 		this.newsService = newsService;
 	}
 
-	/**
-	 * 生成门户静态页面
-	 * 
-	 * @return
-	 */
-//	public void index(String template, String templateHtml) {
-//		try {
-//			// 准备数据
-//			HashMap<String, Object> data = new HashMap<String, Object>();
-//			data.put("indexMenuList", loadIndexMenu());
-//			crateHTML(ServletActionContext.getServletContext(), data, template,
-//					templateHtml);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
-
-	/**
-	 * 加载门户菜单列表
-	 * 
-	 * @return
-	 * @return
-	 */
-//	private List<IndexMenu> loadIndexMenu() {
-//		IndexMenu e = new IndexMenu();
-//		List<IndexMenu> indexMenuList = indexMenuService.selectList(e);
-//		return indexMenuList;
-//	}
 
 	/**
 	 * 生成静态页面主方法
@@ -109,8 +81,6 @@ public class FreemarkerHelper {
 				.getTemplate(templatePath, "UTF-8");
 		template.setEncoding("UTF-8");
 		// 静态页面路径
-//			String htmlPath = context.getRealPath("/") + "/"
-//					+ targetHtmlPath;
 		System.out.println(targetHtmlPath);
 		File htmlFile = new File(targetHtmlPath);
 		Writer out = new BufferedWriter(new OutputStreamWriter(
@@ -120,11 +90,6 @@ public class FreemarkerHelper {
 		out.flush();
 		out.close();
 		System.out.println("生成成功");
-//		try {
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			System.out.println("生成失败");
-//		}
 	}
 
 	public boolean isEmpty(String value) {

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -30,11 +31,11 @@ public class CommonController {
     @RequestMapping("uploadify")
     @ResponseBody
     public String uploadify(@RequestParam("Filedata")MultipartFile filedata,
-                            @RequestParam(required = false, defaultValue = "1")String thumbnail) {
+                            @RequestParam(required = false, defaultValue = "1")String thumbnail,HttpServletRequest request) {
         boolean createThumbnail = "1".equals(thumbnail);
         SystemSetting systemSetting = SystemManager.getInstance().getSystemSetting();
         //文件保存目录路径
-        String savePath = SystemManager.getInstance().getProperty("file.upload.path");
+        String savePath = request.getSession().getServletContext().getRealPath("")+SystemManager.getInstance().getProperty("file.upload.path");
         //文件保存目录URL
         String saveUrl = systemSetting.getImageRootPath();
 
