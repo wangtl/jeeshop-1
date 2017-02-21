@@ -105,15 +105,7 @@ public class UserAction extends BaseController<User> {
 	public void setSystemlogService(SystemlogService systemlogService) {
 		this.systemlogService = systemlogService;
 	}
-	
-//	@Override
-//	public void prepare() throws Exception {
-//		if(this.e==null){
-//			this.e = new User();
-//		}
-//
-//		super.initPageSelect();
-//	}
+
 	@RequestMapping("loadData")
 	@ResponseBody
 	@Override

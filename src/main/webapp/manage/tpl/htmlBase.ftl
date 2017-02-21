@@ -40,9 +40,7 @@
 
     <link rel="stylesheet" href="${staticpath}/zTree3.5/css/zTreeStyle/zTreeStyle.css" type="text/css">
     <link rel="stylesheet" href="${staticpath}/bootstrap3.3.4/css/bootstrap.min.css"  type="text/css">
-    <#--<link rel="stylesheet" href="${staticpath}/bootstrap3.3.4/css/bootstrap-theme.min.css"  type="text/css">-->
     <link rel="stylesheet" href="${staticpath}/jquery-ui-1.11.2/jquery-ui.css">
-    <#--<link rel="stylesheet" href="${staticpath}/jquery-ui-1.11.2/jquery-ui.theme.css">-->
     <link rel="stylesheet" href="${staticpath}/validator-0.7.0/jquery.validator.css" />
 
 <#--<script type="text/javascript" src="${staticpath}/js/jquery-1.4.2.min.js"></script>-->
@@ -78,8 +76,6 @@
     <!-- metisMenu -->
     <link href="${staticpath}/metisMenu/metisMenu.min.css" rel="stylesheet">
     <script src="${staticpath}/metisMenu/metisMenu.min.js"></script>
-    <#--<link rel="stylesheet" href="${staticpath}/datatables-responsive/css/dataTables.responsive.css" />-->
-    <#--<script charset="utf-8" src="${staticpath}/datatables-responsive/js/dataTables.responsive.js"></script>-->
     <script type="text/javascript" src="${basepath}/manage/manage.js"></script>
     <#list staticJsFiles as jsFile>
         <script src="${staticpath}/${jsFile}"></script>

@@ -41,15 +41,8 @@
                             <div class="row help-block">
                                 <div class="col-md-offset-1 col-md-11">
                                     <span class="fa fa-info-circle"></span>默认用户名密码:admin/123456
-                                    </span><a class="btn btn-link" href="http://git.oschina.net/dinguangx/jshop" target="_blank"><span class="fa fa-git-square">源码</a>
                                 </div>
                             </div>
-                        <#--<div class="checkbox">-->
-                        <#--<label>-->
-                        <#--<input name="remember" type="checkbox" value="Remember Me">Remember Me-->
-                        <#--</label>-->
-                        <#--</div>-->
-                            <!-- Change this to a button or input when using this as a form -->
                             <input type="submit" id="btnLogin" class="btn btn-lg btn-success btn-block" value="登录">
                         </fieldset>
                     </form>
@@ -58,13 +51,5 @@
         </div>
     </div>
 </div>
-<#--<tr>-->
-<#--<td colspan="2" style="text-align: center;">测试账号：test1/123456-->
-<#--</td>-->
-<#--</tr>-->
-<#--<tr>-->
-<#--<td colspan="2" style="text-align: center;">${systemSetting().version}-->
-<#--</td>-->
-<#--</tr>-->
 </body>
 </@html.htmlBase>

@@ -33,17 +33,11 @@ $(function() {
 		<div class="row">
 			<div id="tabs">
 				<ul>
-					<li><a href="#tabs-1" style="font-size: 14px;">十万火急</a>
-<!-- 						<a href="#"> -->
-<#--<%-- 							<img alt="" src="${systemSetting().manageHttp}/resource/images/refresh.png"> --%>-->
-<!-- 						</a> -->
+					<li><a href="#tabs-1" style="font-size: 14px;">系统概况</a>
 					</li>
 					<li><a href="#tabs-2" style="font-size: 14px;">基本设置</a></li>
 					<li><a href="#tabs-3" style="font-size: 14px;">图片设置</a></li>
-<#--<%-- 					<li><a href="${basepath}/manage/systemlog/systemlogListAndDetail?init=y&type=2">更新日志</a></li> --%>-->
-<!-- 					<li><a href="#tabs-4">新增订单</a></li> -->
-<!-- 					<li><a href="#tabs-5">最近销售状况</a></li> -->
-<#--<%-- 					<li><a href="#tabs-6"><strong>系统使用帮助</strong></a></li> --%>-->
+
 				</ul>
 				<div id="tabs-1">
 					<div class="alert alert-danger" style="margin-bottom: 2px;text-align: left;">

@@ -1,41 +1,23 @@
 <#import "/manage/tpl/pageBase.ftl" as page>
 <@page.pageBase currentMenu="首页">
 <style>
-    /*a:link {text-decoration:underline;}*/
-    /*a:visited {text-decoration:underline;}*/
-    /*a:hover {text-decoration:underline;}*/
-    /*a:active {text-decoration:underline;}*/
-
     .font-focus{
         font-weight: 700;font-size: 16px;color: #f50 !important;text-decoration: underline;
     }
 </style>
-<#--<%-->
-<#--SystemSetting ssInfo = SystemManager.systemSetting;-->
-<#--if(ssInfo==null){-->
-<#--ssInfo = new SystemSetting();-->
-<#--}-->
-<#--%>-->
+
 <script>
     $(function() {
         $( "#tabs" ).tabs({
-            //event: "mouseover"
         });
     });
 </script>
         <div id="tabs">
             <ul>
-                <li><a href="#tabs-1" style="font-size: 14px;">十万火急</a>
-                    <!-- 						<a href="#"> -->
-                <#--<%-- 							<img alt="" src="${systemSetting().manageHttp}/resource/images/refresh.png"> --%>-->
-                    <!-- 						</a> -->
+                <li><a href="#tabs-1" style="font-size: 14px;">系统概况</a>
                 </li>
                 <li><a href="#tabs-2" style="font-size: 14px;">基本设置</a></li>
                 <li><a href="#tabs-3" style="font-size: 14px;">图片设置</a></li>
-            <#--<%-- 					<li><a href="${basepath}/manage/systemlog/systemlogListAndDetail?init=y&type=2">更新日志</a></li> --%>-->
-                <!-- 					<li><a href="#tabs-4">新增订单</a></li> -->
-                <!-- 					<li><a href="#tabs-5">最近销售状况</a></li> -->
-            <#--<%-- 					<li><a href="#tabs-6"><strong>系统使用帮助</strong></a></li> --%>-->
             </ul>
             <div id="tabs-1">
                 <div class="alert alert-success" style="margin-bottom: 2px;text-align: left;">

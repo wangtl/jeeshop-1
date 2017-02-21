@@ -127,34 +127,6 @@ function submitNotValid2222(obj){
 //为了使用bootstrap2的图标功能，只有牺牲使用struts2的s:submit方式提交表单。
 //这里对s:form表单的action进行重新组装，加上了你点击的按钮的method="update"方法，最后验证通过则提交表单。
 function doSubmitFuncWhenButton(obj){
-	/*
-	$("#form").validator({
-		
-		valid: function(form){
-			var me = this;
-	        // ajax提交表单之前，先禁用submit
-	        me.holdSubmit();
-	        $(form).find('button').css('color', '#999').text('正在提交..');
-	        
-			this.isAjaxSubmit = false;
-			var method = $(obj).attr("method");
-			console.log(method);
-			var _formAction = $(form).attr("action");
-			var aa = _formAction.substring(0,_formAction.lastIndexOf("/")+1);
-			console.log(aa);
-			
-			var lastFormAction = aa+method;//aa +"!" +method+".action";
-			console.log("lastFormAction="+lastFormAction);
-			$(form).attr("action",lastFormAction);
-			
-			console.log($(form).attr("action"));
-			
-			form.submit();
-			
-			me.holdSubmit(false);
-		}
-	});
-	*/
 	
 	$("#form").on("valid.form", function(e, form){
 		console.log(this.isValid);
@@ -166,30 +138,7 @@ function doSubmitFuncWhenButton(obj){
 	$("#form").on("valid.form", function(e, form){
 		console.log(this.isValid);
 		if(this.isValid && this.isValid==true){
-			
-			//var me = this;
-	        // ajax提交表单之前，先禁用submit
-	        //me.holdSubmit();
-	        //$(form).find('button').css('color', '#999').text('正在提交..');
 	        console.log("submit...");
-			/*
-			this.isAjaxSubmit = false;
-			var method = $(obj).attr("method");
-			console.log(method);
-			var _formAction = $(form).attr("action");
-			var aa = _formAction.substring(0,_formAction.lastIndexOf("/")+1);
-			console.log(aa);
-			
-			var lastFormAction = aa+method;
-			console.log("lastFormAction="+lastFormAction);
-			$(form).attr("action",lastFormAction);
-			
-			console.log($(form).attr("action"));
-			
-			form.submit();
-			*/
-			
-			//me.holdSubmit(false);
 		}
 	});
 	

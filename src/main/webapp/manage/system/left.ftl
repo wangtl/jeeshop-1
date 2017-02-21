@@ -1,4 +1,3 @@
-<#import "/manage/tpl/common_html_meat.ftl" as html>
 <@html.htmlBase>
     <script type="text/javascript">
     	//注销
@@ -14,6 +13,5 @@
 	&nbsp;&nbsp;欢迎你! | <a href="#" onclick="a()">注销</a> | <a target="_blank" href="${systemSetting().www}">门户</a>
 </div>
 <hr style="margin: 0;padding: 0">
-<#--<jsp:include page="../system/menu/leftMenu.jsp"></jsp:include>-->
 <#include "/manage/system/menu/leftMenu.ftl">
 </@html.htmlBase>
