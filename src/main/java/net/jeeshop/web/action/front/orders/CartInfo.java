@@ -20,7 +20,6 @@ public class CartInfo extends PagerModel implements Serializable {
 	static final java.text.DecimalFormat df =new   java.text.DecimalFormat("#.00");
 	
 	private List<Product> productList;// 购物车中商品列表
-//	private String productTotal;//商品总金额
 	private String amount;// 合计总金额，也就是用户最终需要支付的金额
 	private int totalExchangeScore;//总计所需积分
 	
@@ -74,12 +73,10 @@ public class CartInfo extends PagerModel implements Serializable {
 				_totalExchangeScore += p.getExchangeScore() * p.getBuyCount();
 				continue;
 			}
-//			_productTotal += Double.valueOf(p.getNowPrice()) * p.getBuyCount();
 			_amount += Double.valueOf(p.getNowPrice()) * p.getBuyCount();
 		}
 		
 		this.totalExchangeScore = _totalExchangeScore;
-//		this.productTotal = df.format(_productTotal);
 		if(_amount!=0){
 			this.amount = df.format(_amount);
 		}else{
@@ -132,11 +129,5 @@ public class CartInfo extends PagerModel implements Serializable {
 				+ ", addressList=" + addressList + ", address=" + address
 				+ ", defaultAddessID=" + defaultAddessID + "]";
 	}
-	
-//	@Override
-//	public String toString() {
-//		StringBuilder buff = new StringBuilder();
-//		buff.append("amount="+amount+",defaultAddessID="+defaultAddessID);
-//		return buff.toString();
-//	}
+
 }

@@ -59,9 +59,7 @@ public class NewsAction extends FrontBaseController<News> {
 		if(StringUtils.isBlank(id)){
 			throw new NullPointerException("id is null");
 		}
-		
-//		e = newsService.selectById(id);
-		
+
 		News news =newsService.selectById(id);
 		if(news==null){
 			throw new NullPointerException();

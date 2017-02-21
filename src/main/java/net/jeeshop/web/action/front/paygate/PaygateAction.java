@@ -75,7 +75,6 @@ public class PaygateAction {
 
         PayInfo payInfo = new PayInfo();
         payInfo.setWIDseller_email(ordership.getPhone());
-//		String debug = SystemManager.getInstance().get("system_debug");
         String www = SystemManager.getInstance().getSystemSetting().getWww();
 
         /**
