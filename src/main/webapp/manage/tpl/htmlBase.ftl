@@ -37,30 +37,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>${(title?? && title!="")?string("${systemSetting().systemCode} - "+ title , "${systemSetting().systemCode} - JAVA开源电商系统")}</title>
     <link rel="shortcut icon" type="image/x-icon" href="${systemSetting().shortcuticon}">
-
     <link rel="stylesheet" href="${staticpath}/zTree3.5/css/zTreeStyle/zTreeStyle.css" type="text/css">
     <link rel="stylesheet" href="${staticpath}/bootstrap3.3.4/css/bootstrap.min.css"  type="text/css">
     <link rel="stylesheet" href="${staticpath}/jquery-ui-1.11.2/jquery-ui.css">
     <link rel="stylesheet" href="${staticpath}/validator-0.7.0/jquery.validator.css" />
-
-<#--<script type="text/javascript" src="${staticpath}/js/jquery-1.4.2.min.js"></script>-->
     <script type="text/javascript" src="${staticpath}/js/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="${staticpath}/zTree3.5/js/jquery.ztree.all-3.5.min.js"></script>
-
     <script type="text/javascript" src="${staticpath}/js/jquery.blockUI.js"></script>
     <script type="text/javascript" src="${staticpath}/bootstrap3.3.4/js/bootstrap.min.js"></script>
     <!-- sb admin -->
     <link rel="stylesheet" href="${staticpath}/sb-admin/css/sb-admin-2.css" />
     <script src="${staticpath}/sb-admin/js/sb-admin-2.js" ></script>
-
     <link href="${staticpath}/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
     <script src="${staticpath}/jquery-ui-1.11.2/jquery-ui.js"></script>
     <!-- jquery validator -->
-
     <script type="text/javascript" src="${staticpath}/validator-0.7.0/jquery.validator.js"></script>
     <script type="text/javascript" src="${staticpath}/validator-0.7.0/local/zh_CN.js"></script>
-
     <script type="text/javascript" src="${staticpath}/My97DatePicker/WdatePicker.js"></script>
 
     <link rel="stylesheet" href="${staticpath}/kindeditor-4.1.7/themes/default/default.css" />
