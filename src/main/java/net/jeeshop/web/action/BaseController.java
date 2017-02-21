@@ -8,10 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
@@ -119,12 +116,25 @@ public abstract class BaseController<E extends PagerModel> {
      */
     @RequestMapping(value = "deletes", method = RequestMethod.POST)
     public String deletes(HttpServletRequest request, String[] ids, @ModelAttribute("e") E e, RedirectAttributes flushAttrs) throws Exception {
-
         getService().deletes(ids);
         addMessage(flushAttrs, "操作成功！");
         return "redirect:selectList";
     }
 
+    /**
+     * 公共的批量删除数据的方法，子类可以通过重写此方法实现个性化的需求。
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "deletesJson", method = RequestMethod.POST)
+    @ResponseBody
+    public String deletesJson(HttpServletRequest request,@RequestParam(value ="ids[]") String[] ids, @ModelAttribute("e") E e, RedirectAttributes flushAttrs) throws Exception {
+
+        getService().deletes(ids);
+        addMessage(flushAttrs, "操作成功！");
+        return "success";
+    }
     /**
      * 公共的更新数据的方法，子类可以通过重写此方法实现个性化的需求。
      *

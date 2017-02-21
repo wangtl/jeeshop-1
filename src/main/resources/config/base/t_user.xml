@@ -92,7 +92,9 @@
 		insert into t_user (id,username,password,createtime,createAccount,status,rid,nickname,email)
 		 values (id,#{username},#{password},now(),#{createAccount},#{status},#{rid},#{nickname},#{email})
 	</insert>
-	
+	<delete id="user.delete" parameterType="net.jeeshop.core.system.bean.User">
+		delete from t_user where 1=1 and id=#{id}
+	</delete>
 	<update id="user.update" parameterType="net.jeeshop.core.system.bean.User">
 		update t_user set id=#{id},updatetime=now(),updateAccount=#{updateAccount}
 		<if test="password!=null">

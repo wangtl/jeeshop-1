@@ -37,12 +37,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>${(title?? && title!="")?string("${systemSetting().systemCode} - "+ title , "${systemSetting().systemCode}")}</title>
     <link rel="shortcut icon" type="image/x-icon" href="${systemSetting().shortcuticon}">
-    <link rel="stylesheet" href="${staticpath}/zTree3.5/css/zTreeStyle/zTreeStyle.css" type="text/css">
     <link rel="stylesheet" href="${staticpath}/bootstrap3.3.4/css/bootstrap.min.css"  type="text/css">
     <link rel="stylesheet" href="${staticpath}/jquery-ui-1.11.2/jquery-ui.css">
     <link rel="stylesheet" href="${staticpath}/validator-0.7.0/jquery.validator.css" />
+
+    <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/dpl.css" rel="stylesheet">
+    <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/bui.css" rel="stylesheet">
+
+
     <script type="text/javascript" src="${staticpath}/js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="${staticpath}/zTree3.5/js/jquery.ztree.all-3.5.min.js"></script>
+    <script src="http://g.tbcdn.cn/fi/bui/bui-min.js?t=201309041336"></script>
+
     <script type="text/javascript" src="${staticpath}/js/jquery.blockUI.js"></script>
     <script type="text/javascript" src="${staticpath}/bootstrap3.3.4/js/bootstrap.min.js"></script>
     <!-- sb admin -->
@@ -58,10 +63,10 @@
     <link rel="stylesheet" href="${staticpath}/kindeditor-4.1.7/themes/default/default.css" />
     <script charset="utf-8" src="${staticpath}/kindeditor-4.1.7/kindeditor-min.js"></script>
     <script charset="utf-8" src="${staticpath}/kindeditor-4.1.7/lang/zh_CN.js"></script>
+    <link rel="stylesheet" href="${staticpath}/zTree3.5/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script type="text/javascript" src="${staticpath}/zTree3.5/js/jquery.ztree.all-3.5.min.js"></script>
 
-    <!-- datatables -->
-    <link rel="stylesheet" href="${staticpath}/datatables/css/jquery.dataTables.css" />
-    <script charset="utf-8" src="${staticpath}/datatables/js/jquery.dataTables.js"></script>
+
 
     <!-- metisMenu -->
     <link href="${staticpath}/metisMenu/metisMenu.min.css" rel="stylesheet">

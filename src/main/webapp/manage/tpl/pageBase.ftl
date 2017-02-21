@@ -39,21 +39,17 @@
         </nav>
 
         <div id="page-wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="navbar navbar-default">
-                        <ol class="breadcrumb bootstrap-admin-breadcrumb">
+                <div class="span24">
+                        <ol class="breadcrumb">
                             <li>
                                 <a href="${basepath}/manage/user/home">首页</a>
                             </li>
                             <li class="active">${currentMenu}</li>
                         </ol>
-                    </div>
                 </div>
-            </div>
+
             <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">
+            <div class="span24">
                     <#if message??>
                         <div class="alert alert-success alert-dismissable fade in" id="alert-success">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -72,10 +68,7 @@
                         ${errorMsg}
                         </div>
                     </#if>
-                </div>
-                <div class="col-lg-12">
                     <#nested />
-                </div>
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
