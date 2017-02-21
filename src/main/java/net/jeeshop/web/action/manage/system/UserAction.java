@@ -200,6 +200,11 @@ public class UserAction extends BaseController<User> {
 		return "redirect:/manage/user/home";
 	}
 
+	/**
+	 * 加载用户菜单
+	 * @param u
+	 * @return
+	 */
 	private Collection<MenuItem> loadMenus(User u) {
 		/*
 		 * 首先，加载顶级目录或页面菜单
@@ -208,7 +213,6 @@ public class UserAction extends BaseController<User> {
 		if (u != null && u.getRid() != null) {
 			param.put("rid", u.getRid());//角色ID
 		}
-//		param.put("pid", pid);//菜单父ID
 		List<Menu> menus = menuService.selectList(param);
 		//创建菜单集合
 		LinkedHashMap<String, MenuItem> root = new LinkedHashMap<String, MenuItem>();
@@ -218,9 +222,6 @@ public class UserAction extends BaseController<User> {
 			item.setId(menu.getId());
 			item.setPid(menu.getPid());
 			item.setMenuType(menu);
-//			if(item.getType().equals(MenuType.page)){
-//				item.setIcon("http://127.0.0.1:8082/myshop/resource/images/letter.gif");
-//			}
 			item.setUrl(StringUtils.trimToEmpty(menu.getUrl()));
 			if(item.isRootMenu()) {
 				root.put(item.getId(), item);
@@ -231,9 +232,6 @@ public class UserAction extends BaseController<User> {
 			item.setId(menu.getId());
 			item.setPid(menu.getPid());
 			item.setMenuType(menu);
-//			if(item.getType().equals(MenuType.page)){
-//				item.setIcon("http://127.0.0.1:8082/myshop/resource/images/letter.gif");
-//			}
 			item.setUrl(StringUtils.trimToEmpty(menu.getUrl()));
 			if(!item.isRootMenu() && !item.isButton()) {
 				MenuItem parentItem = root.get(item.getPid());
@@ -253,7 +251,12 @@ public class UserAction extends BaseController<User> {
         }
         return page_home;
     }
-	
+
+	/**
+	 * 系统日志记录
+	 * @param u
+	 * @param log
+	 */
 	private void loginLog(User u,String log) {
 		Systemlog systemlog = new Systemlog();
 		systemlog.setTitle(log);
@@ -394,13 +397,6 @@ public class UserAction extends BaseController<User> {
 			logger.error("验证昵称是否被占用");
 			User user = new User();
 			user.setNickname(e.getNickname());
-
-//				if(userService.selectCount(e)>0){
-//					getResponse().getWriter().write("{\"error\":\"昵称已经被占用!\"}");
-//				}else{
-//					getResponse().getWriter().write("{\"ok\":\"昵称可以使用!\"}");
-//				}
-
 			user = userService.selectOneByCondition(user);
 
 			if(user==null){
@@ -427,17 +423,6 @@ public class UserAction extends BaseController<User> {
 		}
 		return null;
 	}
-//	@Override
-//	protected void toEditBefore(User e) {
-//		String id = getRequest().getParameter("id");
-//		if (id!=null) {
-//			e.clear();
-//			e.setId(id);
-//			e = getServer().selectOne(e);
-//		}else{
-//			e.clear();
-//		}
-//	}
 	
 	/**
 	 * 转到修改密码页面
@@ -450,6 +435,10 @@ public class UserAction extends BaseController<User> {
 		return page_toChangePwd;
 	}
 
+	/**
+	 * 调整密码修改结果页面
+	 * @return
+	 */
 	@RequestMapping("changePwd")
 	public String changePwd(){
 		return page_changePwd_result;
@@ -461,7 +450,6 @@ public class UserAction extends BaseController<User> {
 	 */
     @RequestMapping(value = "updateChangePwd", method = RequestMethod.POST)
 	public String updateChangePwd(@ModelAttribute("e") User e, RedirectAttributes flushAttrs) {
-//		String errorMsg = "两次输入的密码不一致，修改密码失败!";
 		if(StringUtils.isBlank(e.getNewpassword()) || StringUtils.isBlank(e.getNewpassword2())){
 			addMessage(flushAttrs, "密码不能为空！");
 			return "redirect:toChangePwd";
@@ -472,8 +460,7 @@ public class UserAction extends BaseController<User> {
 			return "redirect:toChangePwd";
 		}
 		
-//		errorMsg = "旧密码输入错误，修改密码失败!";
-		
+
 		User u = (User) RequestHolder.getSession().getAttribute(ManageContainer.manage_session_user_info);
 		e.setPassword(MD5.md5(e.getPassword()));
 		if(!e.getPassword().equals(u.getPassword())){//用户输入的旧密码和数据库中的密码一致
@@ -501,6 +488,7 @@ public class UserAction extends BaseController<User> {
 	protected void selectListAfter(PagerModel pager) {
 		pager.setPagerUrl("selectList");
 	}
+
 	
 	/**
 	 * 编辑用户
@@ -508,16 +496,8 @@ public class UserAction extends BaseController<User> {
     @RequestMapping("toEdit")
 	public String toEdit(@ModelAttribute("e") User e, ModelMap model) throws Exception {
         model.addAttribute("roleList", roleService.selectList(null));
-
 		e = getService().selectOne(e);
         model.addAttribute("e", e);
-//		if(getRequest().getParameter("id")==null){
-//			e.clear();
-//		}else{
-//			e.setId(getRequest().getParameter("id"));
-//			e = getServer().selectOne(e);
-//		}
-		
 		return page_toEdit;
 	}
 	

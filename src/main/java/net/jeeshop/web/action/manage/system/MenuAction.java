@@ -39,7 +39,6 @@ public class MenuAction extends BaseController<Menu> {
 	private MenuService menuService;
     @Autowired
 	private PrivilegeService privilegeService;
-//	private static final String str = "../";
 	private static final Logger log = LoggerFactory.getLogger(MenuAction.class);
     private static final String page_toList = "/manage/system/menu/menuList";
     private static final String page_toEdit = "/manage/system/menu/editMenu";
@@ -74,13 +73,9 @@ public class MenuAction extends BaseController<Menu> {
 	 */
     @RequestMapping("toAddOrUpdate")
 	public String toAddOrUpdate(@ModelAttribute("e") Menu menu, ModelMap model) throws Exception{
-//		System.out.println(menu!=null?menu.getId():"null");
-//		System.out.println("==="+getRequest().getParameter("id"));
-//		menu.setId(getRequest().getParameter("id"));
 		menu = menuService.selectOne(menu);
         model.addAttribute("e", menu);
 		return page_addOrUpdate;
-//		return toList;
 	}
 	/**
 	 * 添加/修改菜单
@@ -158,15 +153,6 @@ public class MenuAction extends BaseController<Menu> {
 			List<MenuItem> root = loadMenus(u,"0",null);
 			String jsonMenus = writeMenus(root);
 			session.setAttribute(ManageContainer.resource_menus, jsonMenus);
-			
-			//找出用户具有的功能，并且存放到session中，以方便后期的功能权限检查
-//			if(root!=null){
-//				for(int i=0;i<root.size();i++){
-//					MenuItem item = root.get(i);
-////					if(item.get)
-//				}
-////				getSession().setAttribute(ManageContainer.user_resource_menus_button,null);
-//			}
             return jsonMenus;
 		}
 	}
