@@ -40,17 +40,9 @@
 			</tr>
 			<tr>
 				<td colspan="28">
-<#--<%-- 					<s:submit method="selectList" value="查询" cssClass="btn btn-primary"/> --%>-->
-<#--<%-- 					<s:a method="selectList" cssClass="btn btn-primary"> --%>-->
-<!-- 						<i class="icon-search icon-white"></i> 查询 -->
-<#--<%-- 					</s:a> --%>-->
 					<button method="selectList" class="btn btn-primary" onclick="selectList(this)">
 						<i class="icon-search icon-white"></i> 查询
 					</button>
-					
-					<div style="float: right;vertical-align: middle;bottom: 0px;top: 10px;">
-						<#include "/manage/system/pager.ftl"/>
-					</div>
 				</td>
 			</tr>
 		</table>
@@ -68,7 +60,6 @@
 				<th nowrap="nowrap">最后登录时间</th>
 				<th nowrap="nowrap">最后登录IP</th>
 				<th nowrap="nowrap">是否冻结</th>
-<!-- 				<th width="150px">冻结时间</th> -->
 				<th nowrap="nowrap">操作</th>
 			</tr>
 			<#list pager.list as item>
@@ -104,15 +95,9 @@
 							异常
 						</#if>
 					</td>
-<!-- 					<td nowrap="nowrap">&nbsp; -->
-<#--<%-- 						<s:if test="freeze.equals(\"y\")"> --%>-->
-<#--<%-- 							<s:property value="freezeStartdate" />~<s:property value="freezeEnddate" /> --%>-->
-<#--<%-- 						</s:if>								 --%>-->
-<!-- 					</td> -->
+
 					<td nowrap="nowrap">
-<#--<%-- 						<s:a href="account!toEdit.action?e.id=%{id}">编辑</s:a> --%>-->
 						<a target="_blank" href="show?account=${item.account!""}">查看</a>
-<#--<%-- 						<a href="account!czmm.action?e.id=%{id}">重置密码</s:a> --%>-->
 						<a href="toFreeze?id=${item.id!""}">冻结</a>
 					</td>
 				</tr>
