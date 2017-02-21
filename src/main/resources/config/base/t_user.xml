@@ -25,7 +25,6 @@
 		</if> 
 		order by id desc 
 		limit #{offset},#{pageSize}
-<!-- 		<include refid="sqlWhere2"/> -->
 	</select>
 	<select id="user.selectPageCount" parameterType="net.jeeshop.core.system.bean.User" resultType="java.lang.Integer">
 		select count(*) from (
@@ -47,7 +46,6 @@
 				<if test="rid!=null and rid!=''">
 					and t.rid=#{rid}
 				</if>    
-		<!-- 		<include refid="sqlWhere2"/> -->
 		) a
 	</select>
 	
@@ -70,7 +68,6 @@
 				<if test="rid!=null and rid!=''">
 					and t.rid=#{rid}
 				</if>    
-<!-- 		<include refid="sqlWhere"/> -->
 	</select>
 	
 	<select id="user.selectCount" parameterType="net.jeeshop.core.system.bean.User" resultType="int">
@@ -115,8 +112,4 @@
 		</if>
 		where id=#{id}
 	</update>
-	
-<!-- 	<delete id="user.delete" parameterType="net.jeeshop.core.system.bean.User"> -->
-<!-- 		delete from t_user where id=#{id} -->
-<!-- 	</delete> -->
 </mapper>  

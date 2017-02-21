@@ -24,7 +24,7 @@
                 }},
                 {name:"oper", title:"操作", data:"id",render: function (data, type, row, meta) {
 
-					<#if checkPrivilege("/manage//user/edit")>
+					<#if checkPrivilege("/manage/user/edit")>
                         return '<a href="${basepath}/manage/user/toEdit?id=' + data + '">编辑</a>';
 					<#else>
                         return "";
@@ -48,15 +48,14 @@
 		</tr>
 		<tr>
 			<td colspan="11">
-            <#if checkPrivilege("/manage/user/search") >
-					<button method="selectList" id="btnSearch" class="btn btn-primary" table-id="dataTables-example" onclick="return selectList(this)">
-						<i class="icon-search icon-white"></i> 查询
-					</button>
-             </#if>
+				<#if checkPrivilege("/manage/user/search") >
+						<button method="selectList" id="btnSearch" class="btn btn-primary" table-id="dataTables-example" onclick="return selectList(this)">
+							<i class="icon-search icon-white"></i> 查询
+						</button>
+				 </#if>
 				<#if checkPrivilege("/manage/user/insert") >
-                <a href="${basepath}/manage/user/toAdd" class="btn btn-success"><i class="icon-plus-sign icon-white"></i> 添加</a>
+					<a href="${basepath}/manage/user/toAdd" class="btn btn-success"><i class="icon-plus-sign icon-white"></i> 添加</a>
 				</#if>
-
 				<div style="float: right;vertical-align: middle;bottom: 0px;top: 10px;">
 				</div>
 
@@ -66,6 +65,5 @@
 
     <table class="display stripe row-border cell-border" id="dataTables-example">
     </table>
-
 </form>
 </@page.pageBase>

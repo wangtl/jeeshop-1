@@ -23,23 +23,11 @@ function deleteSelect(){
 			<table class="table table-bordered">
 				<tr  >
 					<td>
-    <#if checkPrivilege("role/selectList")>
-							<a href="${basepath}/manage/role/selectList" class="btn btn-primary">
-								<i class="icon-search icon-white"></i> 查询
-							</a>
-        </#if>
                         <#if checkPrivilege("role/insert")>
 							<a href="${basepath}/manage/role/toAdd" class="btn btn-success">
 								<i class="icon-plus-sign icon-white"></i> 添加
 							</a>
                         </#if>
-						<#--<%if(PrivilegeUtil.check(request.getSession(), "role!deletes.action")){%>-->
-<#--<%-- 							<s:submit method="deletes" onclick="return deleteSelect();" value="删除" cssClass="btn btn-danger"/> --%>-->
-						<#--<%} %>-->
-
-						<div style="float: right;vertical-align: middle;bottom: 0px;top: 10px;">
-                            <#include "/manage/system/pager.ftl"/>
-						</div>
 					</td>
 				</tr>
 			</table>

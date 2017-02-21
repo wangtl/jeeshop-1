@@ -62,8 +62,6 @@
     <!-- datatables -->
     <link rel="stylesheet" href="${staticpath}/datatables/css/jquery.dataTables.css" />
     <script charset="utf-8" src="${staticpath}/datatables/js/jquery.dataTables.js"></script>
-    <link rel="stylesheet" href="${staticpath}/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css" />
-    <script charset="utf-8" src="${staticpath}/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.js"></script>
 
     <!-- metisMenu -->
     <link href="${staticpath}/metisMenu/metisMenu.min.css" rel="stylesheet">

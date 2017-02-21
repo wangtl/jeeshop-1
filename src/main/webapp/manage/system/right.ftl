@@ -10,12 +10,6 @@ a:active {text-decoration:underline;}
 font-weight: 700;font-size: 16px;color: #f50;
 }
 </style>
-<#--<%-->
-<#--SystemSetting ssInfo = SystemManager.systemSetting;-->
-<#--if(ssInfo==null){-->
-	<#--ssInfo = new SystemSetting();-->
-<#--}-->
-<#--%>-->
 <script>
 $(function() {
 	$( "#tabs" ).tabs({
