@@ -29,8 +29,6 @@
 						<td>
 							<button value="save"></button>
 							<button value="back"></button>
-						    <#--<s:submit method="save" value="save"/>-->
-						    <#--<s:submit method="back" value="back"/>-->
 						</td>
 					</tr>
 				</table>

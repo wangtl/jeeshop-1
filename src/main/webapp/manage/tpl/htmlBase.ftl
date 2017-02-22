@@ -72,6 +72,8 @@
     <link href="${staticpath}/metisMenu/metisMenu.min.css" rel="stylesheet">
     <script src="${staticpath}/metisMenu/metisMenu.min.js"></script>
     <script type="text/javascript" src="${basepath}/manage/manage.js"></script>
+    <link rel="stylesheet" href="${staticpath}/bui-admin/index.css">
+
     <#list staticJsFiles as jsFile>
         <script src="${staticpath}/${jsFile}"></script>
     </#list>

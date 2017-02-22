@@ -1,4 +1,4 @@
-<#import "/manage/tpl/pageBase.ftl" as page>
+<#import "/manage/tpl/pageTep.ftl" as page>
 <@page.pageBase currentMenu="商品促销">
 	<#--<form action="${basepath}/manage/activity"  method="post" theme="simple"-->
 		<#--<table class="table table-bordered">-->
@@ -176,7 +176,7 @@
                     </select>
                 </div>
             </div>
-            <div class="orm-actions span8">
+            <div class="form-actions span8">
                 <button  type="submit" class="button button-primary"  >
                     <i class="icon-search icon-white"></i> 查询
                 </button>

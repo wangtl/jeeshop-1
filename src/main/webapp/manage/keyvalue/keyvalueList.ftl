@@ -1,4 +1,4 @@
-<#import "/manage/tpl/pageBase.ftl" as page>
+<#import "/manage/tpl/pageTep.ftl" as page>
 <@page.pageBase currentMenu="键值对管理">
 <#--<style type="text/css">-->
 <#--.titleCss {-->
@@ -87,33 +87,32 @@
 	<#--</form>-->
 
 
-<form id="searchForm" class="form-horizontal" tabindex="0" style="outline: none;">
-    <div class="row">
-        <div class="control-group">
+<form id="searchForm" class="form-panel">
+    <ul class="panel-content">
+        <li>
+        <div class="control-group span8">
             <label class="control-label">键：</label>
             <div class="controls">
                 <input type="text" name="key1" id="key1" value="${e.key1!""}">
 			</div>
         </div>
-        <div class="control-group">
+        <div class="control-group span8">
             <label class="control-label">值：</label>
             <div class="controls">
                 <input type="text" name="value" id="value" value="${e.value!""}">
             </div>
         </div>
-    </div>
-    <div class="row actions-bar">
-        <div class="form-actions">
-                <button   type="submit" class="btn btn-primary"  >
-                    <i class="icon-search icon-white"></i> 查询
-                </button>
-                <a href="${basepath}/manage/keyvalue/toAdd" class="btn btn-success"><i class="icon-plus-sign icon-white"></i> 添加</a>
-            <button  class="btn btn-primary"  onclick="return delFunction()">
+        <div class="form-actions span8">
+            <button   type="submit" class="button button-primary"  >
+                <i class="icon-search icon-white"></i> 查询
+            </button>
+            <a href="${basepath}/manage/keyvalue/toAdd" class="button button-success"><i class="icon-plus-sign icon-white"></i> 添加</a>
+            <button  class="button button-primary"  onclick="return delFunction()">
                 <i class="icon-remove-sign icon-white"></i>删除
             </button>
-
         </div>
-    </div>
+    </li>
+        </ul>
 </form>
 <div id="grid"></div>
 

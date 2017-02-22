@@ -1,4 +1,4 @@
-<#import "/manage/tpl/pageBase.ftl" as page>
+<#import "/manage/tpl/pageTep.ftl" as page>
 <@page.pageBase currentMenu="日志管理">
 <#--<script>-->
 <#--$(function(){-->
@@ -53,33 +53,35 @@
 
 
 
-<form id="searchForm" class="form-horizontal" tabindex="0" style="outline: none;">
-    <div class="row">
-        <div class="control-group">
-            <label class="control-label">是否异登陆：</label>
-            <div class="controls">
-				<#assign y_n = {'':"全部",'y':'是','n':'否'}>
-                <select name="diffAreaLogin" class="input-normal" id="diffAreaLogin">
-					<#list y_n?keys as key>
-                        <option value="${key}" <#if e.diffAreaLogin?? && e.diffAreaLogin==key>selected="selected" </#if>>${y_n[key]}</option>
-					</#list>
-                </select>
+<form id="searchForm" class="form-panel">
+    <ul class="panel-content">
+        <li>
+            <div class="control-group span8">
+                <label class="control-label">是否异登陆：</label>
+                <div class="controls">
+                    <#assign y_n = {'':"全部",'y':'是','n':'否'}>
+                    <select name="diffAreaLogin" class="input-normal" id="diffAreaLogin">
+                        <#list y_n?keys as key>
+                            <option value="${key}" <#if e.diffAreaLogin?? && e.diffAreaLogin==key>selected="selected" </#if>>${y_n[key]}</option>
+                        </#list>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="control-group">
-            <label class="control-label">登陆账号：</label>
-            <div class="controls">
-                <input type="text" value="${e.account!""}" class="input-normal" name="account"  id="account"/>
+            <div class="control-group span8">
+                <label class="control-label">登陆账号：</label>
+                <div class="controls">
+                    <input type="text" value="${e.account!""}" class="input-normal" name="account"  id="account"/>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row actions-bar">
-        <div class="form-actions">
-                <button   type="submit" class="btn btn-primary"  >
-                    <i class="icon-search icon-white"></i> 查询
-                </button>
-        </div>
-    </div>
+            <div class="control-group span8">
+                <div class="form-actions">
+                        <button   type="submit" class="button button-primary"  >
+                            <i class="icon-search icon-white"></i> 查询
+                        </button>
+                </div>
+            </div>
+        </li>
+    </ul>
 </form>
 <div id="grid"></div>
 

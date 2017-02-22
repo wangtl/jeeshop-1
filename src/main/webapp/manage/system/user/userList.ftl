@@ -1,6 +1,6 @@
-<#import "/manage/tpl/pageBase.ftl" as page>
+<#import "/manage/tpl/pageTep.ftl" as page>
 <@page.pageBase currentMenu="用户管理">
-<form id="searchForm" class="form-panel" tabindex="0" style="outline: none;">
+<form id="searchForm" class="form-panel">
     <ul class="panel-content">
         <li>
             <div class="control-group span8">

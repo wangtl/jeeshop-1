@@ -4,13 +4,6 @@
 	<SCRIPT type="text/javascript">
 		<!--
 		$(function(){
-			
-	 		//$("#add").add("#update").click(function(){
-	 			//art.dialog.open('${basepath}/menu!toEdit.action',
-	 				//	{title: '个人信息',width:500, height:350,lock:true});	 			
-	 			//art.dialog.load('./ajaxContent/login.html', false);
-	 			//art.dialog.open('', {title: '提示'});
-	 		//});
 	 		$("#input_menu_name").focus();
 	 		
 	 		$('input:radio[name="parentOrChildRadio"]').click(function(){
@@ -58,13 +51,6 @@
 					},
 					dataType:"text",
 					success:function(data, textStatus){
-						//var zNodes = eval('('+data+')');
-						//$.fn.zTree.init($("#treeDemo2"), setting, zNodes);
-						
-						//document.form1.action = "menu!selectList.action";
-						//document.form1.submit();
-						//alert("修改资源菜单成功请刷新页面!");
-						
 						$("#showMsgDiv").html("修改资源菜单成功!");
 						
 						setTimeout(function(){$("#showMsgDiv").html("");},2000);
@@ -95,7 +81,7 @@
 		<tr style="display: none;">
 			<td>id</td>
 			<td>
-				<inputid="input_menu_id" readonly="readonly" value='${e.id!""}'/>
+				<input id="input_menu_id" readonly="readonly" value='${e.id!""}'/>
 			</td>
 		</tr>
 		<tr style="display: none;">

@@ -1,9 +1,9 @@
 <#macro menu menus=[] topMenu="" currentMenu="首页">
 
-<!-- /.navbar-top-links -->
-<ul  id="side-menu">
-</ul>
-<!-- /.sidebar-collapse -->
+        <!-- /.navbar-top-links -->
+        <ul  id="side-menu">
+        </ul>
+    <!-- /.sidebar-collapse -->
 <!-- /.navbar-static-side -->
 <script type="text/javascript">
 

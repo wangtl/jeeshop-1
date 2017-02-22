@@ -60,8 +60,7 @@ var setting = {
                     $("#iframeMenuEdit").attr("src",url);
                     return;
                 }
-                //alert(url);
-                $("#dfsfsf").val(treeNode.id);
+				$("#dfsfsf").val(treeNode.id);
                 document.form1.action = url;
                 document.form1.submit();
             }

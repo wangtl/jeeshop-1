@@ -1,0 +1,52 @@
+
+.header {
+    background-color: #1B3160;
+    height: 36px;
+    width: 100%;
+    overflow: hidden;
+}
+.dl-title {
+    float: left;
+    color: #c1d5ec;
+    font-family: "Microsoft YaHei";
+    margin-left: 12px;
+    font-size: 18px;
+    line-height: 36px;
+}
+.dl-title a{
+    color:#c1d5ec;
+}
+.dl-log {
+    color: #C1D5EC;
+    float: right;
+    padding: 10px 16px 0 0;
+}
+.dl-log-user {
+    font-style: bold;
+}
+.dl-log-quit {
+    color: #c1d5ec;
+    padding-left: 8px;
+}
+
+.content {
+    width: 100%;
+}
+.dl-tab-item {
+    width: 100%;
+}
+
+.dl-second-nav {
+    float: left;
+    width: 150px;
+    padding-top: 5px;
+    background-color: #E8E9EE;
+}
+
+.dl-inner-tab {
+    margin-left: 150px;
+    background-color: #F8F8F8;
+}
+.bui-grid-bbar{
+    height: 35px !important;
+}
