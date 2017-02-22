@@ -6,7 +6,7 @@
 <body>
     <div id="wrapper">
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;height: 50px;">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -38,18 +38,16 @@
                 <@menu.menu menus=userMenus topMenu=topMenu currentMenu=currentMenu/>
         </nav>
 
-        <div id="page-wrapper">
-                <div class="span24">
-                        <ol class="breadcrumb">
-                            <li>
-                                <a href="${basepath}/manage/user/home">首页</a>
-                            </li>
-                            <li class="active">${currentMenu}</li>
-                        </ol>
-                </div>
+        <div class="row" style="margin-left: 250px;margin-right: 0;background-color: #fff">
+            <ol class="breadcrumb">
+                <li>
+                    <a href="${basepath}/manage/user/home">首页</a>
+                </li>
+                <li class="active">${currentMenu}</li>
+            </ol>
 
             <!-- /.row -->
-            <div class="span24">
+            <div class="row" style="margin: 0 10px">
                     <#if message??>
                         <div class="alert alert-success alert-dismissable fade in" id="alert-success">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>

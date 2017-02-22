@@ -16,11 +16,9 @@
     <div class="sidebar-nav navbar-collapse">
         <!-- /.navbar-top-links -->
         <ul class="nav" id="side-menu">
-            <li class="sidebar-search" style="margin-top: 10px;">
-            </li>
                 <#list menus as menu>
                     <li>
-                        <a id="item_${menu.pid!"0"}_${menu.id!""}" data-href="${menu.url}" class="menu-item ${(currentMenu==menu.name)?string("active","")}"><i class="fa fa-folder fa-fw"></i> ${menu.name!""}<#if menu.children?? && menu.children?size gt 0><span class="fa arrow"></span></#if></a>
+                        <a id="item_${menu.pid!"0"}_${menu.id!""}" data-href="${menu.url}" class="menu-item"><i class="fa fa-folder fa-fw"></i> ${menu.name!""}<#if menu.children?? && menu.children?size gt 0><span class="fa arrow"></span></#if></a>
                         <#if menu.children?? && menu.children?size gt 0>
                             <ul class="nav nav-second-level">
                             <#list menu.children as menu>
