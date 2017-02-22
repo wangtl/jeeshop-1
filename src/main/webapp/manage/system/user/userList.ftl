@@ -1,34 +1,35 @@
 <#import "/manage/tpl/pageBase.ftl" as page>
 <@page.pageBase currentMenu="用户管理">
-<form id="searchForm" class="form-horizontal" tabindex="0" style="outline: none;">
-    <div class="row">
-        <div class="control-group">
-            <label class="control-label">状态：</label>
-            <div class="controls">
-                <select name="status" class="input-normal" id="status">
-                    <option value="">全部</option>
-                    <option value="y">启用</option>
-                    <option value="n">禁用</option>
-                </select>
+<form id="searchForm" class="form-panel" tabindex="0" style="outline: none;">
+    <ul class="panel-content">
+        <li>
+            <div class="control-group span8">
+                <label class="control-label">状态：</label>
+                <div class="controls">
+                    <select name="status" class="input-normal" id="status">
+                        <option value="">全部</option>
+                        <option value="y">启用</option>
+                        <option value="n">禁用</option>
+                    </select>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row actions-bar">
-        <div class="form-actions">
-			<#if checkPrivilege("/manage/user/search") >
-                <button   type="submit" class="btn btn-primary"  >
-                    <i class="icon-search icon-white"></i> 查询
+            <div class="form-actions span8">
+                <#if checkPrivilege("/manage/user/search") >
+                    <button   type="submit" class="button  button-primary"  >
+                        查询
+                    </button>
+                </#if>
+                <#if checkPrivilege("/manage/user/insert") >
+                    <a href="${basepath}/manage/user/toAdd" class="button button-success">添加</a>
+                </#if>
+                <button  class="button button-danger"  onclick="return delFunction()">
+                  删除
                 </button>
-			</#if>
-			<#if checkPrivilege("/manage/user/insert") >
-                <a href="${basepath}/manage/user/toAdd" class="btn btn-success"><i class="icon-plus-sign icon-white"></i> 添加</a>
-			</#if>
-            <button  class="btn btn-primary"  onclick="return delFunction()">
-                <i class="icon-remove-sign icon-white"></i>删除
-            </button>
 
-        </div>
-    </div>
+            </div>
+        </li>
+
+        </ul>
 </form>
 	<div id="grid"></div>
 

@@ -132,35 +132,61 @@
 
 
 
-<form id="searchForm" class="form-horizontal" tabindex="0" style="outline: none;">
-    <div class="row">
-        <div class="control-group">
-            <label class="control-label">状态：</label>
-            <div class="controls">
-                <select name="status" class="input-normal" id="status">
-                    <option value="">全部</option>
-                    <option value="y">启用</option>
-                    <option value="n">禁用</option>
-                </select>
+<form id="searchForm" class="form-panel" tabindex="0" style="outline: none;">
+    <ul class="panel-content">
+        <li>
+            <div class="control-group span10">
+                <label class="control-label">活动ID：</label>
+                <div class="controls">
+                    <input type="text" class="input-small search-query" name="id" id="id"/>
+                </div>
             </div>
-        </div>
-    </div>
-    <div class="row actions-bar">
-        <div class="form-actions">
-			<#if checkPrivilege("/manage/user/search") >
-                <button   type="submit" class="btn btn-primary"  >
+            <div class="control-group span7">
+                <label class="control-label">活动类型：</label>
+                <div class="controls">
+                    <#assign map = {'':'全部','c':'促销活动','j':'积分兑换','t':'团购活动'}>
+                    <select name="activityType" class="input-normal" id="activityType">
+                        <#list map?keys as key>
+                            <option value="${key}">${map[key]}</option>
+                        </#list>
+                    </select>
+                </div>
+            </div>
+            <div class="control-group span7">
+                <label class="control-label">优惠方式：</label>
+                <div class="controls">
+                    <#assign map = {'':'','r':'减免','d':'折扣','s':'双倍积分'}>
+                    <select name="discountType" class="input-normal" id="discountType">
+                        <#list map?keys as key>
+                            <option value="${key}">${map[key]}</option>
+                        </#list>
+                    </select>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="control-group span8">
+                <label class="control-label">状态：</label>
+                <div class="controls">
+                    <#assign map = {'':'','y':'显示','n':'不显示'}>
+                    <select name="status" class="input-normal" id="status">
+                        <#list map?keys as key>
+                            <option value="${key}">${map[key]}</option>
+                        </#list>
+                    </select>
+                </div>
+            </div>
+            <div class="orm-actions span8">
+                <button  type="submit" class="button button-primary"  >
                     <i class="icon-search icon-white"></i> 查询
                 </button>
-			</#if>
-			<#if checkPrivilege("/manage/user/insert") >
-                <a href="${basepath}/manage/user/toAdd" class="btn btn-success"><i class="icon-plus-sign icon-white"></i> 添加</a>
-			</#if>
-            <button  class="btn btn-primary"  onclick="return delFunction()">
-                <i class="icon-remove-sign icon-white"></i>删除
-            </button>
-
-        </div>
-    </div>
+                <a href="${basepath}/manage/activity/toAdd" class="button button-success"><i class="icon-plus-sign icon-white"></i> 添加</a>
+                <button  class="button button-danger"  onclick="return delFunction()">
+                    <i class="icon-remove-sign icon-white"></i>删除
+                </button>
+            </div>
+        </li>
+    </ul>
 </form>
 <div id="grid"></div>
 
@@ -183,7 +209,7 @@
                     return '';
 
                 }},
-                {title : '优惠方式',dataIndex : 'discountType',width:100,renderer:function(data){
+                {title : '优惠方式',dataIndex : 'discountType',width:80,renderer:function(data){
                     if(data == "r"){
                         return '减免';
                     };
@@ -196,15 +222,33 @@
                     return '异常';
 
                 }},
-                {title : '活动明细',dataIndex : 'content',width:100},
-                {title : '状态',dataIndex : 'status',width:100, renderer:function(data){
+                {title : '活动明细',dataIndex : '',width:450, renderer:function(data,obj,index){
+
+                    var html = '活动时间：'+obj.startDate+'~'+obj.endDate;
+                    console.log(obj.expire);
+                    if(!obj.expire){
+                        html+='<span class="label label-danger" style="background-color:Red;">活动已到期</span>';
+                    }
+                    html+='<br>商品ID:'+obj.productID+'<br>';
+                    if(obj.exchangeScore!=0){
+                        html+='兑换积分:'+obj.exchangeScore+'<br>';
+                    }
+                    if(obj.activityType=='t'){
+                        html+='最低团购人数:'+obj.minGroupCount+'<br>';
+                        html+='团购价:'+obj.tuanPrice+'<br>';
+                    }
+                    return html;
+
+
+                }},
+                {title : '状态',dataIndex : 'status',width:50, renderer:function(data){
                     if(data == "y"){
                         return '<img alt="显示" src="${basepath}/resource/images/action_check.gif">';
                     } else {
                         return '<img alt="不显示" src="${basepath}/resource/images/action_delete.gif">';
                     }
                 }},
-                {title : '操作',dataIndex : 'id',width:200,renderer : function (value) {
+                {title : '操作',dataIndex : 'id',width:50,renderer : function (value) {
 					return '<a href="${basepath}/manage/activity/toEdit?id=' + value + '">编辑</a>';
 
                 }}
@@ -215,6 +259,9 @@
                 autoLoad:true, //自动加载数据
                 params : { //配置初始请求的参数
                     length : '10',
+                    id:$("#id").val(),
+                    activityType:$("#activityType").val(),
+                    discountType:$("#discountType").val(),
                     status:$("#status").val()
                 },
                 pageSize:3,	// 配置分页数目
@@ -233,16 +280,7 @@
                     pagingBar:true
                 }
             });
-	//自定义返回参数格式
-    store.on("beforeprocessload",function(e){
-		var list = e.data.list;
-        $.each(list, function(i,v){
-			v.content= v;
-        })
-        e.data.list=list;
-	});
     grid.render();
-
     var form = new BUI.Form.HForm({
         srcNode : '#searchForm'
     }).render();
@@ -264,7 +302,7 @@
         }
         $.ajax({
             type: "POST",
-            url: "${basepath}/manage/user/deletesJson",
+            url: "${basepath}/manage/activity/deletesJson",
             dataType: "json",
             data: {
                 ids:ids
