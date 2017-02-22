@@ -82,7 +82,6 @@
                     pagingBar:true
                 }
             });
-
     grid.render();
 
     var form = new BUI.Form.HForm({
