@@ -43,15 +43,12 @@
                 {title : '睡眠单位',dataIndex : 'unit',width:100},
                 {title : '下次执行任务的时间',dataIndex : 'nextWorkTime',width:100},
                 {title : '当前状态',dataIndex : 'currentStatus',width:100},
-                {title : '操作',dataIndex : 'id',width:200,renderer : function (value,obj.index) {
-                        if(obj.currentStatus=="run"){
-                            return '<a href="javascript:stopTask()">立即终止</a>';
-                        }else{
-                            return '<a href="javascript:startTask()">立即执行</a>';
-                        }
-					</#if>
-
-
+                {title : '操作',dataIndex : 'id',width:200,renderer:function (value,obj,index) {
+                    if(obj.currentStatus=="run"){
+                        return '<a href="javascript:stopTask()">立即终止</a>'
+                    }else{
+                        return '<a href="javascript:startTask()">立即执行</a>'
+                    }
                 }}
             ];
 
