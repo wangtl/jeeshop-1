@@ -35,7 +35,6 @@ public class CancelOrderTask implements Runnable{
 	public void run() {
 		while(true){
 			try {
-//				TimeUnit.DAYS.sleep(1);
 				TimeUnit.SECONDS.sleep(Long.valueOf(SystemManager.getInstance().getProperty("task_SystemAutoNotifyTask_time")));
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -48,16 +47,10 @@ public class CancelOrderTask implements Runnable{
 			if(list!=null){
 				logger.error("list="+list.size());
 				for(int i=0;i<list.size();i++){
-					Order orderInfo = list.get(i);
-					
+					Order orderInfo = list.get(i);					
 					orderService.cancelOrderByID(orderInfo.getId());
 				}
 			}
 		}
 	}
-	
-//	public static void main(String[] args) {
-//		System.out.println(new SimpleDateFormat("yyyy-MM-dd").format(DateUtils.addDays(new Date(), -7)));
-//	}
-
 }

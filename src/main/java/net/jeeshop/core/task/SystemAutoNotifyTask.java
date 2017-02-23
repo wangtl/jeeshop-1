@@ -33,13 +33,9 @@ public class SystemAutoNotifyTask implements Runnable {
 	 */
 	@Override
 	public void run() {
-//		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
-//		WebApplicationContext app = WebApplicationContextUtils.getWebApplicationContext(request.getSession().getServletContext());
-//		EmailNotifyProductService emailNotifyProductService = (EmailNotifyProductService) app.getBean("emailNotifyProductServiceManage");
 		logger.error("emailNotifyProductService="+emailNotifyProductService);
 		while (true) {
 			try {
-//				TimeUnit.DAYS.sleep(1);
 				TimeUnit.SECONDS.sleep(Long.valueOf(SystemManager.getInstance().getProperty("task_SystemAutoNotifyTask_time")));
 			} catch (InterruptedException e) {
 				e.printStackTrace();

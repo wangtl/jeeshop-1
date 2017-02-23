@@ -18,7 +18,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class ManageCacheTask implements Runnable {
 	private static final org.slf4j.Logger logger = LoggerFactory.getLogger(ManageCacheTask.class);
-//	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	@Autowired
 	private ManageCache manageCache;
 
@@ -31,7 +30,6 @@ public class ManageCacheTask implements Runnable {
 		while (true) {
 			
 			try {
-//				TimeUnit.MINUTES.sleep(15);//单位：分钟
 				TimeUnit.SECONDS.sleep(Long.valueOf(SystemManager.getInstance().getProperty("task_SystemAutoNotifyTask_time")));
 			} catch (InterruptedException e) {
 				e.printStackTrace();

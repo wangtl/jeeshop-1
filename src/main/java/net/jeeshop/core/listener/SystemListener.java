@@ -27,16 +27,12 @@ public class SystemListener implements ServletContextListener {
 
 	public void contextInitialized(ServletContextEvent arg0) {
 		try {
-//			SystemManager.getInstance();
 
 			WebApplicationContext app = WebApplicationContextUtils.getWebApplicationContext(arg0.getServletContext());
 			FrontCache frontCache = (FrontCache) app.getBean("frontCache");
 			ManageCache manageCache = (ManageCache) app.getBean("manageCache");
 			frontCache.loadAllCache();
 			manageCache.loadAllCache();
-			
-//			TaskManager taskManager = (TaskManager) app.getBean("taskManager");
-//			taskManager.start();
 		} catch (Throwable e) {
 			e.printStackTrace();
 			logger.error("System load faild!"+e.getMessage());
