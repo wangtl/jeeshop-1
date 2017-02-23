@@ -3,10 +3,23 @@ package net.jeeshop.core.sms;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+import net.jeeshop.core.util.CheckSumBuilder;
 import net.jeeshop.services.manage.sms.bean.Sms;
 
 import org.apache.commons.httpclient.*;
 import org.apache.commons.httpclient.methods.PostMethod;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * http://www.webchinese.com.cn   此公司的SMS短信平台
@@ -20,29 +33,32 @@ public class SMSWebChinese {
 
 	public static void sendSMS(Sms sms) throws IOException, HttpException,
 			UnsupportedEncodingException {
-		HttpClient client = new HttpClient();
-		PostMethod post = new PostMethod("http://utf8.sms.webchinese.cn");
-		post.addRequestHeader("Content-Type",
-				"application/x-www-form-urlencoded;charset=utf-8");// 在头文件中设置转码
-		NameValuePair[] data = { new NameValuePair("Uid", "jqsl2012"),
-				new NameValuePair("Key", "8376220944aae870d31a"),
-				new NameValuePair("smsMob", sms.getPhone()),
-				new NameValuePair("smsText", sms.getContent()) };
-		post.setRequestBody(data);
+		DefaultHttpClient httpClient = new DefaultHttpClient();
+		String url = "https://api.netease.im/nimserver/user/create.action";
+		HttpPost httpPost = new HttpPost(url);
 
-		client.executeMethod(post);
-		Header[] headers = post.getResponseHeaders();
-		int statusCode = post.getStatusCode();
-		System.out.println("statusCode:" + statusCode);
-		for (Header h : headers) {
-			System.out.println("h.toString()="+h.toString());
-		}
-		String returnCode = new String(post.getResponseBodyAsString().getBytes(
-				"UTF-8"));
-		System.out.println("result="+returnCode);
+		String appKey = "94kid09c9ig9k1loimjg012345123456";
+		String appSecret = "123456789012";
+		String nonce =  "12345";
+		String curTime = String.valueOf((new Date()).getTime() / 1000L);
+		String checkSum = CheckSumBuilder.getCheckSum(appSecret, nonce, curTime);//参考 计算CheckSum的java代码
 
-		post.releaseConnection();
-		
-		sms.setReturnCode(returnCode);
+		// 设置请求的header
+		httpPost.addHeader("AppKey", appKey);
+		httpPost.addHeader("Nonce", nonce);
+		httpPost.addHeader("CurTime", curTime);
+		httpPost.addHeader("CheckSum", checkSum);
+		httpPost.addHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+
+		// 设置请求的参数
+		List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+		nvps.add(new BasicNameValuePair("accid", "helloworld"));
+		httpPost.setEntity(new UrlEncodedFormEntity(nvps, "utf-8"));
+
+		// 执行请求
+		HttpResponse response = httpClient.execute(httpPost);
+
+		// 打印执行结果
+		System.out.println(EntityUtils.toString(response.getEntity(), "utf-8"));
 	}
 }

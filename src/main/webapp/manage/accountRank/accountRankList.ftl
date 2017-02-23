@@ -4,13 +4,9 @@
 		<table class="table table-bordered">
 			<tr>
 				<td colspan="8">
-<#--<%-- 					<s:submit method="selectList" value="查询" cssClass="btn btn-primary"/> --%>-->
 					<a href="selectList" class="btn btn-primary">
 						<i class="icon-search icon-white"></i> 查询
 					</a>
-<#--<%-- 					<s:submit method="toAdd" value="添加" cssClass="btn btn-success" /> --%>-->
-<#--<%-- 					<s:submit method="deletes" onclick="return deleteSelect();" value="删除" cssClass="btn btn-danger" /> --%>-->
-					
 					<div style="float: right;vertical-align: middle;bottom: 0px;top: 10px;">
 						<#include "/manage/system/pager.ftl"/>
 					</div>

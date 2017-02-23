@@ -28,7 +28,6 @@ public class UserService implements UserInteface {
 	}
 
 	public User login(User user) {
-//		user.setStatus(User.user_status_y);
 		return (User) dao.selectOne("user.selectOne", user);
 	}
 
