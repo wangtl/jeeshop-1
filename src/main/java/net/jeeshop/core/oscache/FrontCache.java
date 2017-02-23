@@ -746,11 +746,6 @@ public class FrontCache {
 	 * 加载系统通知
 	 */
 	private void loadNotices() {
-//		Notice notice = new Notice(7);
-//		notice.setOffset(0);
-//		notice.setPageSize(7);
-//		SystemManager.noticeList = noticeService.selectList(notice);
-
 		News news = new News();
 		news.setOffset(0);
 		news.setPageSize(7);
