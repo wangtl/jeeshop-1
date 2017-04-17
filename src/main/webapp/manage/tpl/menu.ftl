@@ -17,7 +17,7 @@
                         <#list menu.children as menu>
                             {
                                 text: '${menu.name}',
-                                href: '${menu.url}',
+                                href: '${basepath}${menu.url}',
                                 <#if menu.name==currentMenu>
                                     selected:true
                                 </#if>
@@ -25,7 +25,7 @@
                         </#list>
                     ],
                 <#else>
-                    href:'${menu.url}',
+                    href:'${basepath}${menu.url}',
                     selected:true
                 </#if>
             },
