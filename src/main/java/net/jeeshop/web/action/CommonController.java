@@ -51,8 +51,8 @@ public class CommonController {
 
 //检查目录
         File uploadDir = new File(savePath);
-        if (!uploadDir.isDirectory()) {
-            return (getError("上传目录不存在。"));
+        if (!uploadDir.exists()) {
+        	uploadDir.mkdirs();
         }
 //检查目录写权限
         if (!uploadDir.canWrite()) {
