@@ -1,9 +1,17 @@
 package net.jeeshop.web.action;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+
+import javax.servlet.http.HttpServletRequest;
+
 import net.jeeshop.core.front.SystemManager;
 import net.jeeshop.core.util.ImageUtils;
-import net.jeeshop.services.common.SystemSetting;
 import net.sf.json.JSONObject;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -11,13 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashMap;
 
 /**
  * @author dylan
@@ -33,12 +34,9 @@ public class CommonController {
     public String uploadify(@RequestParam("Filedata")MultipartFile filedata,
                             @RequestParam(required = false, defaultValue = "1")String thumbnail,HttpServletRequest request) {
         boolean createThumbnail = "1".equals(thumbnail);
-        SystemSetting systemSetting = SystemManager.getInstance().getSystemSetting();
         //文件保存目录路径
-        String savePath = request.getSession().getServletContext().getRealPath("")+SystemManager.getInstance().getProperty("file.upload.path");
-        //文件保存目录URL
-        String saveUrl = systemSetting.getImageRootPath();
-
+        String savePath = request.getSession().getServletContext().getRealPath("/")+SystemManager.getInstance().getProperty("file.upload.path");
+        String relativePath = SystemManager.getInstance().getProperty("file.upload.path");
 //定义允许上传的文件扩展名
         HashMap<String, String> extMap = new HashMap<String, String>();
         extMap.put("image", "gif,jpg,jpeg,png,bmp");
@@ -47,7 +45,7 @@ public class CommonController {
         extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
 
 //最大文件大小
-        long maxSize = 1000000;
+//        long maxSize = 1000000;
 
 //检查目录
         File uploadDir = new File(savePath);
@@ -64,8 +62,7 @@ public class CommonController {
         }
 //创建文件夹
         savePath += dirName + "/";
-        saveUrl += dirName + "/";
-        String relativePath = dirName + "/";
+        relativePath += dirName + "/";
         File saveDirFile = new File(savePath);
         if (!saveDirFile.exists()) {
             saveDirFile.mkdirs();
@@ -73,7 +70,6 @@ public class CommonController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         String ymd = sdf.format(new Date());
         savePath += ymd + "/";
-        saveUrl += ymd + "/";
         relativePath += ymd + "/";
         File dirFile = new File(savePath);
         if (!dirFile.exists()) {

@@ -10,11 +10,11 @@
 		          <#if item.link??>
 			          <a href="${item.link!""}" target="_blank">
 			          	<img style="max-width: 100%;" 
-			          	src="${systemSetting().imageRootPath}/${item.picture!""}" >
+			          	src="${systemSetting().imageRootPath}${item.picture!""}" >
 			          </a>
 		          <#else>
                       <img style="max-width: 100%;"
-                           src="${systemSetting().imageRootPath}/${item.picture!""}" >
+                           src="${systemSetting().imageRootPath}${item.picture!""}" >
 		          </#if>
 		          </li>
 			</#list>

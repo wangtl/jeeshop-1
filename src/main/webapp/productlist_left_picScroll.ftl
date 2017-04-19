@@ -33,11 +33,11 @@
 						<#if systemManager().getProductsByCatalogCode(_code)??>
 						<#list systemManager().getProductsByCatalogCode(_code) as item>
 							<li class="row col-xs-12">
-								<div class="pic"><a href="${basepath}/product/${item.id}" target="_blank">
-									<img border="0" style="margin: auto;" src="${systemSetting().imageRootPath}/${item.picture!""}" /></a>
+								<div class="pic"><a href="${basepath}/product/${item.id}.html" target="_blank">
+									<img border="0" style="margin: auto;" src="${systemSetting().imageRootPath}${item.picture!""}" /></a>
 								</div>
 								<div class="left_title" style="text-align: center;">
-									<a href="http://www.SuperSlide2.com" target="_blank" style="margin: auto;text-align: center;" title="${item.name!""}">
+									<a href="${basepath}/product/${item.id}.html" target="_blank" style="margin: auto;text-align: center;" title="${item.name!""}">
 									${item.name!""}
 									</a>
 								</div>
