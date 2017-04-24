@@ -129,7 +129,7 @@
                         <label for="link-zcxy">注册协议</label>
                         </div>
                         <div class="col-md-6">
-                            <a target="_blank" id="link-zcxy" class="btn btn-link btn-md" href="${systemSetting().www}/help/zcxy.html">jshop用户注册协议</a>
+                            <a target="_blank" id="link-zcxy" class="btn btn-link btn-md" href="${systemSetting().www}/help/zcxy.html">用户注册协议</a>
                         </div>
                     </div>
 				  <div class="form-group">

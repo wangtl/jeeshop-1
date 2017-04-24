@@ -1,0 +1,18 @@
+环境：
+jdk1.8
+---
+技术框架：
+	主框架：spring
+	数据操作层：mybatis
+	视图层：freemarker
+	控制层：springMVC
+	数据缓存：redis
+	数据库连接池：c3p0
+	其他：bootstrap、jquery
+---
+数据库：
+mysql
+
+---
+其他：
+maven构建、git版本管理
