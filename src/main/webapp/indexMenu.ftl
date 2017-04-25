@@ -167,11 +167,11 @@ body{
 						</li>
 
 					<!-- 团购活动 -->
-					<#if false>
+					
 						<li class="${(selectMenu=="tuan")?string("active","")}"><a href="${basepath}/activity/tuan.html" >
 							<b>团购活动</b></a>
 						</li>
-					</#if>
+					
 		          </ul>
         </div>
       </div>

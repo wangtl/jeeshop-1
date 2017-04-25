@@ -24,7 +24,7 @@ public class CacheAction {
     private static final String page_toIndex = "/manage/cache/cacheIndex";
 
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value="show",method = RequestMethod.GET)
     public String toIndex() throws Exception {
         return page_toIndex;
     }
