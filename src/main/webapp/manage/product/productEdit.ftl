@@ -2,7 +2,6 @@
 <@page.pageBase currentMenu="商品管理">
 <form action="${basepath}/manage/product" id="form" name="form" namespace="/manage" theme="simple" enctype="multipart/form-data" method="post">
 
-	<span id="pifeSpan" class="input-group-addon" style="display:none">${systemSetting().imageRootPath}</span>
 	<input type="hidden" value="${e.id!""}" id="productID"/>
 	<input type="hidden" value="${e.catalogID!""}" id="catalogID"/>
 
@@ -37,7 +36,7 @@
                 </button>
 			</#if>
 			
-<!-- 			<a href="selectList?init=y" class="btn btn-inverse">返回</a> -->
+ 			<a href="selectList?init=y" class="btn btn-success">返回</a> 
 		</div>
 		
 		<div id="tabs">
@@ -54,7 +53,7 @@
                 <input type="hidden" value="${e.id!""}" name="id" label="id" id="id"/>
 				<div class="row form-horizontal"-role="form">
 
-                    <div class="form-group">
+                    <div class="form-group  col-md-12">
                         <label class="col-md-2 control-label">名称</label>
                         <div class="col-md-10">
                             <input type="text" value="${e.name!""}" name="name"  data-rule="商品名称;required;name;length[0~44];" size="44" maxlength="44" style="width: 80%;"
@@ -90,7 +89,7 @@
 							</div>
 						</div>
 
-                    <div class="form-group">
+                    <div class="form-group  col-md-12">
                         <label class="col-md-2 control-label">简介</label>
                         <div class="col-md-10">
 							<textarea name="introduce" class="form-control" rows="3" id="introduce"
@@ -98,7 +97,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group  col-md-12">
                         <label class="col-md-2 control-label">主图</label>
                         <div class="col-md-10">
                             <input type="button" name="filemanager" value="浏览图片" class="btn btn-success"/>
@@ -163,32 +162,32 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group  col-md-12">
                         <label class="col-md-2 control-label">送积分</label>
                         <div class="col-md-10">
                             <input type="text"  value="${e.score!""}" name="score" type="text"  id="score" maxlength="20" data-rule="销量;required;integer;score;"/>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group  col-md-12">
                         <label class="col-md-2 control-label">页面标题</label>
                         <div class="col-md-10">
                             <input type="text"  value="${e.title!""}" name="title" type="text" class="form-control"/>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group  col-md-12">
                         <label class="col-md-2 control-label">页面描述</label>
                         <div class="col-md-10">
                             <input type="text"  value="${e.description!""}" name="description" type="text" class="form-control" />
 						</div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group  col-md-12">
                         <label class="col-md-2 control-label">页面关键字</label>
                         <div class="col-md-10">
                             <input type="text"  value="${e.keywords!""}" name="keywords" type="text" class="form-control" />
                         </div>
                     </div>
 					<#if e.id??>
-                    <div class="form-group">
+                    <div class="form-group  col-md-12">
                         <label class="col-md-2 control-label">其他信息</label>
                         <div class="col-md-10">
                             录入人：<a style="text-decoration: underline;" target="_blank" href="${basepath}/manage/user/show?account=${e.createAccount!""}">${e.createAccount!""}</a>
