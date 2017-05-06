@@ -7,7 +7,7 @@
     <!-- Navigation -->
     <div class="header">
         <div class="dl-title">
-            <span class="lp-title-port">爱优享</span><span class="dl-title-text">运营平台</span>
+            <span class="lp-title-port">MYSHOP</span><span class="dl-title-text">运营平台</span>
         </div>
         <div class="dl-log">欢迎您，<span class="dl-log-user"> ${currentUser().nickname!currentUser().username}</span><a href="${basepath}/manage/user/logout" title="退出系统" class="dl-log-quit">[退出]</a>
         </div>
