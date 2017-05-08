@@ -53,7 +53,7 @@
     <script type="text/javascript" src="${basepath}/resource/js/jquery-1.9.1.min.js"></script>
     <#--<script type="text/javascript" src="${basepath}/resource/zTree3.5/js/jquery.ztree.all-3.5.min.js"></script>-->
 
-    <script type="text/javascript" src="${basepath}/resource/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="${basepath}/resource/bootstrap3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="${basepath}/resource/js/jquery.blockUI.js"></script>
     <#--<script type="text/javascript" src="${basepath}/resource/js/manage.js"></script>-->
 
