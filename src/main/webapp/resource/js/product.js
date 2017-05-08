@@ -209,10 +209,11 @@ function checkStockLastTime(){
 	  data: {},
 	  async:false,
 	  cache:false,
+	  dataType: "json",
 	  success: function(data){
 		  console.log("notifyCart.data="+data);
-		  
-		  if(data=="-1"){
+		  eval(data);//将字符串转化成对象
+		  if(data.code=="-1"){
 			  console.log("提示用户需要登录！");
 			  $("#confirmOrderBtn").attr("data-original-title","需要先登陆，才能提交订单！").tooltip('show');
 			  result = false;
@@ -238,9 +239,10 @@ function checkStockLastTime(){
 				  $("#confirmOrderBtn").attr("data-original-title",data.error).tooltip('show');
 				  result = false;
 			  }
+		  }else{
+			  result = false;
 		  }
 	  },
-	  dataType: "json",
 	  error:function(er){
 		  console.log("notifyCart.er="+er);
 		  result = false;

@@ -183,7 +183,7 @@
 		</div>
 	</form>
 </div>
-
+<script src="${basepath}/resource/js/product.js"></script>
 <script type="text/javascript">
 $(function() {
 	$("div[address=address]").click(function(){
