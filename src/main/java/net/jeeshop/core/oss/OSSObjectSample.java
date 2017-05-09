@@ -1,25 +1,24 @@
 package net.jeeshop.core.oss;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.aliyun.oss.ClientConfiguration;
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSException;
-import com.aliyun.oss.model.*;
+import com.aliyun.oss.model.CannedAccessControlList;
+import com.aliyun.oss.model.GetObjectRequest;
+import com.aliyun.oss.model.OSSObjectSummary;
+import com.aliyun.oss.model.ObjectListing;
+import com.aliyun.oss.model.ObjectMetadata;
+
 import net.jeeshop.core.front.SystemManager;
 import net.jeeshop.services.manage.oss.bean.AliyunOSS;
-import net.jeeshop.web.action.manage.news.NewsAction;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * 该示例代码展示了如果在OSS中创建和删除一个Bucket，以及如何上传和下载一个文件。
@@ -77,21 +76,18 @@ public class OSSObjectSample {
     	System.out.println("filePath="+filePath);
     	// 可以使用ClientConfiguration对象设置代理服务器、最大重试次数等参数。
         ClientConfiguration config = new ClientConfiguration();
-        OSSClient client = new OSSClient(aliyunOSS.getOSS_ENDPOINT(), aliyunOSS.getACCESS_ID(), aliyunOSS.getACCESS_KEY(), config);
+        OSSClient client = new OSSClient(aliyunOSS.getOSS_ENDPOINT(), aliyunOSS.getACCESS_ID(), aliyunOSS.getACCESS_KEY(),config);
 
         ensureBucket(client, aliyunOSS.getBucketName());
         setBucketPublicReadable(client, aliyunOSS.getBucketName());
         // 获取Object，返回结果为OSSObject对象
         logger.error("bucketName=" + aliyunOSS.getBucketName());
-        OSSObject object = client.getObject(aliyunOSS.getBucketName(), "attached/");
-        
-        // 获取Object的输入流
-        InputStream objectContent = object.getObjectContent();
-        System.out.println(objectContent);
+       
         System.out.println("正在上传...");
 //            fileName = System.currentTimeMillis() + "." +getExtensionName(fileName);
         String url = uploadFile(client, aliyunOSS.getBucketName(), filePath, file);
         System.out.println("上传成功！url="+url);
+        client.shutdown();
 	}
     
     /*
@@ -110,84 +106,12 @@ public class OSSObjectSample {
         return filename; 
     } 
 
-    /**
-     * @param args
-     */
-    public static void main(String[] args)throws Exception {
-//    	String key = "favicon.png";
-//    	String uploadFilePath = "E:/favicon.png";
-//    	if(1==1){
-//    		save(key, new File(uploadFilePath));
-//    		return;
-//    	}
-    	
-//        String downloadFilePath = "E:/拍大师作品.avi";
-        String ACCESS_ID = "xx";
-        String OSS_ENDPOINT="http://oss.aliyuncs.com/";
-        String ACCESS_KEY="xx";
-        String bucketName = "xx";
-        // 可以使用ClientConfiguration对象设置代理服务器、最大重试次数等参数。
-        ClientConfiguration config = new ClientConfiguration();
-        OSSClient client = new OSSClient(OSS_ENDPOINT, ACCESS_ID, ACCESS_KEY, config);
-
-        ensureBucket(client, bucketName);
-
-        try {
-            setBucketPublicReadable(client, bucketName);
-            // 获取Object，返回结果为OSSObject对象
-//            OSSObject object = client.getObject(bucketName, "attached");
-
-            // 获取Object的输入流
-//            InputStream objectContent = object.getObjectContent();
-//            System.out.println(objectContent);
-//            System.out.println("正在上传...");
-//            uploadFile(client, bucketName, key, uploadFilePath);
-            
-//            ObjectListing list = client.lis
-         // 构造ListObjectsRequest请求
-            ListObjectsRequest listObjectsRequest = new ListObjectsRequest(bucketName);
-            listObjectsRequest.setDelimiter("/");
-         // 列出fun目录下的所有文件和文件夹
-            listObjectsRequest.setPrefix("attached/image/");
-//            listObjectsRequest.setMarker("123");
-            ObjectListing list = client.listObjects(listObjectsRequest);
-         // 遍历所有Object
-            System.out.println("Objects:");
-            for (OSSObjectSummary objectSummary : list.getObjectSummaries()) {
-                System.out.println(objectSummary.getKey()+","+objectSummary.getETag());
-            }
-            
-         // 遍历所有CommonPrefix
-            System.out.println("文件夹CommonPrefixs:");
-            for (String commonPrefix : list.getCommonPrefixes()) {
-                System.out.println(commonPrefix);
-            }
-//            System.out.println("正在下载...");
-//            downloadFile(client, bucketName, key, downloadFilePath);
-            
-            // 设置URL过期时间为1小时
-//            Date expiration = new Date(new Date().getTime() + 3600 * 1000);
-
-            // 生成URL
-//            URL url = client.generatePresignedUrl
-//            System.out.println("url="+url);
-        } catch(OSSException e){ 
-        	e.printStackTrace();
-        	if(e.getErrorCode().equals("NoSuchKey")){
-        		//文件不存在
-        		System.out.println("文件不存在");
-//        		client.c
-        	}
-        }finally {
-//            deleteBucket(client, bucketName);
-        }
-    }
 
     // 如果Bucket不存在，则创建它。
     private static void ensureBucket(OSSClient client, String bucketName)
             throws OSSException, ClientException{
 
-        if (client.isBucketExist(bucketName)){
+        if (client.doesBucketExist(bucketName)){
         	logger.error("isBucketExist true");
             return;
         }
@@ -229,11 +153,13 @@ public class OSSObjectSample {
         // 可以在metadata中标记文件类型
         objectMeta.setContentType("image/jpeg");
 
-        InputStream input = new FileInputStream(file);
+//        InputStream input = new FileInputStream(file);
 //        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 //        String ymd = sdf.format(new Date());
 //        String path = "attached/"+ymd+"/"+key;
-        client.putObject(bucketName, filePath, input, objectMeta);
+        String key = filePath +file.getName();
+        logger.info("oss-object:key="+key);
+        client.putObject(bucketName, key, file,objectMeta);
         
         return "http://"+bucketName+".oss-cn-hangzhou.aliyuncs.com/"+filePath;
     }

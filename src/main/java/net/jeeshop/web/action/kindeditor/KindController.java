@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -124,10 +125,11 @@ public class KindController {
     @RequestMapping("fileManager")
     @ResponseBody
     public String fileManager(@RequestParam(value = "dir") String dirName, @RequestParam(required = false) String path,
-                              @RequestParam(required = false, defaultValue = "name") String order) {
+                              @RequestParam(required = false, defaultValue = "name") String order,
+                              HttpServletRequest request) {
         SystemSetting systemSetting = SystemManager.getInstance().getSystemSetting();
-        String rootPath = SystemManager.getInstance().getProperty("file.upload.path");
-        String rootUrl = systemSetting.getImageRootPath();
+        String rootPath = request.getSession().getServletContext().getRealPath("/")+SystemManager.getInstance().getProperty("file.upload.path");
+        String rootUrl = systemSetting.getImageRootPath()+SystemManager.getInstance().getProperty("file.upload.path");
         //图片扩展名
         String[] fileTypes = new String[]{"gif", "jpg", "jpeg", "png", "bmp"};
 

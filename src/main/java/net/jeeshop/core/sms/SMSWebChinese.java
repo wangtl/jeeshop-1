@@ -2,13 +2,11 @@ package net.jeeshop.core.sms;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-import net.jeeshop.core.util.CheckSumBuilder;
-import net.jeeshop.services.manage.sms.bean.Sms;
-
-import org.apache.commons.httpclient.*;
-import org.apache.commons.httpclient.methods.PostMethod;
-
+import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -17,9 +15,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import net.jeeshop.core.util.CheckSumBuilder;
+import net.jeeshop.services.manage.sms.bean.Sms;
 
 /**
  * http://www.webchinese.com.cn   此公司的SMS短信平台
