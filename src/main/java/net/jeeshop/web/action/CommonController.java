@@ -8,10 +8,6 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
-import net.jeeshop.core.front.SystemManager;
-import net.jeeshop.core.util.ImageUtils;
-import net.sf.json.JSONObject;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -19,6 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import net.jeeshop.core.front.SystemManager;
+import net.jeeshop.core.oss.OSSObjectSample;
+import net.jeeshop.core.util.ImageUtils;
+import net.sf.json.JSONObject;
 
 /**
  * @author dylan
@@ -29,6 +30,8 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping("/common")
 public class CommonController {
     private Logger logger = LoggerFactory.getLogger(getClass());
+    
+    
     @RequestMapping("uploadify")
     @ResponseBody
     public String uploadify(@RequestParam("Filedata")MultipartFile filedata,
@@ -96,18 +99,25 @@ public class CommonController {
         File uploadedFile3 = new File(savePath, newFileName3);
         try {
             filedata.transferTo(uploadedFile3);
+            
+            //OSSObjectSample.save(relativePath, uploadedFile3);//上传到oss上
+            
             if(createThumbnail) {
                 File uploadedFile1 = new File(savePath, newFileName1 + "." + fileExt);
                 File uploadedFile2 = new File(savePath, newFileName2 + "." + fileExt);
 
                 ImageUtils.ratioZoom2(uploadedFile3, uploadedFile1, Double.valueOf(SystemManager.getInstance().getProperty("product_image_1_w")));
                 ImageUtils.ratioZoom2(uploadedFile3, uploadedFile2, Double.valueOf(SystemManager.getInstance().getProperty("product_image_2_w")));
+                
+                //OSSObjectSample.save(relativePath, uploadedFile1);//上传到oss上
+                //OSSObjectSample.save(relativePath, uploadedFile2);//上传到oss上
             }
+            
         } catch (Exception e) {
             logger.error("上传文件异常：" + e.getMessage());
             return (getError("上传文件失败。"));
         }
-
+        
         JSONObject obj = new JSONObject();
         obj.put("error", 0);
         obj.put("filePath", relativePath + newFileName3);
