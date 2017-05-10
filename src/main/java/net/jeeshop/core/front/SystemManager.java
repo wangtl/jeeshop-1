@@ -1,6 +1,16 @@
 package net.jeeshop.core.front;
 
-import com.google.common.collect.Lists;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.Random;
+
+import javax.annotation.PostConstruct;
+
 import net.jeeshop.core.cache.CacheProvider;
 import net.jeeshop.core.cache.SimpleCacheProvider;
 import net.jeeshop.core.listener.SystemListener;
@@ -21,13 +31,11 @@ import net.jeeshop.services.manage.hotquery.bean.Hotquery;
 import net.jeeshop.services.manage.order.bean.OrdersReport;
 import net.jeeshop.services.manage.oss.bean.AliyunOSS;
 import net.jeeshop.services.manage.systemSetting.bean.SystemSetting;
+
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.LoggerFactory;
 
-import javax.annotation.PostConstruct;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.*;
+import com.google.common.collect.Lists;
 
 
 /**
@@ -393,6 +401,7 @@ public class SystemManager {
     public void setAlipayConfig(String alipayConfig) {
         putCacheObject("alipayConfig", alipayConfig);
     }
+    
 
     /**
      * 启用的评论插件代号
@@ -732,4 +741,6 @@ public class SystemManager {
 //        this.articleCatalogJsonStr = articleCatalogJsonStr;
         putCacheObject("articleCatalogJsonStr", articleCatalogJsonStr);
     }
+
+	
 }

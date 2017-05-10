@@ -21,7 +21,9 @@ public class PayInfo {
 	private double logistics_fee;
 	private String logistics_type;
 	private String show_url;
-
+	private double amount;//总金额
+	private String productCode;//商品编号
+	
 	public String getWIDseller_email() {
 		return WIDseller_email;
 	}
@@ -124,6 +126,22 @@ public class PayInfo {
 
 	public void setShow_url(String show_url) {
 		this.show_url = show_url;
+	}
+	
+	protected double getAmount() {
+		return amount;
+	}
+
+	protected void setAmount(double amount) {
+		this.amount = amount;
+	}
+
+	protected String getProductCode() {
+		return productCode;
+	}
+
+	protected void setProductCode(String productCode) {
+		this.productCode = productCode;
 	}
 
 	@Override

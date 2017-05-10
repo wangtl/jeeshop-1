@@ -2,18 +2,21 @@ package net.jeeshop.core.oscache;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.TreeMap;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import net.jeeshop.core.FrontContainer;
 import net.jeeshop.core.KeyValueHelper;
-import net.jeeshop.core.ManageContainer;
 import net.jeeshop.core.front.SystemManager;
 import net.jeeshop.core.pay.alipay.alipayescow.config.AlipayConfig;
+import net.jeeshop.core.pay.alipay.newpay.AlipaynewConfig;
 import net.jeeshop.core.util.DateTimeUtil;
 import net.jeeshop.services.front.advert.AdvertService;
 import net.jeeshop.services.front.advert.bean.Advert;
@@ -44,27 +47,24 @@ import net.jeeshop.services.front.pay.bean.Pay;
 import net.jeeshop.services.front.product.ProductService;
 import net.jeeshop.services.front.product.bean.Product;
 import net.jeeshop.services.front.product.bean.ProductStockInfo;
-import net.jeeshop.services.manage.systemSetting.SystemSettingService;
-import net.jeeshop.services.manage.systemSetting.bean.SystemSetting;
 import net.jeeshop.services.manage.accountRank.AccountRankService;
 import net.jeeshop.services.manage.accountRank.bean.AccountRank;
 import net.jeeshop.services.manage.activity.ActivityService;
 import net.jeeshop.services.manage.activity.bean.Activity;
 import net.jeeshop.services.manage.hotquery.HotqueryService;
 import net.jeeshop.services.manage.hotquery.bean.Hotquery;
-import net.jeeshop.services.manage.oss.OssService;
-import net.jeeshop.services.manage.oss.bean.AliyunOSS;
-import net.jeeshop.services.manage.oss.bean.Oss;
+import net.jeeshop.services.manage.systemSetting.SystemSettingService;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringUtils;
-import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 
 /**
  * 缓存管理器。 后台项目可以通过接口程序通知该类重新加载部分或全部的缓存
@@ -238,10 +238,12 @@ public class FrontCache {
 		pay.setCode(Pay.pay_code_alipayescow);
 		pay = payService.selectOne(pay);
 		systemManager.setAlipayConfig(pay.getSeller());
-
+		
 		AlipayConfig.partner = pay.getPartner();
 		AlipayConfig.key = pay.getKey1();
-
+		AlipaynewConfig.APPID = pay.getAppId();
+		AlipaynewConfig.APP_PRIVATE_KEY = pay.getAppPrivateKey();
+		AlipaynewConfig.ALIPAY_PUBLIC_KEY  =pay.getAlipayPublicKey();
 //		logger.error("SystemManager.alipayConfig="+SystemManager.alipayConfig);
 
 		/**

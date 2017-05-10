@@ -1,6 +1,8 @@
 package net.jeeshop.web.action.front.paygate;
 
 import net.jeeshop.core.front.SystemManager;
+import net.jeeshop.core.pay.alipay.alipayescow.config.AlipayConfig;
+import net.jeeshop.core.pay.alipay.newpay.AlipaynewConfig;
 import net.jeeshop.services.common.Orderpay;
 import net.jeeshop.services.front.order.OrderService;
 import net.jeeshop.services.front.order.bean.Order;
@@ -17,7 +19,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alipay.api.AlipayApiException;
+import com.alipay.api.AlipayClient;
+import com.alipay.api.DefaultAlipayClient;
+import com.alipay.api.request.AlipayTradePagePayRequest;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author dylan
@@ -64,6 +72,42 @@ public class PaygateAction {
         }
         return "paygate/alipay/alipayapi";
     }
+    
+    @RequestMapping("toAlipay")
+    @ResponseBody
+    public void alipay(HttpServletRequest request,HttpServletResponse response,PayInfo payInfo)
+    	throws Exception{
+    	AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do", 
+    			AlipaynewConfig.APPID, AlipaynewConfig.APP_PRIVATE_KEY,
+    			AlipaynewConfig.FORMAT, AlipaynewConfig.CHARSET, 
+    			AlipaynewConfig.ALIPAY_PUBLIC_KEY, AlipaynewConfig.SIGN_TYPE); //获得初始化的AlipayClient
+        AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
+        alipayRequest.setReturnUrl(SystemManager.getInstance().getSystemSetting().getWww()
+        		+"/paygate/alipaynew/alipayapi_return_url.jsp");
+        alipayRequest.setNotifyUrl(SystemManager.getInstance().getSystemSetting().getWww()
+        		+"/paygate/alipaynew/alipayapi_notify_url.jsp");//在公共参数中设置回跳和通知地址
+        alipayRequest.setBizContent("{" +
+            "    \"out_trade_no\":" +payInfo.getWIDout_trade_no()+","+
+            "    \"product_code\":" +payInfo.getProductCode()+","+
+            "    \"total_amount\":" +payInfo.getAmount()+","+
+            "    \"subject\":" +payInfo.getWIDsubject()+","+
+            "    \"body\":" +payInfo.getWIDbody()+","+
+            "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\"," +
+            "    \"extend_params\":{" +
+            "    \"sys_service_provider_id\":\"2088511833207846\"" +
+            "    }"+
+            "  }");//填充业务参数
+        String form="";
+        try {
+            form = alipayClient.pageExecute(alipayRequest).getBody(); //调用SDK生成表单
+        } catch (AlipayApiException e) {
+            e.printStackTrace();
+        }
+        response.setContentType("text/html;charset=" + "UTF-8");
+        response.getWriter().write(form);//直接将完整的表单html输出到页面
+        response.getWriter().flush();
+        response.getWriter().close();
+    }
     /**
      * 创建支付宝的付款信息对象
      * @param order
@@ -101,7 +145,8 @@ public class PaygateAction {
 
         payInfo.setLogistics_fee(Double.valueOf(order.getFee()));
         payInfo.setLogistics_type(order.getExpressCode());
-
+        payInfo.setAmount(Double.valueOf(order.getAmount()));
+        payInfo.setProductCode(String.valueOf(order.getProductID()));
         logger.debug(payInfo.toString());
         return payInfo;
     }
