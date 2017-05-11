@@ -44,6 +44,15 @@ public class PaygateAction {
     private OrdershipService ordershipService;
     @Autowired
     private OrderpayService orderpayService;
+    
+    private static AlipayClient alipayClient = null;
+    static{
+    	alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do", 
+		AlipaynewConfig.APPID, AlipaynewConfig.APP_PRIVATE_KEY,
+		AlipaynewConfig.FORMAT, AlipaynewConfig.CHARSET, 
+		AlipaynewConfig.ALIPAY_PUBLIC_KEY, AlipaynewConfig.SIGN_TYPE); //获得初始化的AlipayClient
+    }
+    
     @RequestMapping("pay")
     public String pay(String orderId, String orderPayId,  ModelMap modelMap) {
         Order order = orderService.selectById(orderId);
@@ -77,10 +86,7 @@ public class PaygateAction {
     @ResponseBody
     public void alipay(HttpServletRequest request,HttpServletResponse response,PayInfo payInfo)
     	throws Exception{
-    	AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do", 
-    			AlipaynewConfig.APPID, AlipaynewConfig.APP_PRIVATE_KEY,
-    			AlipaynewConfig.FORMAT, AlipaynewConfig.CHARSET, 
-    			AlipaynewConfig.ALIPAY_PUBLIC_KEY, AlipaynewConfig.SIGN_TYPE); //获得初始化的AlipayClient
+    	
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
         alipayRequest.setReturnUrl(SystemManager.getInstance().getSystemSetting().getWww()
         		+"/paygate/alipaynew/alipayapi_return_url.jsp");
