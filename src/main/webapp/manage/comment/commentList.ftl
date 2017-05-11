@@ -82,7 +82,7 @@
 							<td style="display: none;">&nbsp;${item.id!""}</td>
 							<td>
 <#--<%-- 								&nbsp;<a target="_blank" href="product!toEdit.action?e.id=${item.productID!""}">${item.productID!""}</a> --%>-->
-								<a target="_blank" href="${systemSetting().www}/product/${item.productID!""}.html">${item.productID!""}</a>
+								<a target="_blank" href="${basepath}/product/${item.productID!""}.html">${item.productID!""}</a>
 							</td>
 							<td>
 								<a target="_blank" href="${basepath}/manage/account/show?account=${item.account!""}">${item.account!""}

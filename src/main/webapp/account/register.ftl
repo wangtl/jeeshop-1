@@ -21,21 +21,21 @@
 						    <#---->
 						    <#--<div>-->
 								<#--<a href="${basepath}/account/qqLogin.html" title="使用QQ号登陆">-->
-			              		<#--<img src="${systemSetting().www}/resource/images/qqLogin.png">-->
+			              		<#--<img src="${basepath}/resource/images/qqLogin.png">-->
 			              	<#--</a>-->
 							<#--</div>-->
 			              	<#--<br>-->
 	              	<#---->
 			              	<#--<div>-->
 				              	<#--<a  href="${basepath}/account/sinawb.html" title="使用新浪微博账号登陆">-->
-				              		<#--<img src="${systemSetting().www}/resource/images/sinawbLogin.png">-->
+				              		<#--<img src="${basepath}/resource/images/sinawbLogin.png">-->
 				              	<#--</a>-->
 			              	<#--</div>-->
 			              	<#--<br>-->
 	              	<#---->
 			              	<#--<div>-->
 				              	<#--<a href="${basepath}/account/alipayFastLogin.html" title="使用支付宝快捷登陆">-->
-									<#--<img src="${systemSetting().www}/resource/images/alipay_fastlogin.jpg" alt="支付宝快捷登陆">-->
+									<#--<img src="${basepath}/resource/images/alipay_fastlogin.jpg" alt="支付宝快捷登陆">-->
 								<#--</a>-->
 			              	<#--</div>-->
 							<#--<br>-->
@@ -118,7 +118,7 @@
 					    data-rule="验证码:required;vcode;remote[unique.html]" size="4" maxlength="4" />
 				    </div>
 				    <div class="col-md-4 col-md-offset-1">
-				    	<img src="${systemSetting().www}/ValidateImage.do" id="codes2"
+				    	<img src="${basepath}/ValidateImage.do" id="codes2"
 								onclick="javaScript:reloadImg2();" class="vcodeCss"></img>
 						<a href="javascript:void(0);" onclick="javascript:reloadImg2();" class="btn btn-link btn-sm">看不清?换一张</a>
 				    </div>
@@ -129,7 +129,7 @@
                         <label for="link-zcxy">注册协议</label>
                         </div>
                         <div class="col-md-6">
-                            <a target="_blank" id="link-zcxy" class="btn btn-link btn-md" href="${systemSetting().www}/help/zcxy.html">用户注册协议</a>
+                            <a target="_blank" id="link-zcxy" class="btn btn-link btn-md" href="${basepath}/help/zcxy.html">用户注册协议</a>
                         </div>
                     </div>
 				  <div class="form-group">
@@ -147,7 +147,7 @@
 		</div>
 <script type="text/javascript">
 function reloadImg2() {
-	document.getElementById("codes2").src = "${systemSetting().www}/ValidateImage.do?" + "radom="
+	document.getElementById("codes2").src = "${basepath}/ValidateImage.do?" + "radom="
 			+ Math.random();
 	$("#vcode2").focus();
 }

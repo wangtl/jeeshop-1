@@ -1,16 +1,18 @@
 package net.jeeshop.web.action.front.paygate;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import net.jeeshop.core.front.SystemManager;
 import net.jeeshop.core.pay.alipay.alipayescow.config.AlipayConfig;
 import net.jeeshop.core.pay.alipay.newpay.AlipaynewConfig;
 import net.jeeshop.services.common.Orderpay;
 import net.jeeshop.services.front.order.OrderService;
 import net.jeeshop.services.front.order.bean.Order;
-import net.jeeshop.services.front.orderdetail.OrderdetailService;
 import net.jeeshop.services.front.orderpay.OrderpayService;
 import net.jeeshop.services.front.ordership.OrdershipService;
 import net.jeeshop.services.front.ordership.bean.Ordership;
-import net.jeeshop.web.util.RequestHolder;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,6 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author dylan
@@ -47,14 +46,15 @@ public class PaygateAction {
     
     private static AlipayClient alipayClient = null;
     static{
-    	alipayClient = new DefaultAlipayClient("https://openapi.alipay.com/gateway.do", 
+    	alipayClient = new DefaultAlipayClient(AlipaynewConfig.GATEWAY, 
 		AlipaynewConfig.APPID, AlipaynewConfig.APP_PRIVATE_KEY,
 		AlipaynewConfig.FORMAT, AlipaynewConfig.CHARSET, 
 		AlipaynewConfig.ALIPAY_PUBLIC_KEY, AlipaynewConfig.SIGN_TYPE); //获得初始化的AlipayClient
     }
     
     @RequestMapping("pay")
-    public String pay(String orderId, String orderPayId,  ModelMap modelMap) {
+    public String pay(HttpServletRequest request,HttpServletResponse response,
+    		String orderId, String orderPayId,  ModelMap modelMap) throws Exception{
         Order order = orderService.selectById(orderId);
 
         if(order == null) {
@@ -79,12 +79,13 @@ public class PaygateAction {
         if("dummy".equalsIgnoreCase(paygateType)) {
             return "paygate/dummy/pay";
         }
-        return "paygate/alipay/alipayapi";
+        //调转到阿里支付
+        alipay(request, response, payInfo);
+        return null;
     }
     
-    @RequestMapping("toAlipay")
-    @ResponseBody
-    public void alipay(HttpServletRequest request,HttpServletResponse response,PayInfo payInfo)
+    
+    private void alipay(HttpServletRequest request,HttpServletResponse response,PayInfo payInfo)
     	throws Exception{
     	
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
@@ -93,14 +94,14 @@ public class PaygateAction {
         alipayRequest.setNotifyUrl(SystemManager.getInstance().getSystemSetting().getWww()
         		+"/paygate/alipaynew/alipayapi_notify_url.jsp");//在公共参数中设置回跳和通知地址
         alipayRequest.setBizContent("{" +
-            "    \"out_trade_no\":" +payInfo.getWIDout_trade_no()+","+
-            "    \"product_code\":" +payInfo.getProductCode()+","+
+            "    \"out_trade_no\":\"" +payInfo.getWIDout_trade_no()+"\","+
+            "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\","+
             "    \"total_amount\":" +payInfo.getAmount()+","+
-            "    \"subject\":" +payInfo.getWIDsubject()+","+
-            "    \"body\":" +payInfo.getWIDbody()+","+
+            "    \"subject\":\"" +payInfo.getWIDsubject()+"\","+
+            "    \"body\":\"" +payInfo.getWIDbody()+"\","+
             "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\"," +
             "    \"extend_params\":{" +
-            "    \"sys_service_provider_id\":\"2088511833207846\"" +
+            "    \"sys_service_provider_id\":\"" +AlipayConfig.partner+"\""+
             "    }"+
             "  }");//填充业务参数
         String form="";
@@ -108,6 +109,11 @@ public class PaygateAction {
             form = alipayClient.pageExecute(alipayRequest).getBody(); //调用SDK生成表单
         } catch (AlipayApiException e) {
             e.printStackTrace();
+            response.setContentType("text/html;charset=" + "UTF-8");
+            response.getWriter().write("支付发送错误！！！");//直接将完整的表单html输出到页面
+            response.getWriter().flush();
+            response.getWriter().close();
+            return;
         }
         response.setContentType("text/html;charset=" + "UTF-8");
         response.getWriter().write(form);//直接将完整的表单html输出到页面

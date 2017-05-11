@@ -360,7 +360,7 @@
 							</a>
 							<#if item.lowStocks?? && item.lowStocks=="y"><font color="red">【缺货】</font></#if>
 						</td>
-						<td><a target="_blank" style="text-decoration: underline;" href="${systemSetting().www}/product/${item.productID!""}.html">${item.productName!""}</a>
+						<td><a target="_blank" style="text-decoration: underline;" href="${basepath}/product/${item.productID!""}.html">${item.productName!""}</a>
 							<br>
 							<#if item.giftID??>
 								<a target="_blank" style="text-decoration: underline;" href="${basepath}/manage/gift/show?id=${item.giftID!""}">

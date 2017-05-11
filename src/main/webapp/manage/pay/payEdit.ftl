@@ -45,7 +45,7 @@
 			</tr>
 			<tr>
 				<td style="text-align: right;">商户的私钥</td>
-				<td style="text-align: left;"><input type="text"  value="${e.key1!""}" name="key1"  data-rule="商户的私钥:required;key1;length[1~45];"
+				<td style="text-align: left;"><input type="text"  value="${e.key1!""}" name="key1"  data-rule="商户的私钥:required;key1;;"
 						id="key1" /></td>
 			</tr>
 			<tr>

@@ -3,6 +3,7 @@ package net.jeeshop.core.pay.alipay.newpay;
 public class AlipaynewConfig {
 	
 	//↓↓↓↓↓↓↓↓↓↓请在这里配置您的基本信息↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+	public static String GATEWAY = null;
 	// PPID 即创建应用后生成的字符串
 	public static String APPID = null;
 	// 开发者私钥

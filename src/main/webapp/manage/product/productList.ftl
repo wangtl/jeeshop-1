@@ -110,7 +110,7 @@
                     </#if>
 
 					
-					<a target="_blank" href="${systemSetting().www}/product/selectMemoryStock.html" class="btn btn-info">
+					<a target="_blank" href="${basepath}/product/selectMemoryStock.html" class="btn btn-info">
 					<i class="icon-eye-open icon-white"></i> 内存库存查询</a>
 					<div style="float: right;vertical-align: middle;bottom: 0px;top: 10px;">
 						<#include "/manage/system/pager.ftl"/>
@@ -184,7 +184,7 @@
 						</#if>
 					</td>
 					<td ><a href="toEdit?id=${item.id}">编辑</a>|
-					<a target="_blank" href="${systemSetting().www}/product/${item.id!""}.html">查看</a>
+					<a target="_blank" href="${basepath}/product/${item.id!""}.html">查看</a>
 					</td>
 				</tr>
             </#list>

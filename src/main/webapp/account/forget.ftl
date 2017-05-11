@@ -50,7 +50,7 @@
 							    data-rule="验证码:required;vcode;remote[unique.html]" size="4" maxlength="4" />
 						    </div>
 						    <div class="col-md-4 col-lg-offset-1">
-						    	<img src="${systemSetting().www}/ValidateImage.do" id="codes2"
+						    	<img src="${basepath}/ValidateImage.do" id="codes2"
 										onclick="javaScript:reloadImg2();" class="vcodeCss"></img>
                                 <a href="javascript:void(0)"
                                      onclick="javaScript:reloadImg2();" class="btn btn-link btn-sm">看不清？换一张</a>
@@ -73,7 +73,7 @@
 	</div>
 <script type="text/javascript">
 function reloadImg2() {
-	document.getElementById("codes2").src = "${systemSetting().www}/ValidateImage.do?random="
+	document.getElementById("codes2").src = "${basepath}/ValidateImage.do?random="
 			+ Math.random();
 	$("#vcode2").focus();
 }

@@ -11,7 +11,7 @@
 		text-decoration: none;
 	}
 </style>
-<input value="${systemSetting().www}" type="hidden" id="wwwInput"/>
+<input value="${basepath}" type="hidden" id="wwwInput"/>
 	<@menu.menu/>
 	<div class="container">
 		<div class="row">
@@ -70,17 +70,17 @@
 		              </div>
 		              <#--<div class="panel-footer" id="otherLogin">-->
 		              	<#--<a href="${basepath}/account/qqLogin">-->
-		              		<#--<img src="${systemSetting().www}/resource/images/qqLogin.png">-->
+		              		<#--<img src="${basepath}/resource/images/qqLogin.png">-->
 		              	<#--</a>-->
 		              	<#--<a  href="${basepath}/account/sinawb">-->
-		              		<#--<img src="${systemSetting().www}/resource/images/sinawbLogin.png">-->
+		              		<#--<img src="${basepath}/resource/images/sinawbLogin.png">-->
 		              	<#--</a>-->
 <#--&lt;#&ndash;<%-- 		              	<span id="qqLoginBtn" title="使用QQ号登陆"></span> --%>&ndash;&gt;-->
 <#--&lt;#&ndash;<%-- 						<span id="wb_connect_btn" title="使用新浪微博号登陆"></span> --%>&ndash;&gt;-->
 						<#--<span>-->
 							<#--<a href="alipayFastLogin" title="使用支付宝快捷登陆">-->
-	<#--&lt;#&ndash;<%-- 							<img src="${systemSetting().www}/resource/images/alipay.gif" alt="支付宝快捷登陆"> --%>&ndash;&gt;-->
-								<#--<img src="${systemSetting().www}/resource/images/alipay_fastlogin.jpg" alt="支付宝快捷登陆">-->
+	<#--&lt;#&ndash;<%-- 							<img src="${basepath}/resource/images/alipay.gif" alt="支付宝快捷登陆"> --%>&ndash;&gt;-->
+								<#--<img src="${basepath}/resource/images/alipay_fastlogin.jpg" alt="支付宝快捷登陆">-->
 							<#--</a>-->
 						<#--</span>-->
 						<#--<span style="display:none">-->
@@ -137,7 +137,7 @@
 			);
 	}
 	function notifySession(status,openId,accessToken,nickname){
-		var _url = "${systemSetting().www}/account/qqCallbackNotifySession?status="+status+"&openId="+openId+"&accessToken="+accessToken+"&nickname="+nickname;
+		var _url = "${basepath}/account/qqCallbackNotifySession?status="+status+"&openId="+openId+"&accessToken="+accessToken+"&nickname="+nickname;
 		console.log("_url="+_url);
 		$.ajax({
 		  type: 'POST',
@@ -145,7 +145,7 @@
 		  data: {},
 		  success: function(data){
 			  console.log("notifySession.data="+data);
-			  window.location.href = "${systemSetting().www}";
+			  window.location.href = "${basepath}";
 		  },
 		  dataType: "text",
 		  error:function(er){
@@ -197,7 +197,7 @@ function showSinaWeiboButton(){
 					  data: {},
 					  success: function(data){
 						  console.log("success.sinaWeiboLoginNotifySession.data="+data);
-						  window.location.href = "${systemSetting().www}";
+						  window.location.href = "${basepath}";
 					  },
 					  dataType: "text",
 					  error:function(er){
@@ -223,7 +223,7 @@ function sinaWeiboLoginNotifySession(status,id,nickname){
 	  data: {},
 	  success: function(data){
 		  console.log("sinaWeiboLoginNotifySession.data="+data);
-		  window.location.href = "${systemSetting().www}";
+		  window.location.href = "${basepath}";
 	  },
 	  dataType: "text",
 	  error:function(er){

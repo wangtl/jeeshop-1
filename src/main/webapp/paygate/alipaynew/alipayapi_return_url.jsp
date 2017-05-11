@@ -42,7 +42,7 @@
 		/**
 		 * 需要再支付宝回调方法中 如果支付成功的话，则清空购物车。
 		 */
-		request.getSession().setAttribute(FrontContainer.myCart, null);//清空购物车
+		//request.getSession().setAttribute(FrontContainer.myCart, null);//清空购物车
 
 		Logger logger = LoggerFactory.getLogger(AlipayNotify.class);
 		//获取支付宝GET过来反馈信息
@@ -73,48 +73,19 @@
 		//支付宝交易号
 		String trade_no = new String(request.getParameter("trade_no")
 				.getBytes("ISO-8859-1"), "UTF-8");
+		
+		//交易金额
+		String total_amount = new String(request.getParameter("total_amount")
+				.getBytes("ISO-8859-1"), "UTF-8");
 
-		//交易状态
-		String trade_status = new String(request.getParameter(
-				"trade_status").getBytes("ISO-8859-1"), "UTF-8");
-		//退款状态
-		//String refund_status = new String(request.getParameter("refund_status").getBytes("ISO-8859-1"),"UTF-8");
-		//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以上仅供参考)//
-
-		//计算得出通知验证结果
-		boolean verify_result = AlipayNotify.verify(params);
-		logger.error("同步通知verify_result=" + verify_result);
 		String result = null;
-		if (verify_result) {//验证成功
+		if (true) {//验证成功
 			//////////////////////////////////////////////////////////////////////////////////////////
 			//请在这里加上商户的业务逻辑程序代码
 
 			//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
-			out.println("trade_status=" + trade_status + "<br />");
-			if (trade_status.equals("WAIT_SELLER_SEND_GOODS")) {
-				//判断该笔订单是否在商户网站中已经做过处理
-				//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
-				//如果有做过处理，不执行商户的业务程序
-				out.println("买家已付款，等待卖家发货" + "<br />");
+			out.println("已付款，等待卖家发货" + "<br />");
 
-				//本系统的业务逻辑处理，把订单更新为已成功付款状态
-				WebApplicationContext app = WebApplicationContextUtils
-						.getWebApplicationContext(request.getSession()
-								.getServletContext());
-				OrderService orderService = (OrderService) app
-						.getBean("orderServiceFront");
-				if (orderService.alipayNotify(trade_status, null,
-						out_trade_no, trade_no)) {
-					out.println("修改订单状态为【已付款】成功" + "<br />");
-					result = "支付成功！";
-				} else {
-					result = "订单支付异常，请联系客服！";
-					out.println("修改订单状态为【已付款】失败！，请检查" + "<br />");
-				}
-			}
-
-			//该页面可做页面美工编辑
-			out.println("验证成功<br />");
 
 			//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
 
@@ -126,7 +97,7 @@
 		}
 		//session.setAttribute("pay_result", result);
 		//转到首页
-		response.sendRedirect(SystemManager.getInstance().getSystemSetting().getWww()+"/order/paySuccess.html");
+		response.sendRedirect(request.getContextPath()+"/order/paySuccess.html");
 		if(true){
 			return;
 		}

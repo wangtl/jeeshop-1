@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50022
-Source Host           : localhost:3306
-Source Database       : jeeshop
+Source Server         : 我的阿里云
+Source Server Version : 50715
+Source Host           : rm-uf663ruo94l4x52ieo.mysql.rds.aliyuncs.com:3306
+Source Database       : myshop
 
 Target Server Type    : MYSQL
-Target Server Version : 50022
+Target Server Version : 50715
 File Encoding         : 65001
 
-Date: 2017-04-20 01:57:31
+Date: 2017-05-11 21:46:08
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,46 +20,46 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `t_account`;
 CREATE TABLE `t_account` (
-  `id` int(11) NOT NULL auto_increment,
-  `account` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `nickname` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `password` varchar(45) collate utf8_unicode_ci default NULL,
-  `city` varchar(45) collate utf8_unicode_ci default NULL,
-  `address` varchar(45) collate utf8_unicode_ci default NULL,
-  `postcode` varchar(45) collate utf8_unicode_ci default NULL,
-  `cardType` varchar(45) collate utf8_unicode_ci default NULL,
-  `cardNO` varchar(45) collate utf8_unicode_ci default NULL,
-  `grade` int(11) default '1',
-  `amount` varchar(45) collate utf8_unicode_ci default NULL,
-  `tel` varchar(45) collate utf8_unicode_ci default NULL,
-  `email` varchar(45) collate utf8_unicode_ci default NULL,
-  `emailIsActive` varchar(2) collate utf8_unicode_ci default 'n',
-  `freeze` varchar(2) collate utf8_unicode_ci NOT NULL default 'n',
-  `lastLoginTime` datetime default NULL,
-  `lastLoginIp` varchar(45) collate utf8_unicode_ci default NULL,
-  `lastLoginArea` varchar(25) collate utf8_unicode_ci default NULL,
-  `diffAreaLogin` char(1) collate utf8_unicode_ci default 'n',
-  `regeistDate` datetime default NULL,
-  `freezeStartdate` date default NULL,
-  `freezeEnddate` date default NULL,
-  `openId` varchar(45) collate utf8_unicode_ci default NULL,
-  `accessToken` varchar(45) collate utf8_unicode_ci default NULL,
-  `alipayUseId` varchar(45) collate utf8_unicode_ci default NULL,
-  `sinaWeiboID` varchar(45) collate utf8_unicode_ci default NULL,
-  `sex` varchar(2) collate utf8_unicode_ci default 's',
-  `trueName` varchar(45) collate utf8_unicode_ci default NULL,
-  `birthday` date default NULL,
-  `province` varchar(45) collate utf8_unicode_ci default NULL,
-  `accountType` varchar(25) collate utf8_unicode_ci default NULL,
-  `rank` varchar(5) collate utf8_unicode_ci default 'R1',
-  `score` int(11) default '0',
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `account_UNIQUE` (`account`),
-  UNIQUE KEY `alipayUseId_UNIQUE` (`alipayUseId`),
-  UNIQUE KEY `openId_UNIQUE` (`openId`),
-  UNIQUE KEY `email_UNIQUE` (`email`),
-  UNIQUE KEY `sinaWeiboID_UNIQUE` (`sinaWeiboID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `account` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `nickname` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `postcode` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cardType` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cardNO` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `grade` int(11) DEFAULT '1',
+  `amount` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tel` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `email` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `emailIsActive` varchar(2) COLLATE utf8_unicode_ci DEFAULT 'n',
+  `freeze` varchar(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'n',
+  `lastLoginTime` datetime DEFAULT NULL,
+  `lastLoginIp` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lastLoginArea` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `diffAreaLogin` char(1) COLLATE utf8_unicode_ci DEFAULT 'n',
+  `regeistDate` datetime DEFAULT NULL,
+  `freezeStartdate` date DEFAULT NULL,
+  `freezeEnddate` date DEFAULT NULL,
+  `openId` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `accessToken` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `alipayUseId` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sinaWeiboID` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sex` varchar(2) COLLATE utf8_unicode_ci DEFAULT 's',
+  `trueName` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
+  `province` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `accountType` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `rank` varchar(5) COLLATE utf8_unicode_ci DEFAULT 'R1',
+  `score` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `account_UNIQUE` (`account`) USING BTREE,
+  UNIQUE KEY `alipayUseId_UNIQUE` (`alipayUseId`) USING BTREE,
+  UNIQUE KEY `openId_UNIQUE` (`openId`) USING BTREE,
+  UNIQUE KEY `email_UNIQUE` (`email`) USING BTREE,
+  UNIQUE KEY `sinaWeiboID_UNIQUE` (`sinaWeiboID`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_account
@@ -67,7 +67,7 @@ CREATE TABLE `t_account` (
 INSERT INTO `t_account` VALUES ('32', 'test1', 'test1', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, null, null, '1', null, null, '543089122@qq.com', 'y', 'n', '2016-07-06 14:47:27', '127.0.0.1', '[]', 'n', '2014-03-26 15:27:50', null, null, null, null, null, null, 's', null, null, null, null, 'R3', '1816');
 INSERT INTO `t_account` VALUES ('33', '_out_1395897863364', '_out_', null, '340500', null, null, null, null, '1', null, null, null, 'n', 'n', null, null, null, 'n', '2014-03-27 13:24:23', null, null, null, null, null, '2496035714', 's', null, null, '340000', 'sinawb', 'R1', '0');
 INSERT INTO `t_account` VALUES ('34', '_out_1395897992912', '_out_', null, null, null, null, null, null, '1', null, null, null, 'n', 'n', null, null, null, 'n', '2014-03-27 13:26:32', null, null, null, null, '2088402374896120', null, 's', null, null, null, 'alipay', 'R1', '0');
-INSERT INTO `t_account` VALUES ('35', 'ceshi01', 'ceshi01', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, null, null, '1', null, null, '2533037475@qq.com', 'y', 'n', '2014-04-08 14:26:34', '115.236.52.106', '浙江省杭州市[电信]', 'n', '2014-03-31 14:20:59', null, null, null, null, null, null, 's', null, null, null, null, 'R1', '0');
+INSERT INTO `t_account` VALUES ('35', 'ceshi01', 'ceshi01', 'e10adc3949ba59abbe56e057f20f883e', null, null, null, null, null, '1', null, null, '2533037475@qq.com', 'y', 'n', '2017-05-09 12:16:55', '0:0:0:0:0:0:0:1', '0', 'n', '2014-03-31 14:20:59', null, null, null, null, null, null, 's', null, null, null, null, 'R1', '0');
 INSERT INTO `t_account` VALUES ('36', '_out_1396246903068', '_out_', null, null, null, null, null, null, '1', null, null, null, 'n', 'n', null, null, null, 'n', '2014-03-31 14:21:43', null, null, null, null, '2088102613270011', null, 's', null, null, null, 'alipay', 'R1', '0');
 INSERT INTO `t_account` VALUES ('37', '_out_1397288196687', '_out_', null, null, null, null, null, null, '1', null, null, null, 'n', 'n', null, null, null, 'n', '2014-04-12 15:36:36', null, null, '974EFAD675ED80DD59826A396E3EEE18', null, null, null, 's', null, null, null, 'qq', 'R1', '0');
 INSERT INTO `t_account` VALUES ('38', '_out_1397461177517', '_out_', null, null, null, null, null, null, '1', null, null, null, 'n', 'n', null, null, null, 'n', '2014-04-14 15:39:37', null, null, '59844635636D0E5872A219616A71BD90', null, null, null, 's', null, null, null, 'qq', 'R1', '0');
@@ -84,14 +84,14 @@ INSERT INTO `t_account` VALUES ('45', '32423423', '34324', '96e79218965eb72c92a5
 -- ----------------------------
 DROP TABLE IF EXISTS `t_accountrank`;
 CREATE TABLE `t_accountrank` (
-  `id` int(11) NOT NULL auto_increment,
-  `code` varchar(15) collate utf8_unicode_ci NOT NULL,
-  `name` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `minScore` int(11) default NULL,
-  `maxScore` int(11) default NULL,
-  `remark` varchar(445) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `minScore` int(11) DEFAULT NULL,
+  `maxScore` int(11) DEFAULT NULL,
+  `remark` varchar(445) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_accountrank
@@ -107,27 +107,27 @@ INSERT INTO `t_accountrank` VALUES ('5', 'R5', '钻石会员', '4000', '0', null
 -- ----------------------------
 DROP TABLE IF EXISTS `t_activity`;
 CREATE TABLE `t_activity` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `accountRange` varchar(45) collate utf8_unicode_ci NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `accountRange` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `startDate` datetime NOT NULL,
   `endDate` datetime NOT NULL,
-  `content` varchar(45) collate utf8_unicode_ci default NULL,
-  `status` char(1) collate utf8_unicode_ci NOT NULL default 'n',
-  `catalogs` varchar(245) collate utf8_unicode_ci default NULL,
-  `discountType` varchar(15) collate utf8_unicode_ci default NULL,
-  `discount` decimal(8,2) default NULL,
-  `minprice` decimal(8,2) default NULL,
-  `maxprice` decimal(8,2) default NULL,
-  `maxSellCount` int(11) default NULL,
-  `productID` varchar(245) collate utf8_unicode_ci default NULL,
-  `activityType` char(1) collate utf8_unicode_ci default NULL,
-  `exchangeScore` int(11) default NULL,
-  `minGroupCount` int(11) default NULL,
-  `tuanPrice` decimal(8,2) default NULL,
-  `hasBuyGroupPerson` int(11) default '0',
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `content` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` char(1) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'n',
+  `catalogs` varchar(245) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `discountType` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `discount` decimal(8,2) DEFAULT NULL,
+  `minprice` decimal(8,2) DEFAULT NULL,
+  `maxprice` decimal(8,2) DEFAULT NULL,
+  `maxSellCount` int(11) DEFAULT NULL,
+  `productID` varchar(245) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `activityType` char(1) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `exchangeScore` int(11) DEFAULT NULL,
+  `minGroupCount` int(11) DEFAULT NULL,
+  `tuanPrice` decimal(8,2) DEFAULT NULL,
+  `hasBuyGroupPerson` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_activity
@@ -144,20 +144,20 @@ INSERT INTO `t_activity` VALUES ('6', '积分商城1980', 'R1, R2', '2014-06-06 
 -- ----------------------------
 DROP TABLE IF EXISTS `t_address`;
 CREATE TABLE `t_address` (
-  `id` int(11) NOT NULL auto_increment,
-  `account` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `name` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `address` varchar(245) collate utf8_unicode_ci NOT NULL,
-  `zip` varchar(6) collate utf8_unicode_ci default NULL,
-  `phone` varchar(25) collate utf8_unicode_ci default NULL,
-  `mobile` varchar(25) collate utf8_unicode_ci NOT NULL,
-  `isdefault` varchar(2) collate utf8_unicode_ci default 'n',
-  `province` varchar(15) collate utf8_unicode_ci default NULL,
-  `city` varchar(15) collate utf8_unicode_ci default NULL,
-  `area` varchar(15) collate utf8_unicode_ci default NULL,
-  `pcadetail` varchar(75) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `account` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(245) COLLATE utf8_unicode_ci NOT NULL,
+  `zip` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mobile` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `isdefault` varchar(2) COLLATE utf8_unicode_ci DEFAULT 'n',
+  `province` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `area` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `pcadetail` varchar(75) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_address
@@ -174,7 +174,7 @@ INSERT INTO `t_address` VALUES ('12', '_out_1393056233281', '岳飞', '宋朝四
 INSERT INTO `t_address` VALUES ('13', '_out_1395013499587', '张三丰', '新年里201', '111111', '15000748603', '15000748603', 'y', '120000', '120100', '120110', null);
 INSERT INTO `t_address` VALUES ('14', '_out_1393560390544', '张三', '花开花落后路', '111111', '15000748603', '15000748603', 'y', '120000', '120100', '120103', null);
 INSERT INTO `t_address` VALUES ('15', '_out_1395897992912', '435345', '535', '535535', '13111111111', '13111111111', 'y', '620000', '620600', '620623', null);
-INSERT INTO `t_address` VALUES ('16', 'ceshi01', '张运峰', '张运峰', '100000', '010-12345678', '13145378912', 'n', '620000', '620700', '620725', '甘肃省 张掖市 山丹县');
+INSERT INTO `t_address` VALUES ('16', 'ceshi01', '张运峰', '张运峰', '100000', '010-12345678', '13145378912', 'y', '620000', '620700', '620725', '甘肃省 张掖市 山丹县');
 INSERT INTO `t_address` VALUES ('17', 'lip1', '测试', '测试', '123410', '021-5555555555', '13211111111', 'y', '310000', '310100', '310105', '上海 上海市 长宁区');
 INSERT INTO `t_address` VALUES ('18', '_out_1399301353546', '的的 啊', '打牌快点  ', '265362', '655485', '15985662565', 'y', '140000', '140200', '140222', '山西省 大同市 天镇县');
 INSERT INTO `t_address` VALUES ('19', '_out_1397461177517', '23', '3213', '312312', '13111111111', '13111111111', 'y', '120000', '120100', '120105', '天津 天津市 河北区');
@@ -186,17 +186,17 @@ INSERT INTO `t_address` VALUES ('21', 'jun12258', '123123', '123132', '312313', 
 -- ----------------------------
 DROP TABLE IF EXISTS `t_advert`;
 CREATE TABLE `t_advert` (
-  `id` int(11) NOT NULL auto_increment,
-  `title` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `code` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `remark` varchar(45) collate utf8_unicode_ci default NULL,
-  `html` varchar(1000) collate utf8_unicode_ci default NULL,
-  `startdate` date default NULL,
-  `enddate` date default NULL,
-  `status` varchar(2) collate utf8_unicode_ci default 'y',
-  `useImagesRandom` varchar(2) collate utf8_unicode_ci default 'n',
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `code` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `remark` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `html` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `startdate` date DEFAULT NULL,
+  `enddate` date DEFAULT NULL,
+  `status` varchar(2) COLLATE utf8_unicode_ci DEFAULT 'y',
+  `useImagesRandom` varchar(2) COLLATE utf8_unicode_ci DEFAULT 'n',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_advert
@@ -213,13 +213,13 @@ INSERT INTO `t_advert` VALUES ('15', '注册页面广告', 'advert_register_page
 -- ----------------------------
 DROP TABLE IF EXISTS `t_area`;
 CREATE TABLE `t_area` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(45) NOT NULL,
   `pcode` varchar(45) NOT NULL,
   `name` varchar(45) NOT NULL,
-  `desc1` varchar(245) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `desc1` varchar(245) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16870 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_area
@@ -3371,13 +3371,13 @@ INSERT INTO `t_area` VALUES ('16869', '510402', '510400', '东区', null);
 -- ----------------------------
 DROP TABLE IF EXISTS `t_attribute`;
 CREATE TABLE `t_attribute` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `catalogID` int(11) NOT NULL,
-  `pid` int(11) default '0',
-  `order1` int(11) default '0',
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `pid` int(11) DEFAULT '0',
+  `order1` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=298 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_attribute
@@ -3489,11 +3489,11 @@ INSERT INTO `t_attribute` VALUES ('297', 'SQL', '0', '290', '0');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_attribute_link`;
 CREATE TABLE `t_attribute_link` (
-  `id` int(11) NOT NULL auto_increment,
-  `attrID` int(11) default '0',
-  `productID` int(11) default '0',
-  `value` varchar(50) default NULL,
-  PRIMARY KEY  (`id`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `attrID` int(11) DEFAULT '0',
+  `productID` int(11) DEFAULT '0',
+  `value` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -3505,16 +3505,16 @@ CREATE TABLE `t_attribute_link` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_catalog`;
 CREATE TABLE `t_catalog` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `pid` int(11) default '0',
-  `order1` int(11) default NULL,
-  `type` varchar(15) collate utf8_unicode_ci default NULL,
-  `code` varchar(45) collate utf8_unicode_ci default NULL,
-  `showInNav` varchar(2) collate utf8_unicode_ci default 'n',
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `code_UNIQUE` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `pid` int(11) DEFAULT '0',
+  `order1` int(11) DEFAULT NULL,
+  `type` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `code` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `showInNav` varchar(2) COLLATE utf8_unicode_ci DEFAULT 'n',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `code_UNIQUE` (`code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_catalog
@@ -3573,19 +3573,19 @@ INSERT INTO `t_catalog` VALUES ('88', '战略管理', '20', '6', 'p', 'zhanlue',
 -- ----------------------------
 DROP TABLE IF EXISTS `t_comment`;
 CREATE TABLE `t_comment` (
-  `id` int(11) NOT NULL auto_increment,
-  `productID` varchar(45) default NULL,
-  `account` varchar(45) default NULL,
-  `orderID` varchar(45) default NULL,
-  `orderdetailID` varchar(45) default NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `productID` varchar(45) DEFAULT NULL,
+  `account` varchar(45) DEFAULT NULL,
+  `orderID` varchar(45) DEFAULT NULL,
+  `orderdetailID` varchar(45) DEFAULT NULL,
   `content` varchar(500) NOT NULL,
-  `createdate` datetime default NULL,
-  `star` int(11) default NULL,
-  `nickname` varchar(45) default NULL,
-  `status` varchar(2) default 'y',
+  `createdate` datetime DEFAULT NULL,
+  `star` int(11) DEFAULT NULL,
+  `nickname` varchar(45) DEFAULT NULL,
+  `status` varchar(2) DEFAULT 'y',
   `reply` text,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_comment
@@ -3602,12 +3602,12 @@ INSERT INTO `t_comment` VALUES ('16', '10267', 'test1', '10254', '323', '231312'
 -- ----------------------------
 DROP TABLE IF EXISTS `t_commenttype`;
 CREATE TABLE `t_commenttype` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` varchar(45) collate utf8_unicode_ci default NULL,
-  `code` varchar(45) collate utf8_unicode_ci default NULL,
-  `status` varchar(2) collate utf8_unicode_ci default 'y',
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `code` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` varchar(2) COLLATE utf8_unicode_ci DEFAULT 'y',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_commenttype
@@ -3619,19 +3619,19 @@ INSERT INTO `t_commenttype` VALUES ('1', '系统内置评论功能', 'default', 
 -- ----------------------------
 DROP TABLE IF EXISTS `t_email`;
 CREATE TABLE `t_email` (
-  `id` int(11) NOT NULL auto_increment,
-  `sign` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `account` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `type` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `url` varchar(245) collate utf8_unicode_ci default NULL,
-  `createdate` datetime default NULL,
-  `starttime` varchar(45) collate utf8_unicode_ci default NULL,
-  `endtime` varchar(45) collate utf8_unicode_ci default NULL,
-  `newEmail` varchar(45) collate utf8_unicode_ci default NULL,
-  `status` varchar(1) collate utf8_unicode_ci default 'n',
-  `sendStatus` char(1) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sign` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `account` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(245) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `createdate` datetime DEFAULT NULL,
+  `starttime` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `endtime` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `newEmail` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` varchar(1) COLLATE utf8_unicode_ci DEFAULT 'n',
+  `sendStatus` char(1) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_email
@@ -3703,16 +3703,16 @@ INSERT INTO `t_email` VALUES ('61', 'ec26046c18120394f42a0e6213395bfa', '3242342
 -- ----------------------------
 DROP TABLE IF EXISTS `t_emailnotifyproduct`;
 CREATE TABLE `t_emailnotifyproduct` (
-  `id` int(11) NOT NULL auto_increment,
-  `account` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `receiveEmail` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `productID` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `productName` varchar(100) collate utf8_unicode_ci NOT NULL,
-  `createdate` datetime default NULL,
-  `notifydate` datetime default NULL,
-  `status` char(1) collate utf8_unicode_ci default NULL,
-  `sendFailureCount` int(11) default '0',
-  PRIMARY KEY  (`id`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `account` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `receiveEmail` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `productID` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `productName` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `createdate` datetime DEFAULT NULL,
+  `notifydate` datetime DEFAULT NULL,
+  `status` char(1) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sendFailureCount` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
@@ -3724,13 +3724,13 @@ CREATE TABLE `t_emailnotifyproduct` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_express`;
 CREATE TABLE `t_express` (
-  `id` int(11) NOT NULL auto_increment,
-  `code` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `name` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `fee` decimal(9,2) default NULL,
-  `order1` int(11) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `fee` decimal(9,2) DEFAULT NULL,
+  `order1` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_express
@@ -3744,12 +3744,12 @@ INSERT INTO `t_express` VALUES ('3', 'EMS', 'EMS', '15.00', '3');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_favorite`;
 CREATE TABLE `t_favorite` (
-  `id` int(11) NOT NULL auto_increment,
-  `account` varchar(25) collate utf8_unicode_ci NOT NULL,
-  `productID` varchar(15) collate utf8_unicode_ci NOT NULL,
-  `createtime` date default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `account` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `productID` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `createtime` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_favorite
@@ -3773,17 +3773,17 @@ INSERT INTO `t_favorite` VALUES ('67', 'jun12258', '10323', '2016-07-02');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_gift`;
 CREATE TABLE `t_gift` (
-  `id` int(11) NOT NULL auto_increment,
-  `giftName` varchar(100) collate utf8_unicode_ci NOT NULL,
-  `giftPrice` decimal(9,2) default NULL,
-  `createAccount` varchar(45) collate utf8_unicode_ci default NULL,
-  `createtime` datetime default NULL,
-  `updateAccount` varchar(45) collate utf8_unicode_ci default NULL,
-  `updatetime` datetime default NULL,
-  `status` varchar(5) collate utf8_unicode_ci default 'down',
-  `picture` varchar(100) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `giftName` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `giftPrice` decimal(9,2) DEFAULT NULL,
+  `createAccount` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `createtime` datetime DEFAULT NULL,
+  `updateAccount` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `updatetime` datetime DEFAULT NULL,
+  `status` varchar(5) COLLATE utf8_unicode_ci DEFAULT 'down',
+  `picture` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_gift
@@ -3795,11 +3795,11 @@ INSERT INTO `t_gift` VALUES ('1', '赠送小米3', '1999.00', 'admin', '2014-05-
 -- ----------------------------
 DROP TABLE IF EXISTS `t_hotquery`;
 CREATE TABLE `t_hotquery` (
-  `id` int(11) NOT NULL auto_increment,
-  `key1` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `url` varchar(100) collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `key1` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_hotquery
@@ -3814,15 +3814,15 @@ INSERT INTO `t_hotquery` VALUES ('4', '狂人日记', 'http://localhost:8080/jee
 -- ----------------------------
 DROP TABLE IF EXISTS `t_indexmenu`;
 CREATE TABLE `t_indexmenu` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
-  `displayOrder` int(11) default NULL,
+  `displayOrder` int(11) DEFAULT NULL,
   `url` varchar(100) NOT NULL,
   `target` varchar(25) NOT NULL,
-  `remark` varchar(145) default NULL,
-  `catalogID` int(11) default '0',
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `remark` varchar(145) DEFAULT NULL,
+  `catalogID` int(11) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_indexmenu
@@ -3838,14 +3838,14 @@ INSERT INTO `t_indexmenu` VALUES ('5', '5楼', '4', '1', '_blank', null, '4');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_index_img`;
 CREATE TABLE `t_index_img` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(245) NOT NULL,
   `picture` varchar(100) NOT NULL,
   `order1` int(11) NOT NULL,
-  `desc1` varchar(1145) default NULL,
-  `link` varchar(145) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `desc1` varchar(1145) DEFAULT NULL,
+  `link` varchar(145) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_index_img
@@ -3857,12 +3857,12 @@ INSERT INTO `t_index_img` VALUES ('19', '6757', 'image/20160630/1467278040897_2.
 -- ----------------------------
 DROP TABLE IF EXISTS `t_keyvalue`;
 CREATE TABLE `t_keyvalue` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `key1` varchar(45) NOT NULL,
   `value` varchar(145) NOT NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `key_UNIQUE` (`key1`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `key_UNIQUE` (`key1`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_keyvalue
@@ -3916,10 +3916,10 @@ INSERT INTO `t_keyvalue` VALUES ('45', 'account_rank_R5', '钻石会员');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_lable`;
 CREATE TABLE `t_lable` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_lable
@@ -3934,14 +3934,14 @@ INSERT INTO `t_lable` VALUES ('26', '好吃');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_menu`;
 CREATE TABLE `t_menu` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `pid` int(11) NOT NULL,
-  `url` varchar(100) character set utf8 NOT NULL,
-  `name` varchar(45) collate utf8_unicode_ci NOT NULL COMMENT '111',
-  `orderNum` int(11) NOT NULL default '0',
-  `type` varchar(15) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `url` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `name` varchar(45) COLLATE utf8_unicode_ci NOT NULL COMMENT '111',
+  `orderNum` int(11) NOT NULL DEFAULT '0',
+  `type` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_menu
@@ -4013,15 +4013,15 @@ INSERT INTO `t_menu` VALUES ('94', '6', '/manage/hotquery/selectList?init=y', '�
 -- ----------------------------
 DROP TABLE IF EXISTS `t_navigation`;
 CREATE TABLE `t_navigation` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
-  `target` varchar(45) NOT NULL default '_blank',
-  `position` varchar(45) NOT NULL default 'bottom',
-  `desc1` varchar(145) default NULL,
-  `order1` int(11) default NULL,
-  `http` varchar(70) default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `target` varchar(45) NOT NULL DEFAULT '_blank',
+  `position` varchar(45) NOT NULL DEFAULT 'bottom',
+  `desc1` varchar(145) DEFAULT NULL,
+  `order1` int(11) DEFAULT NULL,
+  `http` varchar(70) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_navigation
@@ -4051,23 +4051,23 @@ INSERT INTO `t_navigation` VALUES ('21', '快递查询', '_blank', 'bottom', nul
 -- ----------------------------
 DROP TABLE IF EXISTS `t_news`;
 CREATE TABLE `t_news` (
-  `id` int(11) NOT NULL auto_increment,
-  `type` varchar(45) default NULL,
-  `title` varchar(45) default NULL,
-  `title2` varchar(45) default NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(45) DEFAULT NULL,
+  `title` varchar(45) DEFAULT NULL,
+  `title2` varchar(45) DEFAULT NULL,
   `content` longtext,
-  `createtime` datetime default NULL,
-  `updatetime` datetime default NULL,
-  `readerCount` int(11) default '0',
-  `status` varchar(2) default 'n',
-  `catalogID` varchar(15) default NULL,
-  `lableID` varchar(100) default '0',
+  `createtime` datetime DEFAULT NULL,
+  `updatetime` datetime DEFAULT NULL,
+  `readerCount` int(11) DEFAULT '0',
+  `status` varchar(2) DEFAULT 'n',
+  `catalogID` varchar(15) DEFAULT NULL,
+  `lableID` varchar(100) DEFAULT '0',
   `createAccount` varchar(45) NOT NULL,
-  `order1` int(11) default '0',
-  `code` varchar(15) default NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `code_UNIQUE` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `order1` int(11) DEFAULT '0',
+  `code` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `code_UNIQUE` (`code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_news
@@ -4087,19 +4087,19 @@ INSERT INTO `t_news` VALUES ('69', 'notice', '201402问卷调查赢取新年大�
 INSERT INTO `t_news` VALUES ('70', null, '1', '', '11', '2014-02-24 22:21:38', '2014-02-24 22:21:38', '0', 'n', '46', null, 'admin', '1', '1');
 INSERT INTO `t_news` VALUES ('72', 'help', '常见问题', '', '常见问题', '2014-02-25 10:01:57', '2014-04-21 11:54:33', '0', 'y', '47', null, 'admin', '2', 'cjwt');
 INSERT INTO `t_news` VALUES ('73', 'help', '快递送货', '', '快递送货', '2014-02-25 14:05:12', '2014-04-21 11:53:34', '0', 'y', '51', null, 'admin', '1', 'kdsh');
-INSERT INTO `t_news` VALUES ('74', 'help', '注册协议', null, '<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">尊敬的用户欢迎您注册成为本网站会员。请用户仔细阅读以下全部内容。如用户不同意本服务条款任意内容，请不要注册或使用本网站服务。如用户通过本网站注册程序，即表示用户与本网站已达成协议，自愿接受本服务条款的所有内容。此后，用户不得以未阅读本服务条款内容作任何形式的抗辩。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">一、本站服务条款的确认和接纳</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">本网站涉及的各项服务的所有权和运作权归本网站所有。本网站所提供的服务必须按照其发布的服务条款和操作规则严格执行。本服务条款的效力范围及于本网站的一切产品和服务，用户在享受本网站的任何服务时，应当受本服务条款的约束。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">二、服务简介</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">本网站运用自己的操作系统通过国际互联网络为用户提供各项服务。用户必须: 1. 提供设备，如个人电脑、手机或其他上网设备。 2. 个人上网和支付与此服务有关的费用。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">三、用户在不得在本网站上发布下列违法信息</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">1. 反对宪法所确定的基本原则的； 2. 危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的； 3. 损害国家荣誉和利益的； 4. 煽动民族仇恨、民族歧视，破坏民族团结的； 5. 破坏国家宗教政策，宣扬邪教和封建迷信的； 6. 散布谣言，扰乱社会秩序，破坏社会稳定的； 7. 散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的； 8. 侮辱或者诽谤他人，侵害他人合法权益的； 9. 含有法律、行政法规禁止的其他内容的。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">四、有关个人资料</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">用户同意: 1. 提供及时、详尽及准确的个人资料。 2. 同意接收来自本网站的信息。 3. 不断更新注册资料，符合及时、详尽准确的要求。所有原始键入的资料将引用为注册资料。 4. 本网站不公开用户的姓名、地址、电子邮箱和笔名。除以下情况外: a) 用户授权本站透露这些信息。 b) 相应的法律及程序要求本站提供用户的个人资料。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">五、服务条款的修改</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">本网站有权在必要时修改服务条款，一旦条款及服务内容产生变动，本网站将会在重要页面上提示修改内容。如果不同意所改动的内容，用户可以主动取消获得的本网站信息服务。如果用户继续享用本网站信息服务，则视为接受服务条款的变动。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">六、用户隐私制度</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">尊重用户个人隐私是本网站的一项基本政策。所以，本网站一定不会在未经合法用户授权时公开、编辑或透露其注册资料及保存在本网站中的非公开内容，除非有法律许可要求或本网站在诚信的基础上认为透露这些信息在以下四种情况是必要的: 1. 遵守有关法律规定，遵从本网站合法服务程序。 2. 保持维护本网站的商标所有权。 3. 在紧急情况下竭力维护用户个人和社会大众的隐私安全。 4. 符合其他相关的要求。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">七、用户的帐号、密码和安全性</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">用户一旦注册成功，将获得一个密码和用户名。用户需谨慎合理的保存、使用用户名和密码。如果你不保管好自己的帐号和密码安全，将负全部责任。另外，每个用户都要对其帐户中的所有活动和事件负全责。你可随时根据指示改变你的密码。用户若发现任何非法使用用户帐号或存在安全漏洞的情况，请立即通告本网站。 八、 拒绝提供担保 用户明确同意信息服务的使用由用户个人承担风险。本网站不担保服务不会受中断，对服务的及时性，安全性，出错发生都不作担保，但会在能力范围内，避免出错。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">九、有限责任</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">如因不可抗力或其它本站无法控制的原因使本站销售系统崩溃或无法正常使用导致网上交易无法完成或丢失有关的信息、记录等本站会尽可能合理地协助处理善后事宜，并努力使客户免受经济损失，同时会尽量避免这种损害的发生。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">十、用户信息的储存和限制</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">本站有判定用户的行为是否符合国家法律法规规定及本站服务条款权利，如果用户违背本网站服务条款的规定，本网站有权中断对其提供服务的权利。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">十一、用户管理</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">用户单独承担发布内容的责任。用户对服务的使用是根据所有适用于本站的国家法律、地方法律和国际法律标准的。用户必须遵循: 1. 使用网络服务不作非法用途。 2. 不干扰或混乱网络服务。 3. 遵守所有使用网络服务的网络协议、规定、程序和惯例。 用户须承诺不传输任何非法的、骚扰性的、中伤他人的、辱骂性的、恐性的、伤害性的、庸俗的，淫秽等信息资料。另外，用户也不能传输何教唆他人构成犯罪行为的资料；不能传输助长国内不利条件和涉及国家安全的资料；不能传输任何不符合当地法规、国家法律和国际法律的资料。未经许可而非法进入其它电脑系统是禁止的。 若用户的行为不符合以上提到的服务条款，本站将作出独立判断立即取消用户服务帐号。用户需对自己在网上的行为承担法律责任。用户若在本站上散布和传播反动、色情或其它违反国家法律的信息，本站的系统记录有可能作为用户违反法律的证据。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">十二、通告</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">所有发给用户的通告都可通过重要页面的公告或电子邮件或常规的信件传送。服务条款的修改、服务变更、或其它重要事件的通告都会以此形式进行。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">十三、信息内容的所有权</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">本网站定义的信息内容包括: 文字、软件、声音、相片、录象、图表；在广告中全部内容；本网站为用户提供的其它信息。所有这些内容受版权、商标、标签和其它财产所有权法律的保护。所以，用户只能在本网站和广告商授权下才能使用这些内容，而不能擅自复制、再造这些内容、或创造与内容有关的派生产品。本站所有的文章版权归原文作者和本站共同所有，任何人需要转载本站的文章，必须征得原文作者或本站授权。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">十四、法律</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">本协议的订立、执行和解释及争议的解决均应适用中华人民共和国的法律。用户和本网站一致同意服从本网站所在地有管辖权的法院管辖。如发生本网站服务条款与中华人民共和国法律相抵触时，则这些条款将完全按法律规定重新解释，而其它条款则依旧保持对用户的约束力。</span>', '2014-05-06 13:30:20', '2014-05-06 13:30:20', '0', 'n', '46', null, 'admin', '2', 'zcxy');
+INSERT INTO `t_news` VALUES ('74', 'help', '注册协议', null, '<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">尊敬的用户欢迎您注册成为本网站会员。请用户仔细阅读以下全部内容。如用户不同意本服务条款任意内容，请不要注册或使用本网站服务。如用户通过本网站注册程序，即表示用户与本网站已达成协议，自愿接受本服务条款的所有内容。此后，用户不得以未阅读本服务条款内容作任何形式的抗辩。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">一、本站服务条款的确认和接纳</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">本网站涉及的各项服务的所有权和运作权归本网站所有。本网站所提供的服务必须按照其发布的服务条款和操作规则严格执行。本服务条款的效力范围及于本网站的一切产品和服务，用户在享受本网站的任何服务时，应当受本服务条款的约束。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">二、服务简介</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">本网站运用自己的操作系统通过国际互联网络为用户提供各项服务。用户必须: 1. 提供设备，如个人电脑、手机或其他上网设备。 2. 个人上网和支付与此服务有关的费用。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">三、用户在不得在本网站上发布下列违法信息</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">1. 反对宪法所确定的基本原则的； 2. 危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的； 3. 损害国家荣誉和利益的； 4. 煽动民族仇恨、民族歧视，破坏民族团结的； 5. 破坏国家宗教政策，宣扬邪教和封建迷信的； 6. 散布谣言，扰乱社会秩序，破坏社会稳定的； 7. 散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的； 8. 侮辱或者诽谤他人，侵害他人合法权益的； 9. 含有法律、行政法规禁止的其他内容的。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">四、有关个人资料</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">用户同意: 1. 提供及时、详尽及准确的个人资料。 2. 同意接收来自本网站的信息。 3. 不断更新注册资料，符合及时、详尽准确的要求。所有原始键入的资料将引用为注册资料。 4. 本网站不公开用户的姓名、地址、电子邮箱和笔名。除以下情况外: a) 用户授权本站透露这些信息。 b) 相应的法律及程序要求本站提供用户的个人资料。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">五、服务条款的修改</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">本网站有权在必要时修改服务条款，一旦条款及服务内容产生变动，本网站将会在重要页面上提示修改内容。如果不同意所改动的内容，用户可以主动取消获得的本网站信息服务。如果用户继续享用本网站信息服务，则视为接受服务条款的变动。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">六、用户隐私制度</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">尊重用户个人隐私是本网站的一项基本政策。所以，本网站一定不会在未经合法用户授权时公开、编辑或透露其注册资料及保存在本网站中的非公开内容，除非有法律许可要求或本网站在诚信的基础上认为透露这些信息在以下四种情况是必要的: 1. 遵守有关法律规定，遵从本网站合法服务程序。 2. 保持维护本网站的商标所有权。 3. 在紧急情况下竭力维护用户个人和社会大众的隐私安全。 4. 符合其他相关的要求。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">七、用户的帐号、密码和安全性</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">用户一旦注册成功，将获得一个密码和用户名。用户需谨慎合理的保存、使用用户名和密码。如果你不保管好自己的帐号和密码安全，将负全部责任。另外，每个用户都要对其帐户中的所有活动和事件负全责。你可随时根据指示改变你的密码。用户若发现任何非法使用用户帐号或存在安全漏洞的情况，请立即通告本网站。 八、 拒绝提供担保 用户明确同意信息服务的使用由用户个人承担风险。本网站不担保服务不会受中断，对服务的及时性，安全性，出错发生都不作担保，但会在能力范围内，避免出错。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">九、有限责任</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">如因不可抗力或其它本站无法控制的原因使本站销售系统崩溃或无法正常使用导致网上交易无法完成或丢失有关的信息、记录等本站会尽可能合理地协助处理善后事宜，并努力使客户免受经济损失，同时会尽量避免这种损害的发生。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">十、用户信息的储存和限制</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">本站有判定用户的行为是否符合国家法律法规规定及本站服务条款权利，如果用户违背本网站服务条款的规定，本网站有权中断对其提供服务的权利。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">十一、用户管理</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">用户单独承担发布内容的责任。用户对服务的使用是根据所有适用于本站的国家法律、地方法律和国际法律标准的。用户必须遵循: 1. 使用网络服务不作非法用途。 2. 不干扰或混乱网络服务。 3. 遵守所有使用网络服务的网络协议、规定、程序和惯例。 用户须承诺不传输任何非法的、骚扰性的、中伤他人的、辱骂性的、恐性的、伤害性的、庸俗的，淫秽等信息资料。另外，用户也不能传输何教唆他人构成犯罪行为的资料；不能传输助长国内不利条件和涉及国家安全的资料；不能传输任何不符合当地法规、国家法律和国际法律的资料。未经许可而非法进入其它电脑系统是禁止的。 若用户的行为不符合以上提到的服务条款，本站将作出独立判断立即取消用户服务帐号。用户需对自己在网上的行为承担法律责任。用户若在本站上散布和传播反动、色情或其它违反国家法律的信息，本站的系统记录有可能作为用户违反法律的证据。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">十二、通告</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">所有发给用户的通告都可通过重要页面的公告或电子邮件或常规的信件传送。服务条款的修改、服务变更、或其它重要事件的通告都会以此形式进行。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">十三、信息内容的所有权</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">本网站定义的信息内容包括: 文字、软件、声音、相片、录象、图表；在广告中全部内容；本网站为用户提供的其它信息。所有这些内容受版权、商标、标签和其它财产所有权法律的保护。所以，用户只能在本网站和广告商授权下才能使用这些内容，而不能擅自复制、再造这些内容、或创造与内容有关的派生产品。本站所有的文章版权归原文作者和本站共同所有，任何人需要转载本站的文章，必须征得原文作者或本站授权。</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">十四、法律</span><br />\r\n<span style=\"color:#333333;font-family:Ubuntu, Tahoma, \'Helvetica Neue\', Helvetica, Arial, sans-serif;line-height:2;background-color:#FFFFFF;font-size:14px;\">本协议的订立、执行和解释及争议的解决均应适用中华人民共和国的法律。用户和本网站一致同意服从本网站所在地有管辖权的法院管辖。如发生本网站服务条款与中华人民共和国法律相抵触时，则这些条款将完全按法律规定重新解释，而其它条款则依旧保持对用户的约束力。</span>', '2014-05-06 13:30:20', '2014-05-06 13:30:20', '0', 'y', '46', null, 'admin', '2', 'zcxy');
 
 -- ----------------------------
 -- Table structure for t_notice
 -- ----------------------------
 DROP TABLE IF EXISTS `t_notice`;
 CREATE TABLE `t_notice` (
-  `id` int(11) NOT NULL auto_increment,
-  `title` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `content` varchar(4000) collate utf8_unicode_ci NOT NULL,
-  `createtime` varchar(45) collate utf8_unicode_ci default 'now()',
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `content` varchar(4000) COLLATE utf8_unicode_ci NOT NULL,
+  `createtime` varchar(45) COLLATE utf8_unicode_ci DEFAULT 'now()',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_notice
@@ -4117,14 +4117,14 @@ INSERT INTO `t_notice` VALUES ('8', '2014爱在夏季水果大甩卖活动开启
 -- ----------------------------
 DROP TABLE IF EXISTS `t_notifytemplate`;
 CREATE TABLE `t_notifytemplate` (
-  `id` int(11) NOT NULL auto_increment,
-  `type` varchar(15) collate utf8_unicode_ci NOT NULL,
-  `code` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `template` text collate utf8_unicode_ci NOT NULL,
-  `remark` varchar(500) collate utf8_unicode_ci default NULL,
-  `name` varchar(45) collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `code` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `template` text COLLATE utf8_unicode_ci NOT NULL,
+  `remark` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_notifytemplate
@@ -4140,33 +4140,33 @@ INSERT INTO `t_notifytemplate` VALUES ('5', 'sms', 'sms_sendProductNotify', '亲
 -- ----------------------------
 DROP TABLE IF EXISTS `t_order`;
 CREATE TABLE `t_order` (
-  `id` int(11) NOT NULL auto_increment,
-  `account` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `payType` int(11) default NULL,
-  `carry` int(11) default NULL,
-  `rebate` decimal(10,2) default NULL,
-  `createdate` datetime default NULL,
-  `status` varchar(10) collate utf8_unicode_ci default 'init',
-  `refundStatus` varchar(45) collate utf8_unicode_ci default NULL,
-  `amount` decimal(20,2) default '0.00',
-  `fee` decimal(20,2) default '0.00',
-  `ptotal` decimal(20,2) default NULL,
-  `quantity` int(11) default NULL,
-  `paystatus` varchar(2) collate utf8_unicode_ci default 'n',
-  `updateAmount` varchar(1) collate utf8_unicode_ci default 'n',
-  `expressCode` varchar(45) collate utf8_unicode_ci default NULL,
-  `expressName` varchar(45) collate utf8_unicode_ci default NULL,
-  `otherRequirement` varchar(50) collate utf8_unicode_ci default NULL,
-  `remark` varchar(545) collate utf8_unicode_ci default NULL,
-  `expressNo` varchar(45) collate utf8_unicode_ci default NULL,
-  `expressCompanyName` varchar(45) collate utf8_unicode_ci default NULL,
-  `lowStocks` varchar(1) collate utf8_unicode_ci default 'n',
-  `confirmSendProductRemark` varchar(100) collate utf8_unicode_ci default NULL,
-  `closedComment` varchar(1) collate utf8_unicode_ci default NULL,
-  `score` int(11) default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `order_status` (`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `account` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `payType` int(11) DEFAULT NULL,
+  `carry` int(11) DEFAULT NULL,
+  `rebate` decimal(10,2) DEFAULT NULL,
+  `createdate` datetime DEFAULT NULL,
+  `status` varchar(10) COLLATE utf8_unicode_ci DEFAULT 'init',
+  `refundStatus` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `amount` decimal(20,2) DEFAULT '0.00',
+  `fee` decimal(20,2) DEFAULT '0.00',
+  `ptotal` decimal(20,2) DEFAULT NULL,
+  `quantity` int(11) DEFAULT NULL,
+  `paystatus` varchar(2) COLLATE utf8_unicode_ci DEFAULT 'n',
+  `updateAmount` varchar(1) COLLATE utf8_unicode_ci DEFAULT 'n',
+  `expressCode` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `expressName` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `otherRequirement` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `remark` varchar(545) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `expressNo` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `expressCompanyName` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lowStocks` varchar(1) COLLATE utf8_unicode_ci DEFAULT 'n',
+  `confirmSendProductRemark` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `closedComment` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `score` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `order_status` (`status`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=10268 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_order
@@ -4358,7 +4358,6 @@ INSERT INTO `t_order` VALUES ('10247', '_out_1395013499587', null, null, '1.00',
 INSERT INTO `t_order` VALUES ('10248', '_out_1395013499587', null, null, '1.00', '2014-03-26 12:31:25', 'cancel', null, '108836463.00', '15.00', '108836448.00', '1', 'n', 'n', 'EMS', 'EMS', null, 'Acer/宏基 P3-171-3322Y2G06as 11.6英寸 超极本 Win8 6', null, null, 'n', null, null, null);
 INSERT INTO `t_order` VALUES ('10249', '_out_1395013499587', null, null, '1.00', '2014-03-26 12:34:35', 'init', null, '0.01', '0.00', '0.01', '1', 'y', 'y', 'EMS', 'EMS', null, '【送米兔+贴膜】MIUI/小米 小米手机3代M3MI3小米3米联通移动官网', null, null, 'n', null, null, null);
 INSERT INTO `t_order` VALUES ('10250', 'test1', null, null, '1.00', '2014-03-26 16:31:46', 'sign', null, '0.02', '0.00', '0.02', '1', 'y', 'y', 'EMS', 'EMS', null, '边城（沈从文著中篇小说）', '11111111111', 'shunfeng', 'n', null, 'y', '123');
-INSERT INTO `t_order` VALUES ('10251', 'ceshi01', null, null, '1.00', '2014-04-08 14:27:24', 'cancel', null, '19559.00', '5.00', '19554.00', '2', 'n', 'n', 'EXPRESS', '快递', null, '合并|2笔订单', null, null, 'n', null, null, null);
 INSERT INTO `t_order` VALUES ('10252', 'test1', null, null, '1.00', '2014-04-11 09:26:40', 'init', null, '0.01', '0.00', '0.01', '1', 'y', 'y', 'EMS', 'EMS', null, 'Acer/宏基 P3-171-3322Y2G06as 11.6英寸 超极本 Win8 6', null, null, 'n', null, null, '238');
 INSERT INTO `t_order` VALUES ('10253', 'test1', null, null, '1.00', '2014-04-11 09:33:40', 'cancel', null, '0.01', '0.00', '0.01', '1', 'n', 'y', 'EMS', 'EMS', null, '致我们终将逝去的青春', null, null, 'n', null, null, null);
 INSERT INTO `t_order` VALUES ('10254', 'test1', null, null, '1.00', '2014-04-11 09:34:53', 'sign', null, '0.01', '0.00', '0.01', '1', 'y', 'y', 'EMS', 'EMS', null, 'Acer/宏基 P3-171-3322Y2G06as 11.6英寸 超极本 Win8 6', '11111111111111', 'zhongtong', 'n', null, 'y', '238');
@@ -4369,27 +4368,32 @@ INSERT INTO `t_order` VALUES ('10258', 'test1', null, null, '1.00', '2014-06-17 
 INSERT INTO `t_order` VALUES ('10259', 'test1', null, null, '1.00', '2014-06-30 21:23:46', 'init', null, '95.00', '5.00', '90.00', '1', 'n', 'n', 'EXPRESS', '快递', null, '钢铁是怎样炼成的', null, null, 'n', null, null, null);
 INSERT INTO `t_order` VALUES ('10261', 'jun12258', null, null, '1.00', '2016-07-02 12:58:53', 'pass', null, null, '0.00', null, '1', 'y', 'n', 'POST', '平邮', null, '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', null, null, 'n', null, null, null);
 INSERT INTO `t_order` VALUES ('10262', 'jun12258', null, null, '1.00', '2016-07-02 12:58:53', 'send', null, null, '0.00', null, '1', 'y', 'n', 'POST', '平邮', null, '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', '3244444444444444', 'zhongtong', 'n', null, null, null);
+INSERT INTO `t_order` VALUES ('10263', 'ceshi01', null, null, '1.00', '2017-05-09 10:35:12', 'send', null, null, '0.00', null, '1', 'y', 'n', 'POST', '平邮', null, '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', '1111111111111', 'yunda', 'n', null, null, null);
+INSERT INTO `t_order` VALUES ('10264', 'ceshi01', null, null, '1.00', '2017-05-09 11:30:09', 'init', null, '160.00', '0.00', '160.00', '1', 'n', 'n', 'POST', '平邮', null, '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', null, null, 'n', null, null, null);
+INSERT INTO `t_order` VALUES ('10265', 'ceshi01', null, null, '1.00', '2017-05-09 11:32:47', 'init', null, '160.00', '0.00', '160.00', '1', 'n', 'n', 'POST', '平邮', null, '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', null, null, 'n', null, null, null);
+INSERT INTO `t_order` VALUES ('10266', 'ceshi01', null, null, '1.00', '2017-05-09 11:33:22', 'init', null, null, '5.00', null, '1', 'y', 'n', 'EXPRESS', '快递', null, '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', null, null, 'n', null, null, null);
+INSERT INTO `t_order` VALUES ('10267', 'ceshi01', null, null, '1.00', '2017-05-09 12:17:08', 'send', null, '165.00', '5.00', '160.00', '1', 'y', 'n', 'EXPRESS', '快递', null, '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', '11111111', 'yunda', 'n', null, null, null);
 
 -- ----------------------------
 -- Table structure for t_orderdetail
 -- ----------------------------
 DROP TABLE IF EXISTS `t_orderdetail`;
 CREATE TABLE `t_orderdetail` (
-  `id` int(11) NOT NULL auto_increment,
-  `orderID` int(11) default NULL,
-  `productID` int(11) default NULL,
-  `price` decimal(20,2) default NULL,
-  `number` int(11) default NULL,
-  `productName` varchar(145) collate utf8_unicode_ci default NULL,
-  `fee` decimal(20,2) default NULL,
-  `total0` decimal(20,2) default NULL,
-  `isComment` varchar(2) collate utf8_unicode_ci default 'n',
-  `lowStocks` varchar(1) collate utf8_unicode_ci default 'n',
-  `score` int(11) default NULL,
-  `specInfo` varchar(100) collate utf8_unicode_ci default NULL,
-  `giftID` varchar(45) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `orderID` int(11) DEFAULT NULL,
+  `productID` int(11) DEFAULT NULL,
+  `price` decimal(20,2) DEFAULT NULL,
+  `number` int(11) DEFAULT NULL,
+  `productName` varchar(145) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `fee` decimal(20,2) DEFAULT NULL,
+  `total0` decimal(20,2) DEFAULT NULL,
+  `isComment` varchar(2) COLLATE utf8_unicode_ci DEFAULT 'n',
+  `lowStocks` varchar(1) COLLATE utf8_unicode_ci DEFAULT 'n',
+  `score` int(11) DEFAULT NULL,
+  `specInfo` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `giftID` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=340 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_orderdetail
@@ -4636,20 +4640,25 @@ INSERT INTO `t_orderdetail` VALUES ('331', '10260', '10265', '8666.00', '1', 'Le
 INSERT INTO `t_orderdetail` VALUES ('332', '10260', '10323', '160.00', '1', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', null, '160.00', 'n', 'n', null, null, null);
 INSERT INTO `t_orderdetail` VALUES ('333', '10261', '10323', '160.00', '1', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', null, '160.00', 'n', 'n', null, null, null);
 INSERT INTO `t_orderdetail` VALUES ('334', '10262', '10323', '160.00', '1', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', null, '160.00', 'n', 'n', null, null, null);
+INSERT INTO `t_orderdetail` VALUES ('335', '10263', '10323', '160.00', '1', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', null, '160.00', 'n', 'n', null, null, null);
+INSERT INTO `t_orderdetail` VALUES ('336', '10264', '10323', '160.00', '1', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', null, '160.00', 'n', 'n', null, null, null);
+INSERT INTO `t_orderdetail` VALUES ('337', '10265', '10323', '160.00', '1', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', null, '160.00', 'n', 'n', null, null, null);
+INSERT INTO `t_orderdetail` VALUES ('338', '10266', '10323', '160.00', '1', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', null, '160.00', 'n', 'n', null, null, null);
+INSERT INTO `t_orderdetail` VALUES ('339', '10267', '10323', '160.00', '1', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', null, '160.00', 'n', 'n', null, null, null);
 
 -- ----------------------------
 -- Table structure for t_orderlog
 -- ----------------------------
 DROP TABLE IF EXISTS `t_orderlog`;
 CREATE TABLE `t_orderlog` (
-  `id` int(11) NOT NULL auto_increment,
-  `orderid` varchar(11) collate utf8_unicode_ci NOT NULL,
-  `account` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `createdate` datetime default NULL,
-  `content` varchar(100) collate utf8_unicode_ci NOT NULL,
-  `accountType` varchar(1) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `orderid` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `account` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `createdate` datetime DEFAULT NULL,
+  `content` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `accountType` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=763 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_orderlog
@@ -5403,24 +5412,34 @@ INSERT INTO `t_orderlog` VALUES ('749', '10262', 'alipay_notify', '2016-07-02 12
 INSERT INTO `t_orderlog` VALUES ('750', '10261', 'alipay_notify', '2016-07-02 12:59:50', '【支付宝异步通知】已付款，等待卖家发货(WAIT_SELLER_SEND_GOODS)。', 'p');
 INSERT INTO `t_orderlog` VALUES ('751', '10262', 'admin', '2016-07-02 13:01:44', '【审核通过】', 'm');
 INSERT INTO `t_orderlog` VALUES ('752', '10261', 'admin', '2016-07-02 13:02:51', '【审核通过】', 'm');
+INSERT INTO `t_orderlog` VALUES ('753', '10263', 'ceshi01', '2017-05-09 10:35:12', '【创建订单】用户创建订单。订单总金额：160.00', 'w');
+INSERT INTO `t_orderlog` VALUES ('754', '10263', 'alipay_notify', '2017-05-09 10:36:45', '【支付宝异步通知】已付款，等待卖家发货(WAIT_SELLER_SEND_GOODS)。', 'p');
+INSERT INTO `t_orderlog` VALUES ('755', '10263', 'admin', '2017-05-09 10:41:34', '【审核通过】', 'm');
+INSERT INTO `t_orderlog` VALUES ('756', '10264', 'ceshi01', '2017-05-09 11:30:09', '【创建订单】用户创建订单。订单总金额：160.00', 'w');
+INSERT INTO `t_orderlog` VALUES ('757', '10265', 'ceshi01', '2017-05-09 11:32:47', '【创建订单】用户创建订单。订单总金额：160.00', 'w');
+INSERT INTO `t_orderlog` VALUES ('758', '10266', 'ceshi01', '2017-05-09 11:33:22', '【创建订单】用户创建订单。订单总金额：165.00', 'w');
+INSERT INTO `t_orderlog` VALUES ('759', '10266', 'alipay_notify', '2017-05-09 11:33:53', '【支付宝异步通知】已付款，等待卖家发货(WAIT_SELLER_SEND_GOODS)。', 'p');
+INSERT INTO `t_orderlog` VALUES ('760', '10267', 'ceshi01', '2017-05-09 12:17:08', '【创建订单】用户创建订单。订单总金额：165.00', 'w');
+INSERT INTO `t_orderlog` VALUES ('761', '10267', 'alipay_notify', '2017-05-09 12:18:33', '【支付宝异步通知】已付款，等待卖家发货(WAIT_SELLER_SEND_GOODS)。', 'p');
+INSERT INTO `t_orderlog` VALUES ('762', '10267', 'admin', '2017-05-09 12:18:49', '【审核通过】', 'm');
 
 -- ----------------------------
 -- Table structure for t_orderpay
 -- ----------------------------
 DROP TABLE IF EXISTS `t_orderpay`;
 CREATE TABLE `t_orderpay` (
-  `id` int(11) NOT NULL auto_increment,
-  `orderid` varchar(11) collate utf8_unicode_ci NOT NULL,
-  `paystatus` varchar(2) collate utf8_unicode_ci NOT NULL default 'n',
-  `payamount` decimal(20,2) default NULL,
-  `createtime` datetime default NULL,
-  `paymethod` varchar(22) collate utf8_unicode_ci default NULL,
-  `confirmdate` datetime default NULL,
-  `confirmuser` varchar(11) collate utf8_unicode_ci default NULL,
-  `remark` varchar(45) collate utf8_unicode_ci default NULL,
-  `tradeNo` varchar(45) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `orderid` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `paystatus` varchar(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'n',
+  `payamount` decimal(20,2) DEFAULT NULL,
+  `createtime` datetime DEFAULT NULL,
+  `paymethod` varchar(22) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `confirmdate` datetime DEFAULT NULL,
+  `confirmuser` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `remark` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `tradeNo` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11206 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_orderpay
@@ -5648,29 +5667,36 @@ INSERT INTO `t_orderpay` VALUES ('11195', '10260', 'n', '160.00', '2016-07-02 12
 INSERT INTO `t_orderpay` VALUES ('11196', '10261', 'n', '160.00', '2016-07-02 12:58:53', 'alipayescow', null, null, null, null);
 INSERT INTO `t_orderpay` VALUES ('11197', '10262', 'y', '160.00', '2016-07-02 12:58:53', 'alipayescow', null, null, null, '30013169524697');
 INSERT INTO `t_orderpay` VALUES ('11198', '10261', 'y', '160.00', '2016-07-02 12:59:47', 'alipayescow', null, null, null, '30062021510529');
+INSERT INTO `t_orderpay` VALUES ('11199', '10263', 'n', '160.00', '2017-05-09 10:35:12', 'alipayescow', null, null, null, null);
+INSERT INTO `t_orderpay` VALUES ('11200', '10263', 'y', '160.00', '2017-05-09 10:36:18', 'alipayescow', null, null, null, '2165754043346760');
+INSERT INTO `t_orderpay` VALUES ('11201', '10264', 'n', '160.00', '2017-05-09 11:30:09', 'alipayescow', null, null, null, null);
+INSERT INTO `t_orderpay` VALUES ('11202', '10265', 'n', '160.00', '2017-05-09 11:32:47', 'alipayescow', null, null, null, null);
+INSERT INTO `t_orderpay` VALUES ('11203', '10266', 'y', '165.00', '2017-05-09 11:33:22', 'alipayescow', null, null, null, '2169189012995448');
+INSERT INTO `t_orderpay` VALUES ('11204', '10267', 'n', '165.00', '2017-05-09 12:17:08', 'alipayescow', null, null, null, null);
+INSERT INTO `t_orderpay` VALUES ('11205', '10267', 'y', '165.00', '2017-05-09 12:18:30', 'alipayescow', null, null, null, '2171869731171503');
 
 -- ----------------------------
 -- Table structure for t_ordership
 -- ----------------------------
 DROP TABLE IF EXISTS `t_ordership`;
 CREATE TABLE `t_ordership` (
-  `id` int(11) NOT NULL auto_increment,
-  `orderid` varchar(11) collate utf8_unicode_ci NOT NULL,
-  `shipname` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `shipaddress` varchar(200) collate utf8_unicode_ci NOT NULL,
-  `provinceCode` varchar(15) collate utf8_unicode_ci default NULL,
-  `province` varchar(15) collate utf8_unicode_ci NOT NULL,
-  `cityCode` varchar(15) collate utf8_unicode_ci default NULL,
-  `city` varchar(15) collate utf8_unicode_ci NOT NULL,
-  `areaCode` varchar(15) collate utf8_unicode_ci default NULL,
-  `area` varchar(25) collate utf8_unicode_ci default NULL,
-  `phone` varchar(15) collate utf8_unicode_ci NOT NULL,
-  `tel` varchar(45) collate utf8_unicode_ci default NULL,
-  `zip` varchar(6) collate utf8_unicode_ci default NULL,
-  `sex` varchar(2) collate utf8_unicode_ci default NULL,
-  `remark` varchar(70) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `orderid` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
+  `shipname` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `shipaddress` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
+  `provinceCode` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `province` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `cityCode` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `areaCode` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `area` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `tel` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zip` varchar(6) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sex` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `remark` varchar(70) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_ordership
@@ -5860,42 +5886,47 @@ INSERT INTO `t_ordership` VALUES ('182', '10260', '邓志俊', '湖南省长沙�
 INSERT INTO `t_ordership` VALUES ('183', '10260', '邓志俊', '湖南省长沙市湖南省天心区百合小区', '430000', '湖南省', '430100', '长沙市', '430103', '浏阳市', '137-323232', '13786147292', '410000', '1', null);
 INSERT INTO `t_ordership` VALUES ('184', '10261', '邓志俊', '湖南省长沙市湖南省长沙市天心区', '430000', '湖南省', '430100', '长沙市', '430103', '浏阳市', '3242424', '13786147292', '323131', '1', null);
 INSERT INTO `t_ordership` VALUES ('185', '10262', '邓志俊', '湖南省长沙市湖南省长沙市天心区', '430000', '湖南省', '430100', '长沙市', '430103', '浏阳市', '3242424', '13786147292', '323131', '1', null);
+INSERT INTO `t_ordership` VALUES ('186', '10263', '张运峰', '甘肃省张掖市张运峰', '620000', '甘肃省', '620700', '张掖市', '620725', '山丹县', '010-12345678', '13145378912', '100000', '1', null);
+INSERT INTO `t_ordership` VALUES ('187', '10264', '张运峰', '甘肃省张掖市张运峰', '620000', '甘肃省', '620700', '张掖市', '620725', '山丹县', '010-12345678', '13145378912', '100000', '1', null);
+INSERT INTO `t_ordership` VALUES ('188', '10265', '张运峰', '甘肃省张掖市张运峰', '620000', '甘肃省', '620700', '张掖市', '620725', '山丹县', '010-12345678', '13145378912', '100000', '1', null);
+INSERT INTO `t_ordership` VALUES ('189', '10266', '张运峰', '甘肃省张掖市张运峰', '620000', '甘肃省', '620700', '张掖市', '620725', '山丹县', '010-12345678', '13145378912', '100000', '1', null);
+INSERT INTO `t_ordership` VALUES ('190', '10267', '张运峰', '甘肃省张掖市张运峰', '620000', '甘肃省', '620700', '张掖市', '620725', '山丹县', '010-12345678', '13145378912', '100000', '1', null);
 
 -- ----------------------------
 -- Table structure for t_oss
 -- ----------------------------
 DROP TABLE IF EXISTS `t_oss`;
 CREATE TABLE `t_oss` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `code` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `status` varchar(2) collate utf8_unicode_ci NOT NULL default 'y',
-  `ossJsonInfo` varchar(500) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `code` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'y',
+  `ossJsonInfo` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_oss
 -- ----------------------------
-INSERT INTO `t_oss` VALUES ('1', '阿里云存储', 'aliyun', 'y', '{\"ACCESS_ID\":\"xxx\",\"ACCESS_KEY\":\"xxx\",\"OSS_ENDPOINT\":\"http://oss.aliyuncs.com/\",\"bucketName\":\"xxx\"}');
+INSERT INTO `t_oss` VALUES ('1', '阿里云存储', 'aliyun', 'y', '{\"ACCESS_ID\":\"xxx\",\"ACCESS_KEY\":\"xxx\",\"OSS_ENDPOINT\":\"http://oss-cn-shanghai.aliyuncs.com\",\"bucketName\":\"xxx\"}');
 
 -- ----------------------------
 -- Table structure for t_pay
 -- ----------------------------
 DROP TABLE IF EXISTS `t_pay`;
 CREATE TABLE `t_pay` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `code` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `seller` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `order1` int(11) default NULL,
-  `status` varchar(2) collate utf8_unicode_ci default 'y',
-  `partner` varchar(45) collate utf8_unicode_ci default NULL,
-  `key1` varchar(45) collate utf8_unicode_ci default NULL,
-  `icon` varchar(245) collate utf8_unicode_ci default NULL,
-  `picture` varchar(245) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `code` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `seller` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `order1` int(11) DEFAULT NULL,
+  `status` varchar(2) COLLATE utf8_unicode_ci DEFAULT 'y',
+  `partner` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `key1` text COLLATE utf8_unicode_ci,
+  `icon` varchar(245) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `picture` varchar(245) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_pay
@@ -5907,11 +5938,11 @@ INSERT INTO `t_pay` VALUES ('1', '支付宝担保交易', 'alipayescow', 'xxx', 
 -- ----------------------------
 DROP TABLE IF EXISTS `t_privilege`;
 CREATE TABLE `t_privilege` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `rid` int(11) NOT NULL,
   `mid` int(11) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2733 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_privilege
@@ -6089,67 +6120,67 @@ INSERT INTO `t_privilege` VALUES ('2732', '7', '69');
 -- ----------------------------
 DROP TABLE IF EXISTS `t_product`;
 CREATE TABLE `t_product` (
-  `id` int(11) NOT NULL auto_increment,
-  `name` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `introduce` varchar(500) collate utf8_unicode_ci default NULL,
-  `price` decimal(9,2) default NULL,
-  `nowPrice` decimal(9,2) default NULL,
-  `picture` varchar(245) collate utf8_unicode_ci default NULL,
-  `createtime` datetime default NULL,
-  `createAccount` varchar(20) collate utf8_unicode_ci default NULL,
-  `updateAccount` varchar(20) collate utf8_unicode_ci default NULL,
-  `updatetime` datetime default NULL,
-  `isnew` char(1) collate utf8_unicode_ci default 'n',
-  `sale` char(1) collate utf8_unicode_ci default 'n',
-  `hit` int(11) default '0',
-  `status` int(11) default '0',
-  `productHTML` longtext collate utf8_unicode_ci,
-  `maxPicture` varchar(245) collate utf8_unicode_ci default NULL,
-  `images` varchar(1000) collate utf8_unicode_ci default NULL,
-  `catalogID` varchar(15) collate utf8_unicode_ci default NULL,
-  `sellcount` int(11) default '0',
-  `stock` int(11) default '0',
-  `searchKey` varchar(45) collate utf8_unicode_ci default NULL,
-  `title` varchar(80) collate utf8_unicode_ci default NULL,
-  `description` varchar(145) collate utf8_unicode_ci default NULL,
-  `keywords` varchar(145) collate utf8_unicode_ci default NULL,
-  `activityID` varchar(45) collate utf8_unicode_ci default NULL,
-  `unit` varchar(25) collate utf8_unicode_ci default 'item',
-  `score` int(11) default '0',
-  `isTimePromotion` char(1) collate utf8_unicode_ci default 'n',
-  `giftID` varchar(45) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`id`),
-  KEY `product_name` (`name`),
-  KEY `product_catalog` (`catalogID`),
-  KEY `product_status` (`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `introduce` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `price` decimal(9,2) DEFAULT NULL,
+  `nowPrice` decimal(9,2) DEFAULT NULL,
+  `picture` varchar(245) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `createtime` datetime DEFAULT NULL,
+  `createAccount` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `updateAccount` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `updatetime` datetime DEFAULT NULL,
+  `isnew` char(1) COLLATE utf8_unicode_ci DEFAULT 'n',
+  `sale` char(1) COLLATE utf8_unicode_ci DEFAULT 'n',
+  `hit` int(11) DEFAULT '0',
+  `status` int(11) DEFAULT '0',
+  `productHTML` longtext COLLATE utf8_unicode_ci,
+  `maxPicture` varchar(245) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `images` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `catalogID` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sellcount` int(11) DEFAULT '0',
+  `stock` int(11) DEFAULT '0',
+  `searchKey` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(80) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(145) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `keywords` varchar(145) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `activityID` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `unit` varchar(25) COLLATE utf8_unicode_ci DEFAULT 'item',
+  `score` int(11) DEFAULT '0',
+  `isTimePromotion` char(1) COLLATE utf8_unicode_ci DEFAULT 'n',
+  `giftID` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `product_name` (`name`) USING BTREE,
+  KEY `product_catalog` (`catalogID`) USING BTREE,
+  KEY `product_status` (`status`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=10325 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_product
 -- ----------------------------
-INSERT INTO `t_product` VALUES ('10319', '上诺 微喇牛仔裤女 高腰牛仔裤大码显瘦弹力喇叭裤 26-34码 深蓝色浅蓝色可选 特价 ', '上诺 微喇牛仔裤女 高腰牛仔裤大码显瘦弹力喇叭裤 26-34码 深蓝色浅蓝色可选 特价 蓝色 29码', '98.00', '68.00', 'image/20160630/1467274979475_1.jpg', '2016-06-30 16:25:12', 'admin', 'admin', '2016-06-30 17:01:18', 'y', 'y', '30', '2', '<p style=\"text-align:center;\">\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上诺 微喇牛仔裤女 高腰牛仔裤大码显瘦弹力喇叭裤\r\n</p>\r\n<p>\r\n	<img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467275895879_3.jpg\" alt=\"\" /> \r\n</p>\r\n<p>\r\n	<img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467275909809_3.jpg\" alt=\"\" /> \r\n</p>', null, 'upload/goods/image/20170420/1492621311157_3.jpg', '87', '0', '3', null, '98', '上诺 微喇牛仔裤女 高腰牛仔裤大码显瘦弹力喇叭裤 ', '喇叭裤 ', null, 'item', '0', 'n', '');
-INSERT INTO `t_product` VALUES ('10320', 'Gap美式休闲经典水洗浅蓝牛仔女士背带裤|女装238768 中度靛蓝 165/84A(S', 'Gap美式休闲经典水洗浅蓝牛仔女士背带裤|女装238768 中度靛蓝 165/84A(S)', '90.00', '80.00', 'image/20160630/1467276904981_3.jpg', '2016-06-30 16:58:22', 'admin', 'admin', '2016-06-30 17:01:18', 'n', 'n', '9', '2', '<img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467276904291_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467276904981_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467276905444_3.jpg\" alt=\"\" />', null, null, '87', '0', '0', null, null, null, null, null, 'item', '0', 'n', null);
+INSERT INTO `t_product` VALUES ('10319', '上诺 微喇牛仔裤女 高腰牛仔裤大码显瘦弹力喇叭裤 26-34码 深蓝色浅蓝色可选 特价 ', '上诺 微喇牛仔裤女 高腰牛仔裤大码显瘦弹力喇叭裤 26-34码 深蓝色浅蓝色可选 特价 蓝色 29码', '98.00', '68.00', 'image/20160630/1467274979475_1.jpg', '2016-06-30 16:25:12', 'admin', null, '2017-04-25 16:42:19', 'y', 'y', '35', '2', '<p style=\"text-align:center;\">\r\n	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上诺 微喇牛仔裤女 高腰牛仔裤大码显瘦弹力喇叭裤\r\n</p>\r\n<p>\r\n	<img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467275895879_3.jpg\" alt=\"\" /> \r\n</p>\r\n<p>\r\n	<img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467275909809_3.jpg\" alt=\"\" /> \r\n</p>', null, 'upload/goods/image/20170425/1493109728099_3.jpeg,', '87', '0', '0', null, '98', '上诺 微喇牛仔裤女 高腰牛仔裤大码显瘦弹力喇叭裤 ', '喇叭裤 ', null, 'item', '0', 'n', null);
+INSERT INTO `t_product` VALUES ('10320', 'Gap美式休闲经典水洗浅蓝牛仔女士背带裤|女装238768 中度靛蓝 165/84A(S', 'Gap美式休闲经典水洗浅蓝牛仔女士背带裤|女装238768 中度靛蓝 165/84A(S)', '90.00', '80.00', 'image/20160630/1467276904981_3.jpg', '2016-06-30 16:58:22', 'admin', 'admin', '2016-06-30 17:01:18', 'n', 'n', '10', '2', '<img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467276904291_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467276904981_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467276905444_3.jpg\" alt=\"\" />', null, null, '87', '0', '0', null, null, null, null, null, 'item', '0', 'n', null);
 INSERT INTO `t_product` VALUES ('10321', '2016新款学院风大码显瘦牛仔背带连体裤牛仔吊带裤休闲女生款 021深色 26(1.9尺', '2016新款学院风大码显瘦牛仔背带连体裤牛仔吊带裤休闲女生款 021深色 26(1.9尺)', '198.00', '148.00', 'image/20160630/1467277804698_3.jpg', '2016-06-30 17:10:27', 'admin', 'admin', '2017-04-17 22:32:55', 'n', 'y', '8', '2', '<img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467277702428_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467277702591_3.jpg\" alt=\"\" />', null, null, '87', '0', '10', null, null, null, null, null, 'item', '0', 'n', '');
-INSERT INTO `t_product` VALUES ('10322', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙389 图色 S(80-', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙389 图色 S(80-95斤)', '145.00', '125.00', 'image/20160630/1467278040897_3.jpg', '2016-06-30 17:16:30', 'admin', 'admin', '2017-04-17 22:31:25', 'n', 'n', '19', '2', '<img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278180909_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278181302_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278181725_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278182098_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278182534_3.jpg\" alt=\"\" />', null, null, '87', '0', '10', null, null, null, null, null, 'item', '0', 'n', '');
-INSERT INTO `t_product` VALUES ('10323', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-95斤)', '167.00', '160.00', 'upload/goods/image/20170420/1492621311157_3.jpg', '2016-06-30 17:22:07', 'admin', 'admin', '2017-04-20 01:02:09', 'n', 'n', '23', '2', '<img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278521786_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278522304_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278522659_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278523059_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278523451_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278523890_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278524247_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278524643_3.jpg\" alt=\"\" />', null, 'upload/goods/image/20170420/1492621311157_3.jpg', '87', '0', '0', null, null, null, null, null, 'item', '0', 'n', '');
+INSERT INTO `t_product` VALUES ('10322', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙389 图色 S(80-', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙389 图色 S(80-95斤)', '145.00', '125.00', 'image/20160630/1467278040897_3.jpg', '2016-06-30 17:16:30', 'admin', 'admin', '2017-04-17 22:31:25', 'n', 'n', '20', '2', '<img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278180909_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278181302_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278181725_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278182098_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278182534_3.jpg\" alt=\"\" />', null, null, '87', '0', '10', null, null, null, null, null, 'item', '0', 'n', '');
+INSERT INTO `t_product` VALUES ('10323', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-', '2016夏季新款韩版修身短袖牛仔连衣裙中长款休闲女装裙夏装牛仔裙398 图色 S(80-95斤)', '167.00', '160.00', 'upload/goods/image/20170420/1492652552155_3.png', '2016-06-30 17:22:07', 'admin', 'admin', '2017-05-09 18:13:47', 'n', 'n', '43', '2', '<img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278521786_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278522304_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278522659_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278523059_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278523451_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278523890_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278524247_3.jpg\" alt=\"\" /><img src=\"http://localhost:8989/jshop/upload/goods/image/20160630/1467278524643_3.jpg\" alt=\"\" />', null, 'upload/goods/image/20170509/1494319389120_3.jpg,upload/goods/image/20170509/1494323583823_3.jpg,upload/goods/image/20170509/1494324771251_3.jpg,upload/goods/image/20170420/1492652552155_3.png', '87', '3', '97', null, null, null, null, null, 'item', '0', 'n', '');
 
 -- ----------------------------
 -- Table structure for t_questionnaire
 -- ----------------------------
 DROP TABLE IF EXISTS `t_questionnaire`;
 CREATE TABLE `t_questionnaire` (
-  `id` int(11) NOT NULL auto_increment,
-  `title` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `title2` varchar(45) collate utf8_unicode_ci default NULL,
-  `createdate` datetime default NULL,
-  `updatedate` datetime default NULL,
-  `createAccount` varchar(45) collate utf8_unicode_ci default NULL,
-  `updateAccount` varchar(45) collate utf8_unicode_ci default NULL,
-  `status` varchar(2) collate utf8_unicode_ci default NULL,
-  `showStartDate` date default NULL,
-  `showEndDate` date default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `title2` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `createdate` datetime DEFAULT NULL,
+  `updatedate` datetime DEFAULT NULL,
+  `createAccount` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `updateAccount` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `showStartDate` date DEFAULT NULL,
+  `showEndDate` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_questionnaire
@@ -6165,15 +6196,15 @@ INSERT INTO `t_questionnaire` VALUES ('5', '5555', '555555', '2014-02-10 12:01:1
 -- ----------------------------
 DROP TABLE IF EXISTS `t_questionnaireitem`;
 CREATE TABLE `t_questionnaireitem` (
-  `id` int(11) NOT NULL auto_increment,
-  `qid` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `subject` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `option1` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `type` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `order1` int(11) default '0',
-  `display` varchar(15) collate utf8_unicode_ci default 'lines',
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qid` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `subject` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `option1` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `type` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `order1` int(11) DEFAULT '0',
+  `display` varchar(15) COLLATE utf8_unicode_ci DEFAULT 'lines',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_questionnaireitem
@@ -6211,12 +6242,12 @@ INSERT INTO `t_questionnaireitem` VALUES ('140', '1', '世界经济危机爆发�
 -- ----------------------------
 DROP TABLE IF EXISTS `t_questionnaireresult`;
 CREATE TABLE `t_questionnaireresult` (
-  `id` int(11) NOT NULL auto_increment,
-  `qid` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `account` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `qItemID` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `text` varchar(145) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`id`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `qid` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `account` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `qItemID` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `text` varchar(145) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
@@ -6228,11 +6259,11 @@ CREATE TABLE `t_questionnaireresult` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_reply`;
 CREATE TABLE `t_reply` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `commentID` int(11) NOT NULL,
   `content` varchar(140) NOT NULL,
-  `createdate` datetime default NULL,
-  PRIMARY KEY  (`id`)
+  `createdate` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -6244,14 +6275,14 @@ CREATE TABLE `t_reply` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_role`;
 CREATE TABLE `t_role` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_name` varchar(45) NOT NULL,
-  `role_desc` varchar(45) default NULL,
-  `role_dbPrivilege` varchar(45) default NULL,
-  `status` varchar(2) default 'y',
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `role_name_UNIQUE` (`role_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `role_desc` varchar(45) DEFAULT NULL,
+  `role_dbPrivilege` varchar(45) DEFAULT NULL,
+  `status` varchar(2) DEFAULT 'y',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `role_name_UNIQUE` (`role_name`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_role
@@ -6266,12 +6297,12 @@ INSERT INTO `t_role` VALUES ('7', '测试', '测试', 'select,insert,update,dele
 -- ----------------------------
 DROP TABLE IF EXISTS `t_sessioncount`;
 CREATE TABLE `t_sessioncount` (
-  `id` int(11) NOT NULL auto_increment,
-  `ip` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `address` varchar(45) collate utf8_unicode_ci default NULL,
-  `starttime` datetime default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ip` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `starttime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1105 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_sessioncount
@@ -7386,14 +7417,14 @@ INSERT INTO `t_sessioncount` VALUES ('1104', '127.0.0.1', null, '2014-01-27 15:4
 -- ----------------------------
 DROP TABLE IF EXISTS `t_sms`;
 CREATE TABLE `t_sms` (
-  `id` int(11) NOT NULL auto_increment,
-  `phone` varchar(25) collate utf8_unicode_ci NOT NULL,
-  `content` varchar(100) collate utf8_unicode_ci NOT NULL,
-  `sendTime` datetime default NULL,
-  `type` varchar(15) collate utf8_unicode_ci default NULL,
-  `returnCode` varchar(15) collate utf8_unicode_ci default NULL,
-  `sendStatus` varchar(2) collate utf8_unicode_ci default NULL,
-  PRIMARY KEY  (`id`)
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `phone` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `content` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `sendTime` datetime DEFAULT NULL,
+  `type` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `returnCode` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sendStatus` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
@@ -7405,15 +7436,15 @@ CREATE TABLE `t_sms` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_spec`;
 CREATE TABLE `t_spec` (
-  `id` int(11) NOT NULL auto_increment,
-  `productID` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `specColor` varchar(45) collate utf8_unicode_ci default NULL,
-  `specSize` varchar(45) collate utf8_unicode_ci default NULL,
-  `specStock` varchar(45) collate utf8_unicode_ci default NULL,
-  `specPrice` decimal(8,2) default NULL,
-  `specStatus` char(1) collate utf8_unicode_ci default 'n',
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `productID` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `specColor` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `specSize` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `specStock` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `specPrice` decimal(8,2) DEFAULT NULL,
+  `specStatus` char(1) COLLATE utf8_unicode_ci DEFAULT 'n',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_spec
@@ -7426,17 +7457,17 @@ INSERT INTO `t_spec` VALUES ('2', '10316', '蓝色', '蓝色3.1', '11', '121.00'
 -- ----------------------------
 DROP TABLE IF EXISTS `t_systemlog`;
 CREATE TABLE `t_systemlog` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) NOT NULL,
   `content` varchar(500) NOT NULL,
-  `type` int(11) default NULL,
-  `account` varchar(45) default NULL,
-  `loginIP` varchar(15) default NULL,
-  `logintime` datetime default NULL,
-  `loginArea` varchar(45) default NULL,
-  `diffAreaLogin` char(1) default 'n',
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `type` int(11) DEFAULT NULL,
+  `account` varchar(45) DEFAULT NULL,
+  `loginIP` varchar(15) DEFAULT NULL,
+  `logintime` datetime DEFAULT NULL,
+  `loginArea` varchar(45) DEFAULT NULL,
+  `diffAreaLogin` char(1) DEFAULT 'n',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_systemlog
@@ -7527,40 +7558,61 @@ INSERT INTO `t_systemlog` VALUES ('83', 'login', 'login', '1', 'admin', '0:0:0:0
 INSERT INTO `t_systemlog` VALUES ('84', 'login', 'login', '1', 'admin', '0:0:0:0:0:0:0:1', '2017-04-20 01:39:54', '0', 'n');
 INSERT INTO `t_systemlog` VALUES ('85', 'loginOut', 'loginOut', '1', 'admin', '0:0:0:0:0:0:0:1', '2017-04-20 01:54:19', '0', 'n');
 INSERT INTO `t_systemlog` VALUES ('86', 'login', 'login', '1', 'admin', '0:0:0:0:0:0:0:1', '2017-04-20 01:54:28', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('87', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-04-20 09:40:02', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('88', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-04-23 13:47:06', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('89', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-04-24 11:34:51', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('90', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-04-25 14:17:23', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('91', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-04-25 14:21:41', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('92', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-04-25 15:26:17', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('93', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-04-25 16:14:55', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('94', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-04-25 16:19:51', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('95', 'login', 'login', '1', 'admin', '0:0:0:0:0:0:0:1', '2017-05-06 13:23:41', '0', 'y');
+INSERT INTO `t_systemlog` VALUES ('96', 'loginOut', 'loginOut', '1', 'admin', '0:0:0:0:0:0:0:1', '2017-05-06 13:41:17', '0', 'n');
+INSERT INTO `t_systemlog` VALUES ('97', 'login', 'login', '1', 'admin', '0:0:0:0:0:0:0:1', '2017-05-06 13:41:39', '0', 'n');
+INSERT INTO `t_systemlog` VALUES ('98', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-05-06 15:04:38', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('99', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-05-09 10:37:43', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('100', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-05-09 12:17:59', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('101', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-05-09 15:25:01', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('102', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-05-09 16:38:03', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('103', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-05-09 17:52:36', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('104', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-05-09 18:35:07', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('105', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-05-10 23:53:49', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('106', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-05-11 20:12:03', null, 'n');
+INSERT INTO `t_systemlog` VALUES ('107', 'login', 'login', '1', 'admin', '127.0.0.1', '2017-05-11 20:43:56', null, 'n');
 
 -- ----------------------------
 -- Table structure for t_systemsetting
 -- ----------------------------
 DROP TABLE IF EXISTS `t_systemsetting`;
 CREATE TABLE `t_systemsetting` (
-  `id` int(11) NOT NULL auto_increment,
-  `systemCode` varchar(45) default NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `systemCode` varchar(45) DEFAULT NULL,
   `name` varchar(100) NOT NULL,
   `www` varchar(100) NOT NULL,
-  `log` varchar(100) default NULL,
+  `log` varchar(100) DEFAULT NULL,
   `title` varchar(45) NOT NULL,
   `description` varchar(45) NOT NULL,
   `keywords` varchar(100) NOT NULL,
   `shortcuticon` varchar(100) NOT NULL,
-  `address` varchar(100) default NULL,
-  `tel` varchar(100) default NULL,
-  `email` varchar(45) default NULL,
+  `address` varchar(100) DEFAULT NULL,
+  `tel` varchar(100) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
   `icp` varchar(45) NOT NULL,
-  `isopen` varchar(8) NOT NULL default 'y',
-  `closeMsg` varchar(500) default NULL,
-  `qq` varchar(25) default NULL,
-  `imageRootPath` varchar(45) default NULL,
-  `manageHttp` varchar(45) default NULL,
-  `defaultProductImg` varchar(145) default NULL,
-  `style` varchar(20) default 'default',
-  `version` varchar(145) default NULL,
+  `isopen` varchar(8) NOT NULL DEFAULT 'y',
+  `closeMsg` varchar(500) DEFAULT NULL,
+  `qq` varchar(25) DEFAULT NULL,
+  `imageRootPath` varchar(45) DEFAULT NULL,
+  `manageHttp` varchar(45) DEFAULT NULL,
+  `defaultProductImg` varchar(145) DEFAULT NULL,
+  `style` varchar(20) DEFAULT 'default',
+  `version` varchar(145) DEFAULT NULL,
   `qqHelpHtml` text,
   `images` text,
-  `manageLeftTreeLeafIcon` varchar(100) default NULL,
-  `statisticsCode` varchar(1000) default NULL,
-  `openResponsive` varchar(1) default 'y',
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `manageLeftTreeLeafIcon` varchar(100) DEFAULT NULL,
+  `statisticsCode` varchar(1000) DEFAULT NULL,
+  `openResponsive` varchar(1) DEFAULT 'y',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_systemsetting
@@ -7572,16 +7624,16 @@ INSERT INTO `t_systemsetting` VALUES ('1', 'MYSHOP', '网上商店系统(MYSHOP)
 -- ----------------------------
 DROP TABLE IF EXISTS `t_task`;
 CREATE TABLE `t_task` (
-  `id` int(11) NOT NULL auto_increment,
-  `code` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `name` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `sleep` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `unit` varchar(45) collate utf8_unicode_ci NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `sleep` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `unit` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
   `nextWorkTime` datetime NOT NULL,
-  `currentStatus` varchar(45) collate utf8_unicode_ci NOT NULL,
-  `clz` varchar(145) collate utf8_unicode_ci NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `currentStatus` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `clz` varchar(145) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of t_task
@@ -7594,21 +7646,21 @@ INSERT INTO `t_task` VALUES ('2', 'ManageIndexReportTask', '后台首页统计�
 -- ----------------------------
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
-  `id` int(11) NOT NULL auto_increment,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `createtime` datetime default NULL,
-  `updatetime` datetime default NULL,
-  `createAccount` varchar(45) default NULL,
-  `updateAccount` varchar(45) default NULL,
-  `status` varchar(2) default 'y',
-  `rid` varchar(45) default NULL,
-  `nickname` varchar(45) default NULL,
-  `email` varchar(45) default NULL,
-  PRIMARY KEY  (`id`),
-  UNIQUE KEY `username_UNIQUE` (`username`),
-  UNIQUE KEY `nickname_UNIQUE` (`nickname`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `createtime` datetime DEFAULT NULL,
+  `updatetime` datetime DEFAULT NULL,
+  `createAccount` varchar(45) DEFAULT NULL,
+  `updateAccount` varchar(45) DEFAULT NULL,
+  `status` varchar(2) DEFAULT 'y',
+  `rid` varchar(45) DEFAULT NULL,
+  `nickname` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username_UNIQUE` (`username`) USING BTREE,
+  UNIQUE KEY `nickname_UNIQUE` (`nickname`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_user

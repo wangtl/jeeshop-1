@@ -38,7 +38,7 @@
 						  <#if reset_password_email_timeout??>
                               <!-- 找回密码链接已失效了！ -->
                               <span class="glyphicon glyphicon-warning-sign"></span>&nbsp;${reset_password_email_timeout!""}
-                              <a style="display: none;" class="btn btn-success btn-sm" href="${systemSetting().www}/accountdoForget.html?account=${e.account!""}"><span class="glyphicon glyphicon-send"></span>&nbsp;重新发送邮件</a>
+                              <a style="display: none;" class="btn btn-success btn-sm" href="${basepath}/accountdoForget.html?account=${e.account!""}"><span class="glyphicon glyphicon-send"></span>&nbsp;重新发送邮件</a>
 
 						  <#else>
 

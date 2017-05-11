@@ -67,7 +67,7 @@
 						</a>
 					</td>
 					<td nowrap="nowrap">&nbsp;
-						<a href="${systemSetting().www}/product/${item.productID!""}.html" target="_blank" title="${item.productName!""}">
+						<a href="${basepath}/product/${item.productID!""}.html" target="_blank" title="${item.productName!""}">
 						${item.productName!""}</a>
 					</td>
 					<td nowrap="nowrap">&nbsp;${item.createdate!""}</td>

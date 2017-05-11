@@ -10,7 +10,7 @@
 </style>
 <div id="userDiv">
 	${currentUser().nickname!currentUser().username}(${currentUser().username})<br/>
-	&nbsp;&nbsp;欢迎你! | <a href="#" onclick="a()">注销</a> | <a target="_blank" href="${systemSetting().www}">门户</a>
+	&nbsp;&nbsp;欢迎你! | <a href="#" onclick="a()">注销</a> | <a target="_blank" href="${basepath}">门户</a>
 </div>
 <hr style="margin: 0;padding: 0">
 <#include "/manage/system/menu/leftMenu.ftl">

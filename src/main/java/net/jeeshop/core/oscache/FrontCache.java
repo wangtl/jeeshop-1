@@ -237,13 +237,16 @@ public class FrontCache {
 		Pay pay = new Pay();
 		pay.setCode(Pay.pay_code_alipayescow);
 		pay = payService.selectOne(pay);
-		systemManager.setAlipayConfig(pay.getSeller());
+		if(pay!=null){
+			systemManager.setAlipayConfig(pay.getSeller());
+		}
 		
 		AlipayConfig.partner = pay.getPartner();
 		AlipayConfig.key = pay.getKey1();
-		AlipaynewConfig.APPID = pay.getAppId();
-		AlipaynewConfig.APP_PRIVATE_KEY = pay.getAppPrivateKey();
-		AlipaynewConfig.ALIPAY_PUBLIC_KEY  =pay.getAlipayPublicKey();
+		AlipaynewConfig.GATEWAY = systemManager.getProperty("paygate.way");
+		AlipaynewConfig.APPID = systemManager.getProperty("pay.appid");
+		AlipaynewConfig.APP_PRIVATE_KEY = systemManager.getProperty("pay.appkey");
+		AlipaynewConfig.ALIPAY_PUBLIC_KEY = systemManager.getProperty("pay.alikey");
 //		logger.error("SystemManager.alipayConfig="+SystemManager.alipayConfig);
 
 		/**

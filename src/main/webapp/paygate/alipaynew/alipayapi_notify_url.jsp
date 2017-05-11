@@ -24,8 +24,7 @@
 <%@ page import="java.util.*"%>
 <%
 	Logger logger = LoggerFactory.getLogger(AlipayNotify.class);
-	System.out.println("============alipayapi_notify_url.jsp============");
-	logger.error("============alipayapi_notify_url.jsp============");
+	logger.info("============alipayapi_notify_url.jsp============");
 	//获取支付宝POST过来反馈信息
 	Map<String,String> params = new HashMap<String,String>();
 	Map requestParams = request.getParameterMap();
@@ -42,9 +41,12 @@
 		params.put(name, valueStr);
 	}
 	
-	logger.error("params="+params);
+	logger.info("params="+params);
 	
 	//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以下仅供参考)//
+	
+	//发送通知时间
+	String notify_time = new String(request.getParameter("notify_time").getBytes("ISO-8859-1"),"UTF-8");
 	//商户订单号
 
 	String out_trade_no = new String(request.getParameter("out_trade_no").getBytes("ISO-8859-1"),"UTF-8");

@@ -44,10 +44,10 @@ $(function(){
                         </#if>
 
                         <#if e.type??&&e.type=="notice">
-                        <a class="btn btn-info" target="_blank" href="${systemSetting().www}/news/${e.id!""}.html">
+                        <a class="btn btn-info" target="_blank" href="${basepath}/news/${e.id!""}.html">
                         <i class="icon-eye-open icon-white"></i> 查看</a>
                         <#elseif e.type??&&e.type=="help">
-                        <a class="btn btn-info" target="_blank" href="${systemSetting().www}/help/${e.code!""}.html">
+                        <a class="btn btn-info" target="_blank" href="${basepath}/help/${e.code!""}.html">
                         <i class="icon-eye-open icon-white"></i> 查看</a>
                         </#if>
                         <a id="btnStatic" href="#" class="btn btn-warning">
