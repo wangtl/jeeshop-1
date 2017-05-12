@@ -89,10 +89,16 @@ public class PaygateAction {
     	throws Exception{
     	
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
-        alipayRequest.setReturnUrl(SystemManager.getInstance().getSystemSetting().getWww()
-        		+"/paygate/alipaynew/alipayapi_return_url.jsp");
-        alipayRequest.setNotifyUrl(SystemManager.getInstance().getSystemSetting().getWww()
-        		+"/paygate/alipaynew/alipayapi_notify_url.jsp");//在公共参数中设置回跳和通知地址
+        StringBuilder baseurl=new StringBuilder();
+        baseurl.append(request.getScheme()+"://");
+        baseurl.append(request.getServerName());
+        baseurl.append(":"+request.getServerPort());
+        baseurl.append(request.getContextPath());
+        
+        alipayRequest.setReturnUrl(baseurl.toString()
+        		+systemManager.getProperty("pay.return.url"));
+        alipayRequest.setNotifyUrl(baseurl.toString()
+        		+systemManager.getProperty("pay.notify.url"));//在公共参数中设置回跳和通知地址
         alipayRequest.setBizContent("{" +
             "    \"out_trade_no\":\"" +payInfo.getWIDout_trade_no()+"\","+
             "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\","+
