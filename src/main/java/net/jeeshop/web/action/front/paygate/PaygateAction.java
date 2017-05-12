@@ -55,7 +55,13 @@ public class PaygateAction {
     @RequestMapping("pay")
     public String pay(HttpServletRequest request,HttpServletResponse response,
     		String orderId, String orderPayId,  ModelMap modelMap) throws Exception{
-        Order order = orderService.selectById(orderId);
+    	StringBuilder baseurl=new StringBuilder();
+        baseurl.append(request.getScheme()+"://");
+        baseurl.append(request.getServerName());
+        baseurl.append(":"+request.getServerPort());
+        baseurl.append(request.getContextPath());
+        
+    	Order order = orderService.selectById(orderId);
 
         if(order == null) {
             throw new NullPointerException("根据订单号查询不到订单信息！");
@@ -70,7 +76,7 @@ public class PaygateAction {
             throw new NullPointerException("根据订单号查询不到配送信息！");
         }
         order.setOrderpayID(orderPayId);
-        PayInfo payInfo = createPayInfo(order,ordership);
+        PayInfo payInfo = createPayInfo(order,ordership,baseurl.toString());
 //        RequestHolder.getRequest().setAttribute("payInfo", payInfo);
         modelMap.addAttribute("payInfo", payInfo);
 
@@ -130,20 +136,20 @@ public class PaygateAction {
      * 创建支付宝的付款信息对象
      * @param order
      */
-    private PayInfo createPayInfo(Order order,Ordership ordership) {
+    private PayInfo createPayInfo(Order order,Ordership ordership,String baseurl) {
         if(order==null || ordership==null){
             throw new NullPointerException("参数不能为空！请求非法！");
         }
 
         PayInfo payInfo = new PayInfo();
         payInfo.setWIDseller_email(ordership.getPhone());
-        String www = SystemManager.getInstance().getSystemSetting().getWww();
+        //String www = SystemManager.getInstance().getSystemSetting().getWww();
 
         /**
          * 解决由于本地和线上正式环境提交相同的商户订单号导致支付宝出现TRADE_DATA_MATCH_ERROR错误的问题。
          * 本地提交的商户订单号前缀是test开头，正式环境提交的就是纯粹的支付订单号
          */
-        if(www.startsWith("http://127.0.0.1") || www.startsWith("http://localhost")){
+        if(baseurl.startsWith("http://127.0.0.1") || baseurl.startsWith("http://localhost")){
             payInfo.setWIDout_trade_no("test"+order.getOrderpayID());
         }else{
             payInfo.setWIDout_trade_no(order.getOrderpayID());
@@ -152,8 +158,7 @@ public class PaygateAction {
 
         payInfo.setWIDprice(Double.valueOf(order.getPtotal()));
         payInfo.setWIDbody(order.getRemark());
-//		payInfo.setShow_url(SystemManager.systemSetting.getWww()+"/product/"+payInfo.getWIDout_trade_no()+".html");
-        payInfo.setShow_url(SystemManager.getInstance().getSystemSetting().getWww()+"/order/orderInfo.html?id="+order.getId());
+        payInfo.setShow_url(baseurl+"/order/orderInfo.html?id="+order.getId());
         payInfo.setWIDreceive_name(ordership.getShipname());
         payInfo.setWIDreceive_address(ordership.getShipaddress());
         payInfo.setWIDreceive_zip(ordership.getZip());
