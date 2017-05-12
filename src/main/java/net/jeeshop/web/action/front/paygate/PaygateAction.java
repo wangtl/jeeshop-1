@@ -166,7 +166,8 @@ public class PaygateAction {
     @RequestMapping("dummyPay")
     @ResponseBody
     public String dummyPay(String orderId){
-        orderService.alipayNotify("WAIT_SELLER_SEND_GOODS",null,orderId,String.valueOf(System.nanoTime()));
+        orderService.alipayNotify("TRADE_SUCCESS",null,orderId,String.valueOf(System.nanoTime()),
+        		null,null,null);
         return "{\"success\":1}";
     }
 }

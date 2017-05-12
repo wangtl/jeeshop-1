@@ -2,7 +2,7 @@
 <%@page import="net.jeeshop.services.front.order.OrderService"%>
 <%@page import="org.springframework.web.context.support.WebApplicationContextUtils"%>
 <%@page import="org.springframework.web.context.WebApplicationContext"%>
-<%@page import="net.jeeshop.core.pay.alipay.alipayescow.util.AlipayNotify"%>
+<%@page import="net.jeeshop.core.pay.alipay.newpay.AlipayNotifyNew"%>
 <%@page import="org.slf4j.*"%>
 <%
  //功能：支付宝服务器异步通知页面
@@ -23,7 +23,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%
-	Logger logger = LoggerFactory.getLogger(AlipayNotify.class);
+	Logger logger = LoggerFactory.getLogger(AlipayNotifyNew.class);
 	logger.info("============alipayapi_notify_url.jsp============");
 	//获取支付宝POST过来反馈信息
 	Map<String,String> params = new HashMap<String,String>();
@@ -54,18 +54,25 @@
 	//支付宝交易号
 
 	String trade_no = new String(request.getParameter("trade_no").getBytes("ISO-8859-1"),"UTF-8");
+	//支付总金额
+
+	String total_amount = new String(request.getParameter("total_amount").getBytes("ISO-8859-1"),"UTF-8");
 
 	//交易状态
 	String trade_status = new String(request.getParameter("trade_status").getBytes("ISO-8859-1"),"UTF-8");
+	//卖方商户号
+	String seller_id = new String(request.getParameter("seller_id").getBytes("ISO-8859-1"),"UTF-8");
+	//系统的应用ID
+	String app_id = new String(request.getParameter("app_id").getBytes("ISO-8859-1"),"UTF-8");
 	//退款状态
 	String refund_status = null;
 	if(StringUtils.isNotBlank(request.getParameter("refund_status"))){
 		refund_status = new String(request.getParameter("refund_status").getBytes("ISO-8859-1"),"UTF-8");
 	}
-	logger.error("out_trade_no="+out_trade_no+",trade_no="+trade_no+",trade_status="+trade_status+",refund_status="+refund_status);
+	logger.info("out_trade_no="+out_trade_no+",trade_no="+trade_no+",trade_status="+trade_status+",refund_status="+refund_status);
 	//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表(以上仅供参考)//
 
-	if(AlipayNotify.verify(params)){//验证成功
+	if(AlipayNotifyNew.verify(params)){//验证成功
 		//本系统的业务逻辑处理，把订单更新为已成功付款状态
 		WebApplicationContext app = WebApplicationContextUtils.getWebApplicationContext(request.getSession().getServletContext());
 		OrderService orderService = (OrderService) app.getBean(OrderService.class);
@@ -73,56 +80,29 @@
 		//请在这里加上商户的业务逻辑程序代码
 
 		//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
-		logger.error("支付宝异步验证成功!");
+		logger.info("支付宝异步验证成功!");
+		
 		if(StringUtils.isNotBlank(trade_status)){
-			if(orderService.alipayNotify(trade_status,refund_status,out_trade_no,trade_no)){
+			boolean flag=orderService.alipayNotify(trade_status,refund_status,
+					out_trade_no,trade_no,total_amount,seller_id,app_id);
+			if(flag){
+				logger.info("更改订单状态成功");
 				out.println("success");	//请不要修改或删除
 			}else{
-				out.println("success_fail");	//请不要修改或删除
+				logger.error("更改订单状态失败");
+				out.println("fail");	//请不要修改或删除
 			}
-			if(trade_status.equals("WAIT_BUYER_PAY")){
-			//该判断表示买家已在支付宝交易管理中产生了交易记录，但没有付款
 			
-				//判断该笔订单是否在商户网站中已经做过处理
-					//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
-					//如果有做过处理，不执行商户的业务程序
-				//orderService.alipayNotify(trade_status,refund_status,out_trade_no,trade_no);
-				//out.println("success");	//请不要修改或删除
-			} else if(trade_status.equals("WAIT_SELLER_SEND_GOODS")){
-			//该判断表示买家已在支付宝交易管理中产生了交易记录且付款成功，但卖家没有发货
-			
-				//判断该笔订单是否在商户网站中已经做过处理
-					//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
-					//如果有做过处理，不执行商户的业务程序
-				//orderService.alipayNotify(trade_status,refund_status,out_trade_no,trade_no);
-				//out.println("success");	//请不要修改或删除
-			} else if(trade_status.equals("WAIT_BUYER_CONFIRM_GOODS")){
-			//该判断表示卖家已经发了货，但买家还没有做确认收货的操作
-			
-				//判断该笔订单是否在商户网站中已经做过处理
-					//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
-					//如果有做过处理，不执行商户的业务程序
-				//orderService.alipayNotify(trade_status,refund_status,out_trade_no,trade_no);
-				out.println("success");	//请不要修改或删除
-			} else if(trade_status.equals("TRADE_FINISHED")){
-			//该判断表示买家已经确认收货，这笔交易完成
-			
-				//判断该笔订单是否在商户网站中已经做过处理
-					//如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
-					//如果有做过处理，不执行商户的业务程序
-				//orderService.alipayNotify(trade_status,refund_status,out_trade_no,trade_no);
-				//out.println("success");	//请不要修改或删除
-			}
-			else {
-				//out.println("success");	//请不要修改或删除
-			}
+		}else{
+			logger.error("更改订单状态失败");
+			out.println("fail");//请不要修改或删除
 		}
 		
 		//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
 
 		//////////////////////////////////////////////////////////////////////////////////////////
 	}else{//验证失败
-		out.println("fail");
 		logger.error("支付宝异步验证失败!");
+		out.println("fail");
 	}
 %>
