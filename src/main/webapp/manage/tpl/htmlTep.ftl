@@ -36,7 +36,7 @@
     <meta name="keywords" content="${systemSetting().keywords}"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>${(title?? && title!="")?string("${systemSetting().systemCode} - "+ title , "${systemSetting().systemCode}")}</title>
-    <link rel="shortcut icon" type="image/x-icon" href="${systemSetting().shortcuticon}">
+    <link rel="shortcut icon" type="image/x-icon" href="${basepath}/favicon.ico">
     <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/dpl.css" rel="stylesheet">
     <link href="http://g.alicdn.com/bui/bui/1.1.21/css/bs3/bui.css" rel="stylesheet">
     <link rel="stylesheet" href="${staticpath}/bui-admin/index.css">

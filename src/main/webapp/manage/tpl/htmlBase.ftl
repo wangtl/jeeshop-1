@@ -36,7 +36,7 @@
     <meta name="keywords" content="${systemSetting().keywords}"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>${(title?? && title!="")?string("${systemSetting().systemCode} - "+ title , "${systemSetting().systemCode}")}</title>
-    <link rel="shortcut icon" type="image/x-icon" href="${systemSetting().shortcuticon}">
+    <link rel="shortcut icon" type="image/x-icon" href="${basepath}/favicon.ico">
     <link rel="stylesheet" href="${staticpath}/bootstrap3.3.4/css/bootstrap.min.css"  type="text/css">
     <link rel="stylesheet" href="${staticpath}/jquery-ui-1.11.2/jquery-ui.css">
     <link rel="stylesheet" href="${staticpath}/validator-0.7.0/jquery.validator.css" />

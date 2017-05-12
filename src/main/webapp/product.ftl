@@ -19,7 +19,6 @@
 <meta name="keywords"  content="${e.name!""}" />
 </#if>
 
-<link rel="shortcut icon" href="${systemSetting().shortcuticon}">
 <style type="text/css">
 .topCss {
 	height: 28px;

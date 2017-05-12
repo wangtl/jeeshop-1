@@ -37,7 +37,7 @@
     <meta name="keywords" content="${systemSetting().keywords}"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>${title!"${systemSetting().systemCode}"}</title>
-    <link rel="shortcut icon" type="image/x-icon" href="${systemSetting().shortcuticon}">
+    <link rel="shortcut icon" type="image/x-icon" href="${basepath}/favicon.ico">
     <link rel="stylesheet" href="${basepath}/resource/css/sticky-footer.css"  type="text/css">
     <link rel="stylesheet" href="${basepath}/resource/css/base.css"  type="text/css">
     <#--<link rel="stylesheet" href="${basepath}/resource/zTree3.5/css/zTreeStyle/zTreeStyle.css" type="text/css">-->
