@@ -239,6 +239,7 @@ public class FrontCache {
 		pay = payService.selectOne(pay);
 		if(pay!=null){
 			systemManager.setAlipayConfig(pay.getSeller());
+			systemManager.setAlipaySellerId(pay.getPartner());
 		}
 		
 		AlipayConfig.partner = pay.getPartner();

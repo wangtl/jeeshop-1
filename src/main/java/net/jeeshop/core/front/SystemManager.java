@@ -11,6 +11,11 @@ import java.util.Random;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.LoggerFactory;
+
+import com.google.common.collect.Lists;
+
 import net.jeeshop.core.cache.CacheProvider;
 import net.jeeshop.core.cache.SimpleCacheProvider;
 import net.jeeshop.core.listener.SystemListener;
@@ -31,11 +36,6 @@ import net.jeeshop.services.manage.hotquery.bean.Hotquery;
 import net.jeeshop.services.manage.order.bean.OrdersReport;
 import net.jeeshop.services.manage.oss.bean.AliyunOSS;
 import net.jeeshop.services.manage.systemSetting.bean.SystemSetting;
-
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.LoggerFactory;
-
-import com.google.common.collect.Lists;
 
 
 /**
@@ -400,6 +400,18 @@ public class SystemManager {
 
     public void setAlipayConfig(String alipayConfig) {
         putCacheObject("alipayConfig", alipayConfig);
+    }
+    
+    /**
+     * 支付宝卖家商户号
+     * @return
+     */
+    public String getAlipaySellerId() {
+        return getCacheObject("alipaySellerId");
+    }
+
+    public void setAlipaySellerId(String alipaySellerId) {
+        putCacheObject("alipaySellerId", alipaySellerId);
     }
     
 
