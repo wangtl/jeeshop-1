@@ -3,16 +3,6 @@ package net.jeeshop.web.action.front.paygate;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.jeeshop.core.front.SystemManager;
-import net.jeeshop.core.pay.alipay.alipayescow.config.AlipayConfig;
-import net.jeeshop.core.pay.alipay.newpay.AlipaynewConfig;
-import net.jeeshop.services.common.Orderpay;
-import net.jeeshop.services.front.order.OrderService;
-import net.jeeshop.services.front.order.bean.Order;
-import net.jeeshop.services.front.orderpay.OrderpayService;
-import net.jeeshop.services.front.ordership.OrdershipService;
-import net.jeeshop.services.front.ordership.bean.Ordership;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +15,16 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+
+import net.jeeshop.core.front.SystemManager;
+import net.jeeshop.core.pay.alipay.alipayescow.config.AlipayConfig;
+import net.jeeshop.core.pay.alipay.newpay.AlipaynewConfig;
+import net.jeeshop.services.common.Orderpay;
+import net.jeeshop.services.front.order.OrderService;
+import net.jeeshop.services.front.order.bean.Order;
+import net.jeeshop.services.front.orderpay.OrderpayService;
+import net.jeeshop.services.front.ordership.OrdershipService;
+import net.jeeshop.services.front.ordership.bean.Ordership;
 
 /**
  * @author dylan
