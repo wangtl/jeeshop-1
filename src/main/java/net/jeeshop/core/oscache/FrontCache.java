@@ -997,7 +997,7 @@ public class FrontCache {
 	/**
 	 * 加载首页左侧的商品列表，此位置的商品从全局加载
 	 */
-	private void loadIndexLeftProduct(){
+	public void loadIndexLeftProduct(){
 		Product p = new Product();
 		p.setTop(FrontContainer.default_page_left_product_size);
 		List<Product> indexLeftProduct = productService.selectPageLeftHotProducts(p);

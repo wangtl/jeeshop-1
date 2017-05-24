@@ -100,12 +100,13 @@
                     <div class="form-group  col-md-12">
                         <label class="col-md-2 control-label">主图</label>
                         <div class="col-md-10">
-                            <input type="button" name="filemanager" value="浏览图片" class="btn btn-success"/>
+                            <input id="uploadifyMain" name="uploadifyMain" value="添加" class="btn btn-warning" type="button"/>
+                            <!-- <input type="button" name="filemanager" value="浏览图片" class="btn btn-success"/> -->
                             <input type="text"  value="${e.picture!""}" name="picture" type="text" id="picture"  ccc="imagesInput" style="width: 600px;"
                                    data-rule="小图;required;maxPicture;"/>
 							<#if e.picture??>
-                                <a target="_blank" href="${systemSetting().imageRootPath}${e.picture!""}">
-                                    <img style="max-width: 50px;max-height: 50px;" alt="" src="${systemSetting().imageRootPath}${e.picture!""}">
+                                <a target="_blank" href="${systemSetting().imageRootPath}${e.picture!""}" ccc="imagesInput">
+                                    <img style="max-width: 50px;max-height: 50px;" alt="" src="${systemSetting().imageRootPath}${e.picture!""}" ccc="imagesInput">
                                 </a>
 							</#if>
                         </div>
@@ -479,6 +480,8 @@ KindEditor.ready(function(K) {
 	});
 	K('input[name=filemanager]').click(function() {
 		var imagesInputObj = $(this).parent().children("input[ccc=imagesInput]");
+		var imagesAObj = $(this).parent().children("a[ccc=imagesInput]");
+		var imagesImgObj = $(this).parent().find("img[ccc=imagesInput]");
 		editor.loadPlugin('filemanager', function() {
 			editor.plugin.filemanagerDialog({
 				viewType : 'VIEW',
@@ -487,6 +490,8 @@ KindEditor.ready(function(K) {
 					//K('#picture').val(url);
 					//alert(url);
 					imagesInputObj.val(url);
+					imagesAObj.attr('href',url); 
+					imagesImgObj.attr('src',url); 
 					editor.hideDialog();
 					clearRootImagePath(imagesInputObj);//$("#picture"));
 				}
@@ -499,8 +504,8 @@ KindEditor.ready(function(K) {
 		
 	 <link rel="stylesheet" href="${basepath}/resource/uploadify/uploadify.css"  type="text/css">
 	 <script type="text/javascript" src="${basepath}/resource/uploadify/jquery.uploadify.min.js"></script>
-	 
-	 <script type="text/javascript">
+
+<script type="text/javascript">
 	$(document).ready(function() {
 	
 		ajaxLoadImgList();
@@ -541,6 +546,42 @@ KindEditor.ready(function(K) {
         	   alert("上传失败,data="+data+",file="+file+",response="+response);   
            }
 	 	});
+	 	
+	 	var imagesInputObj = $("#uploadifyMain").parent().children("input[ccc=imagesInput]");
+		var imagesAObj = $("#uploadifyMain").parent().children("a[ccc=imagesInput]");
+		var imagesImgObj = $("#uploadifyMain").parent().find("img[ccc=imagesInput]");
+	 	$("#uploadifyMain").uploadify({
+			//'auto'           : false,
+           'swf'       	 : '${basepath}/resource/uploadify/uploadify.swf',
+           'uploader'       : url,//后台处理的请求
+           'queueID'        : 'fileQueue',//与下面的id对应
+           //'queueSizeLimit' :100,
+           //'fileTypeDesc'   : 'rar文件或zip文件',
+           //'fileTypeExts' 	 : '*.jpg;*.jpg', //控制可上传文件的扩展名，启用本项时需同时声明fileDesc
+           //'fileTypeExts'   : '*.rar;*.zip', //控制可上传文件的扩展名，启用本项时需同时声明fileDesc  
+           
+           
+           //'fileTypeDesc' : '图片文件' , //出现在上传对话框中的文件类型描述
+//'fileTypeExts' : '*.jpg;*.bmp;*.png;*.gif', //控制可上传文件的扩展名，启用本项时需同时声明filedesc
+
+           'multi'          : false,
+           'buttonText'     : '添加',
+           
+           onUploadSuccess:function(file, data, response){
+			   data = $.parseJSON(data);
+			   if(data.error == '1') {
+				   alert("上传失败：\n失败原因:" + data.msg);
+			   } else {
+					imagesInputObj.val(data.filePath);
+					imagesAObj.attr('href',"${systemSetting().imageRootPath}" + data.filePath); 
+					imagesImgObj.attr('src',"${systemSetting().imageRootPath}" + data.filePath);
+			   }
+           },
+           onUploadError:function(file, errorCode, errorMsg) {
+        	   alert("上传失败,data="+data+",file="+file+",response="+response);   
+           }
+	 	});
+	 	
 	});
 	
 	//ajax加载内容图片列表
