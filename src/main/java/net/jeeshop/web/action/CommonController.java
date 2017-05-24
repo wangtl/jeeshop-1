@@ -100,7 +100,12 @@ public class CommonController {
         try {
             filedata.transferTo(uploadedFile3);
             
-            OSSObjectSample.save(relativePath, uploadedFile3);//上传到oss上
+            try {
+            	OSSObjectSample.save(relativePath, uploadedFile3);//上传到oss上
+			} catch (Exception e) {
+				logger.error("上传文件到阿里云OSS异常：" + e.getMessage());
+			}
+            
             
             if(createThumbnail) {
                 File uploadedFile1 = new File(savePath, newFileName1 + "." + fileExt);
@@ -108,9 +113,13 @@ public class CommonController {
 
                 ImageUtils.ratioZoom2(uploadedFile3, uploadedFile1, Double.valueOf(SystemManager.getInstance().getProperty("product_image_1_w")));
                 ImageUtils.ratioZoom2(uploadedFile3, uploadedFile2, Double.valueOf(SystemManager.getInstance().getProperty("product_image_2_w")));
+                try {
+                	OSSObjectSample.save(relativePath, uploadedFile1);//上传到oss上
+                    OSSObjectSample.save(relativePath, uploadedFile2);//上传到oss上
+				} catch (Exception e) {
+					logger.error("上传文件到阿里云OSS异常：" + e.getMessage());
+				}
                 
-                OSSObjectSample.save(relativePath, uploadedFile1);//上传到oss上
-                OSSObjectSample.save(relativePath, uploadedFile2);//上传到oss上
             }
             
         } catch (Exception e) {
