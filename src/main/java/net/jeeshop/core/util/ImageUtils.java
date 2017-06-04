@@ -255,7 +255,7 @@ public class ImageUtils {
 	   BufferedImage image = ImageIO.read(src);
 	   
 	   //获得缩放的比例
-	   double ratio = 0.0; 
+	   double ratio = 1.0; 
 	   if(image.getHeight()>100 || image.getWidth()>100)
 	   { 
 	    if(image.getHeight() > image.getWidth())
