@@ -4,20 +4,26 @@
  */
 package net.jeeshop.web.action.manage.indexImg;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import net.jeeshop.core.Services;
 import net.jeeshop.core.dao.page.PagerModel;
+import net.jeeshop.core.oscache.FrontCache;
 import net.jeeshop.services.manage.indexImg.IndexImgService;
 import net.jeeshop.services.manage.indexImg.bean.IndexImg;
 import net.jeeshop.web.action.BaseController;
 import net.jeeshop.web.util.RequestHolder;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * 滚动图片
@@ -40,6 +46,8 @@ public class IndexImgAction extends BaseController<IndexImg> {
 	}
 	@Autowired
 	private IndexImgService imgService;
+	@Autowired
+	private FrontCache frontCache;
 
 	@Override
 	public Services<IndexImg> getService() {
@@ -92,4 +100,48 @@ public class IndexImgAction extends BaseController<IndexImg> {
 //		SystemSingle.getInstance().sync(Container.imgList);
 		return super.selectList(request, img);
 	}
+	
+	/**
+     * 公共的更新数据的方法，子类可以通过重写此方法实现个性化的需求。
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public String update(HttpServletRequest request, @ModelAttribute("e") IndexImg e, RedirectAttributes flushAttrs) throws Exception {
+        getService().update(e);
+        insertAfter(e);
+        frontCache.loadIndexImgs();//更新缓存
+        addMessage(flushAttrs, "操作成功！");
+        return "redirect:selectList";
+    }
+    
+    /**
+     * 公共的插入数据方法，子类可以通过重写此方法实现个性化的需求。
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "insert",method = RequestMethod.POST)
+    public String insert(HttpServletRequest request, @ModelAttribute("e") IndexImg e, RedirectAttributes flushAttrs) throws Exception {
+        getService().insert(e);
+        insertAfter(e);
+        frontCache.loadIndexImgs();//更新缓存
+        addMessage(flushAttrs, "操作成功！");
+        return "redirect:selectList";
+    }
+    
+    /**
+     * 公共的批量删除数据的方法，子类可以通过重写此方法实现个性化的需求。
+     *
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping(value = "deletes", method = RequestMethod.POST)
+    public String deletes(HttpServletRequest request, String[] ids, @ModelAttribute("e") IndexImg e, RedirectAttributes flushAttrs) throws Exception {
+        getService().deletes(ids);
+        frontCache.loadIndexImgs();//更新缓存
+        addMessage(flushAttrs, "操作成功！");
+        return "redirect:selectList";
+    }
 }

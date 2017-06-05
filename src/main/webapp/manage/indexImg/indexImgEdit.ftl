@@ -20,11 +20,11 @@
 			<tr>
 				<th>图片地址</th>
 				<td style="text-align: left;" colspan="3">
-					<input type="button" name="filemanager" value="浏览图片" class="btn btn-warning"/>
+					<input id="uploadify" name="uploadify" value="添加" class="btn btn-warning" type="button" onclick="doUpload();"/>
 					<input type="text"  value="${e.picture!""}" name="picture"  id="picture" ccc="imagesInput" style="width: 600px;" data-rule="图片地址:required;picture;" />
 					<#if e.picture??>
-						<a target="_blank" href="${systemSetting().imageRootPath}/${e.picture!""}">
-							<img style="max-width: 50px;max-height: 50px;" alt="" src="${systemSetting().imageRootPath}/${e.picture!""}">
+						<a target="_blank" href="${systemSetting().imageRootPath}${e.picture!""}" ccc="imagesInput">
+							<img style="max-width: 50px;max-height: 50px;" alt="" src="${systemSetting().imageRootPath}${e.picture!""}" ccc="imagesInput">
 						</a>
 					</#if>
 				</td>
@@ -84,4 +84,40 @@ KindEditor.ready(function(K) {
 	
 });
 </script>
+
+<script type="text/javascript" src="${basepath}/resource/jquery-upload/jquery.upload.js"></script>
+<script>
+function doUpload() {
+	var imagesInputObj = $("#uploadify").parent().children("input[ccc=imagesInput]");
+	var imagesAObj = $("#uploadify").parent().children("a[ccc=imagesInput]");
+	var imagesImgObj = $("#uploadify").parent().find("img[ccc=imagesInput]");
+		
+	// 上传方法
+	$.upload({
+			// 上传地址
+			url: '${basepath}/common/uploadify.do', 
+			// 文件域名字
+			fileName: 'Filedata', 
+			// 其他表单数据
+			//params: {name: 'pxblog'},
+			// 上传完成后, 返回json, text
+			dataType: 'json',
+			// 上传之前回调,return true表示可继续上传
+			onSend: function() {
+					return true;
+			},
+			// 上传之后回调
+			onComplate: function(data) {
+			   if(data.error == '1') {
+				   alert("上传失败：\n失败原因:" + data.msg);
+			   } else {
+					imagesInputObj.val(data.filePath);
+					imagesAObj.attr('href',"${systemSetting().imageRootPath}" + data.filePath); 
+					imagesImgObj.attr('src',"${systemSetting().imageRootPath}" + data.filePath);
+			   }
+			}
+	});
+}
+</script>
+
 </@page.pageBase>

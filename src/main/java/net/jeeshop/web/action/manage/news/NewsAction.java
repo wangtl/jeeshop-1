@@ -4,8 +4,26 @@
  */
 package net.jeeshop.web.action.manage.news;
 
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 import net.jeeshop.core.dao.page.PagerModel;
 import net.jeeshop.core.front.SystemManager;
+import net.jeeshop.core.oscache.FrontCache;
 import net.jeeshop.core.system.bean.User;
 import net.jeeshop.services.manage.catalog.CatalogService;
 import net.jeeshop.services.manage.indexImg.IndexImgService;
@@ -14,20 +32,6 @@ import net.jeeshop.services.manage.news.bean.News;
 import net.jeeshop.web.action.BaseController;
 import net.jeeshop.web.util.LoginUserHolder;
 import net.jeeshop.web.util.RequestHolder;
-import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.util.List;
 
 
 /**
@@ -55,6 +59,8 @@ public class NewsAction extends BaseController<News> {
 	private IndexImgService indexImgService;
     @Autowired
 	private CatalogService catalogService;
+    @Autowired
+	private FrontCache frontCache;
 
 //	private String type;//文章类型。通知：notice；帮助：help
 	
@@ -122,7 +128,6 @@ public class NewsAction extends BaseController<News> {
 		e.setStatus(News.news_status_n);//未审核
 		
 		getService().insert(e);
-		
 //		getSession().setAttribute("insertOrUpdateMsg", "添加成功！");
 //		getResponse().sendRedirect(getEditUrl(e.getId()));
 		return "redirect:toEdit2?id="+e.getId();
@@ -200,6 +205,7 @@ public class NewsAction extends BaseController<News> {
     @RequestMapping(value = "updateStatusY", method = RequestMethod.POST)
 	public String updateStatusY(String[] ids, String type, RedirectAttributes flushAttrs) throws Exception {
 		newsService.updateStatus(ids,News.news_status_y);
+		frontCache.loadNewCatalogs();//更新缓存
 		addMessage(flushAttrs, "操作成功!");
 		return "redirect:selectList?type=" + type;
 	}
@@ -211,6 +217,7 @@ public class NewsAction extends BaseController<News> {
 	@RequestMapping(value = "updateStatusN", method = RequestMethod.POST)
 	public String updateStatusN(String[] ids, String type, RedirectAttributes flushAttrs) throws Exception {
 		newsService.updateStatus(ids,News.news_status_n);
+		frontCache.loadNewCatalogs();//更新缓存
 		addMessage(flushAttrs, "操作成功!");
 		return "redirect:selectList?type=" + type;
 	}
@@ -239,11 +246,15 @@ public class NewsAction extends BaseController<News> {
 		if(StringUtils.isBlank(e.getId())){
 			throw new NullPointerException("参数不能为空！");
 		}
-		
+		News newsQuery = newsService.selectById(e.getId());
+		if(newsQuery==null){
+			throw new NullPointerException("文章不存在！");
+		}
 		News news = new News();
 		news.setId(e.getId());
 		news.setStatus(status);
 		newsService.updateDownOrUp(news);
+		SystemManager.getInstance().getNewsMap().remove(newsQuery.getCode());//更新缓存
 		addMessage(flushAttrs, "更新成功!");
 		return "redirect:toEdit2?id="+e.getId();
 	}
@@ -336,14 +347,15 @@ public class NewsAction extends BaseController<News> {
 //		return null;
 	}
 
-//	@Override
-//	public String deletes() throws Exception {
-////		return super.deletes();
-//		logger.error("1..type="+e.getType());
-//		getServer().deletes(getIds());
-//		logger.error("2..type="+e.getType());
-//		return selectList();
-//	}
+	@Override
+	@RequestMapping(value = "deletes", method = RequestMethod.POST)
+	public String deletes(HttpServletRequest request, String[] ids, @ModelAttribute("e") News e, RedirectAttributes flushAttrs) throws Exception {
+//		return super.deletes();
+		newsService.deletes(ids);
+		frontCache.loadNewCatalogs();//更新缓存
+		addMessage(flushAttrs, "操作成功!");
+		return "redirect:selectList?type=" + e.getType();
+	}
 	
 	@Override
     @RequestMapping(value = "toAdd")
