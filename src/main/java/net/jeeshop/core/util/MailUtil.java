@@ -93,7 +93,7 @@ public class MailUtil {
 			// 创建信件服务器
 			props.put("mail.smtp.auth","true");   
 			props.put("mail.smtp.host", host);
-			props.put("mail.smtp.password", "0");
+			props.put("mail.smtp.password", this.password);
 			// 得到默认的对话对象
 //		 	Session session = Session.getDefaultInstance(props, null);
 			Session session = Session.getInstance(props, new PopupAuthenticator(this.from, this.password));
